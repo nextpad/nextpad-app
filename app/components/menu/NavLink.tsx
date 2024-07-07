@@ -1,12 +1,20 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 function NavLink() {
+   const pathName = usePathname();
    return (
       <>
          <ul className="menu menu-horizontal px-1">
             <li>
-               <Link href="/faucet">Faucet</Link>
+               <Link
+                  href="/faucet"
+                  className={pathName == "/faucet" ? "text-teal-700" : ""}
+               >
+                  Faucet
+               </Link>
             </li>
             <li>
                <a href="https://github.com/toldapp" target="_blank">

@@ -9,7 +9,7 @@ import ShieldIcon from "../icons/ShieldIcon";
 function MenuButton() {
    return (
       <div>
-         <ul className="menu bg-base-300 border-teal-600 border lg:menu-horizontal rounded-3xl shadow-md">
+         <ul className="menu bg-base-300 border-teal-800 border lg:menu-horizontal rounded-3xl shadow-md">
             <li>
                <Link href="/" className="rounded-r-none">
                   <HomeIcon />

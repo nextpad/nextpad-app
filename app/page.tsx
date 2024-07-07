@@ -22,6 +22,14 @@ export default function Home() {
          <div className="flex mt-5">
             <UpcomingLaunchpad />
          </div>
+         <div className="pt-10 text-center">
+            <a
+               href="#"
+               className="btn px-10 hover:bg-teal-700 bg-teal-600 text-white"
+            >
+               More Launchpad
+            </a>
+         </div>
          <div className="flex mt-16 mb-5">
             <div className="flex-1 mr-7">
                <FundedProject />

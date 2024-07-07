@@ -6,7 +6,7 @@ import Image from "next/image";
 function Navbar() {
    return (
       <>
-         <div className="navbar bg-base-300 py-3 border-b border-teal-600 px-10">
+         <div className="navbar bg-base-300 py-3 border-b-2 border-teal-800 px-10">
             <div className="navbar-start">
                <div className="items-center">
                   <a href="/" className="btn btn-ghost text-xl">
