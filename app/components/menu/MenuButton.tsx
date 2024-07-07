@@ -9,9 +9,9 @@ import ShieldIcon from "../icons/ShieldIcon";
 function MenuButton() {
    return (
       <div>
-         <ul className="menu bg-base-200 border-gray-300 border lg:menu-horizontal rounded-3xl shadow-sm">
+         <ul className="menu bg-base-300 border-teal-600 border lg:menu-horizontal rounded-3xl shadow-md">
             <li>
-               <Link href="/" className="hover:rounded-r-none">
+               <Link href="/" className="rounded-r-none">
                   <HomeIcon />
                   Home
                </Link>
@@ -19,17 +19,14 @@ function MenuButton() {
             <li>
                <Link
                   href="/launchpad"
-                  className="hover:rounded-r-none hover:rounded-l-none"
+                  className="rounded-r-none rounded-l-none "
                >
                   <RocketIcon />
                   Launchpad
                </Link>
             </li>
             <li>
-               <Link
-                  href="/minter"
-                  className="hover:rounded-r-none hover:rounded-l-none"
-               >
+               <Link href="/minter" className="rounded-r-none rounded-l-none">
                   <PlusIcon classList="size-5" />
                   New Token
                </Link>
@@ -37,14 +34,14 @@ function MenuButton() {
             <li>
                <Link
                   href="/governance"
-                  className="hover:rounded-r-none hover:rounded-l-none"
+                  className="rounded-r-none rounded-l-none"
                >
                   <ScaleIcon classList="size-5" />
                   Governance
                </Link>
             </li>
             <li>
-               <Link href="/locker" className="hover:rounded-l-none">
+               <Link href="/locker" className="rounded-l-none">
                   <ShieldIcon classList="size-5" />
                   Locker
                </Link>

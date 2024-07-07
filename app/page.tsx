@@ -1,9 +1,35 @@
 import Image from "next/image";
+import ChevronRightIcon from "./components/icons/ChevronRightIcon";
+import Overview from "./Overview";
+import UpcomingLaunchpad from "./UpcomingLaunchpad";
+import FundedProject from "./launchpad/FundedProject";
+import LatestToken from "./LatestToken";
 
 export default function Home() {
    return (
       <main className="min-h-screen">
-         <h1>Home</h1>
+         <div className="flex">
+            <Overview />
+         </div>
+         <div className="text-2xl mt-16 mb-7">
+            <h1 className="font-bold">Upcoming Launchpad</h1>
+            <p className="text-teal-600 text-base mt-1">
+               <a href="#">
+                  Explore More <ChevronRightIcon classList="size-4 inline" />
+               </a>
+            </p>
+         </div>
+         <div className="flex mt-5">
+            <UpcomingLaunchpad />
+         </div>
+         <div className="flex mt-16 mb-5">
+            <div className="flex-1 mr-7">
+               <FundedProject />
+            </div>
+            <div className="flex-1">
+               <LatestToken />
+            </div>
+         </div>
       </main>
    );
 }
