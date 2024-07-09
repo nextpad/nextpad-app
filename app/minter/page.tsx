@@ -4,6 +4,7 @@ import BasicForm from "./steps/BasicForm";
 import { TokenData } from "./steps/ITokenData";
 import InfoForm from "./steps/InfoForm";
 import DeployForm from "./steps/DeployForm";
+import ChevronDownIcon from "../components/icons/ChevronDownIcon";
 
 function Page() {
    const [step, setStep] = useState(1);
@@ -84,6 +85,11 @@ function Page() {
                   </div>
                   <div className="mt-6 px-9">{currentForm}</div>
                </div>
+            </div>
+            <div className="text-center mt-6">
+               <a href="#" className="btn btn-normal">
+                  <ChevronDownIcon classList="size-5" /> Explore Tokens
+               </a>
             </div>
          </div>
       </div>

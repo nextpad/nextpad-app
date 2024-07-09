@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.btn-normal {
+   @apply bg-teal-600 text-white px-10 hover:bg-teal-700;
+}
+
 * {
    scrollbar-width: thin;
 }

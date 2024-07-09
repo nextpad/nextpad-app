@@ -7,7 +7,7 @@ function CardProject(props: any) {
       <>
          <div
             className="card w-full bg-base-300 hover:shadow-lg border border-teal-800 hover:shadow-teal-600"
-            style={{ maxHeight: "35.5rem" }}
+            style={{ maxHeight: "37.5rem" }}
          >
             <figure>
                <Image
