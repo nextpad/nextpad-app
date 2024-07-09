@@ -1,4 +1,3 @@
-import Image from "next/image";
 import ChevronRightIcon from "./components/icons/ChevronRightIcon";
 import Overview from "./Overview";
 import UpcomingLaunchpad from "./UpcomingLaunchpad";
@@ -19,7 +18,7 @@ export default function Home() {
                </a>
             </p>
          </div>
-         <div className="flex mt-5">
+         <div className="flex flex-wrap mt-5">
             <UpcomingLaunchpad />
          </div>
          <div className="pt-10 text-center">

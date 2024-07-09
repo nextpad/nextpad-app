@@ -8,6 +8,12 @@ const nextConfig = {
             port: "",
             pathname: "/_next/**",
          },
+         {
+            protocol: "https",
+            hostname: "cryptologos.cc",
+            port: "",
+            pathname: "/logos/**",
+         },
       ],
    },
 };

@@ -11,7 +11,7 @@ function page() {
             >
                <div className="card-body p-0">
                   <div className="card-title border-b border-teal-900">
-                     <h2 className="px-9 py-4 text-2xl">Faucet Token</h2>
+                     <h2 className="px-9 py-4 text-xl">Faucet Token</h2>
                   </div>
                   <div className="flex">
                      <div className="flex-1 pl-9 pr-4 py-5">

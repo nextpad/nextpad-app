@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import FireIcon from "./icons/FireIcon";
 
 function CardProject(props: any) {
    return (
@@ -15,6 +16,10 @@ function CardProject(props: any) {
                   src={props.banner}
                   alt="Banner"
                />
+               <div className="absolute z-10 right-0 top-0 mt-7 py-1 bg-rose-700 text-white pl-8 pr-4">
+                  <span className="font-semibold">100</span>
+                  <FireIcon classList="size-4 mb-1 ml-1 inline" />
+               </div>
             </figure>
             <div className="card-body">
                <Image
@@ -24,10 +29,10 @@ function CardProject(props: any) {
                   height={90}
                   src={props.logo}
                />
-               <h2 className="card-title mt-2">
+               <h2 className="card-title mt-2  text-slate-100">
                   <a href="#">{props.projectName}</a>
                </h2>
-               <div className="badge bg-yellow-600 text-white p-3">
+               <div className="badge bg-yellow-700 text-white p-3">
                   Upcoming
                </div>
                <p className="mt-2">{props.intros}</p>
