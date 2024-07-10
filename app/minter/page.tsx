@@ -87,7 +87,7 @@ function Page() {
                </div>
             </div>
             <div className="text-center mt-6">
-               <a href="#" className="btn btn-normal">
+               <a href="/tokens" className="btn btn-normal">
                   <ChevronDownIcon classList="size-5" /> Explore Tokens
                </a>
             </div>

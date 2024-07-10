@@ -21,9 +21,7 @@ export default function RootLayout({
          <body className="min-h-screen">
             <Navbar />
             <div className="px-32 py-10">{children}</div>
-            <div className="flex justify-center p-4 mt-auto mb-3 z-50 sticky bottom-0">
-               <MenuButton />
-            </div>
+            <MenuButton />
          </body>
       </html>
    );
