@@ -1,10 +1,20 @@
 import Image from "next/image";
 import React from "react";
+import ChevronRightIcon from "./components/icons/ChevronRightIcon";
 
 function LatestToken() {
    return (
       <>
          <h1 className="text-2xl font-bold">Latest Token</h1>
+         <div className="flex justify-between mt-2">
+            <div className="text-xl">List of all generated token by TOL</div>
+
+            <div className="text-teal-600 text-base mt-1">
+               <a href="/tokens">
+                  Explore More <ChevronRightIcon classList="size-4 inline" />
+               </a>
+            </div>
+         </div>
          <div className="overflow-x-auto mt-6 border border-teal-800">
             <table className="table">
                {/* head */}

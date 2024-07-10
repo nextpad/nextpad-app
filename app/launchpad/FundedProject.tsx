@@ -1,10 +1,21 @@
 import Image from "next/image";
 import React from "react";
+import ChevronRightIcon from "../components/icons/ChevronRightIcon";
 
 function FundedProject() {
    return (
       <>
          <h1 className="text-2xl font-bold">Funded Projects</h1>
+
+         <div className="flex justify-between mt-2">
+            <div className="text-xl">Successfully projects is here</div>
+
+            <div className="text-teal-600 text-base mt-1">
+               <a href="#">
+                  Explore More <ChevronRightIcon classList="size-4 inline" />
+               </a>
+            </div>
+         </div>
          <div className="overflow-x-auto mt-6 border border-teal-800">
             <table className="table">
                {/* head */}
