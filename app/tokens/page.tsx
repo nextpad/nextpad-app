@@ -9,7 +9,7 @@ import QrCodeIcon from "../components/icons/QrCodeIcon";
 function page() {
    return (
       <div className="min-h-screen">
-         <h1 className="text-2xl font-bold">Tokens</h1>
+         <h1 className="text-3xl font-bold">Tokens</h1>
          <div className="flex justify-between items-center mt-5">
             <div className="flex-1 max-w-xs">
                <div
