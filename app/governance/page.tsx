@@ -1,8 +1,8 @@
 import React from "react";
 import PlusIcon from "../components/icons/PlusIcon";
 import ListTab from "./ListTab";
-import ArrowRightIcon from "../components/icons/ArrowRightIcon";
 import ProposalCard from "./ProposalCard";
+import Link from "next/link";
 
 function page() {
    return (
@@ -13,7 +13,7 @@ function page() {
                <p className="text-xl mt-3">
                   Users can join to vote for particular proposals created by the
                   project developers or directly create their own proposals for
-                  the ecosystem's improvement
+                  the ecosystem&apos;s improvement
                </p>
             </div>
             <div className="flex-1"></div>
@@ -24,7 +24,7 @@ function page() {
                <div className="flex-1 max-w-xs">
                   <div role="tablist" className="tabs tabs-bordered">
                      <a role="tab" className="tab tab-active">
-                        Developer
+                        Core
                      </a>
                      <a role="tab" className="tab">
                         Community
@@ -32,9 +32,12 @@ function page() {
                   </div>
                </div>
                <div className="flex-1">
-                  <a href="" className="btn float-end bg-teal-600 text-white">
+                  <Link
+                     href="/governance/add"
+                     className="btn float-end btn-normal"
+                  >
                      <PlusIcon classList="size-5" /> Add Proposal
-                  </a>
+                  </Link>
                </div>
             </div>
          </div>

@@ -4,7 +4,7 @@ import ArrowRightIcon from "../components/icons/ArrowRightIcon";
 function ProposalCard() {
    return (
       <>
-         <div className="card border border-gray-700 bg-base-200 hover:border-gray-600 mb-4">
+         <div className="card border border-gray-700 bg-base-200 hover:border-gray-600 mb-4 cursor-pointer hover:bg-base-300">
             <div className="card-body">
                <div className="flex justify-between mb-1">
                   <div className="flex flex-col">
@@ -23,13 +23,18 @@ function ProposalCard() {
                            </div>
                         </div>
                      </div>
+                     <div className="flex mt-3">
+                        <div className="badge badge-outline badge-success p-3 mr-3">
+                           Active
+                        </div>
+                        <div className="badge badge-outline badge-primary p-3">
+                           Core
+                        </div>
+                     </div>
                   </div>
                   <div className="flex items-center">
                      <ArrowRightIcon classList="size-8" />
                   </div>
-               </div>
-               <div className="badge badge-outline badge-success p-3">
-                  Active
                </div>
             </div>
          </div>
