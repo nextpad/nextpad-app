@@ -1,0 +1,35 @@
+GNU AFFERO GENERAL PUBLIC LICENSE
+Version 3, 19 November 2007
+
+Non-Commercial Clause Addendum
+
+Preamble
+The GNU Affero General Public License is designed to ensure that users have the freedom to share and change all versions of a program--to make sure it remains free software for all its users. This version of the AGPL includes an additional clause that restricts commercial use of the software.
+
+TERMS AND CONDITIONS
+
+1. Definitions
+"Non-commercial" means not primarily intended for or directed towards commercial advantage or monetary compensation.
+
+2. Basic Permissions
+You may copy, distribute, and modify the software provided that the use is non-commercial and you retain all copyright and license notices. Any distribution must include a copy of this license.
+
+3. Source Code
+You must make the source code of any modifications you distribute publicly available under the terms of this license.
+
+4. Non-Commercial Use Only
+This software is licensed for non-commercial use only. Commercial use is prohibited without prior written consent from the copyright holder.
+
+5. Distribution
+Any distribution of this software or its modifications must retain this license and the non-commercial clause.
+
+6. Remote Network Interaction
+If the software is used to interact with users over a network, the source code must be made available to those users.
+
+7. Patents
+Contributors grant a patent license to users, ensuring that patents cannot be enforced against users of the software.
+
+8. No Warranty
+This software is provided "as is," without any warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement.
+
+END OF TERMS AND CONDITIONS
