@@ -1,7 +1,7 @@
 import React from "react";
-import CardProject from "./components/CardProject";
+import CardProject from "../components/CardProject";
 
-function UpcomingLaunchpad() {
+function BrowseProject() {
    return (
       <>
          <div className="flex-1 mr-7">
@@ -26,7 +26,9 @@ function UpcomingLaunchpad() {
                maxAlloc="200M ERN"
                timeLeft="-"
                boost={120}
-               status={1}
+               status={2}
+               goals={100}
+               raised={77}
             />
          </div>
          <div className="flex-1">
@@ -39,11 +41,11 @@ function UpcomingLaunchpad() {
                maxAlloc="200M ERN"
                timeLeft="-"
                boost={400}
-               status={1}
+               status={3}
             />
          </div>
       </>
    );
 }
 
-export default UpcomingLaunchpad;
+export default BrowseProject;

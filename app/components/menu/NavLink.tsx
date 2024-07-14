@@ -22,7 +22,9 @@ function NavLink() {
                </a>
             </li>
             <li>
-               <a href="https://twitter.com/tol_dapp">Twitter</a>
+               <a href="https://twitter.com/tol_dapp" target="_blank">
+                  Twitter
+               </a>
             </li>
          </ul>
       </>

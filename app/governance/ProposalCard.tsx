@@ -2,6 +2,7 @@
 import React from "react";
 import ArrowRightIcon from "../components/icons/ArrowRightIcon";
 import Link from "next/link";
+import CheckBadgeIcon from "../components/icons/CheckBadgeIcon";
 
 function ProposalCard() {
    return (
@@ -31,7 +32,7 @@ function ProposalCard() {
                               Active
                            </div>
                            <div className="badge badge-outline badge-primary p-3">
-                              Core
+                              <CheckBadgeIcon classList="size-4 mr-1" /> Core
                            </div>
                         </div>
                      </div>
