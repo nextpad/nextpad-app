@@ -71,8 +71,8 @@ function MenuButton() {
             <li>
                <MenuLink
                   icon={ShieldIcon}
-                  href="/locker"
-                  active={pathName == "/locker"}
+                  href="/locker/liquidity"
+                  active={pathName == "/locker/liquidity"}
                >
                   Locker
                </MenuLink>
