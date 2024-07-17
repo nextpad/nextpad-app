@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import FireIcon from "./icons/FireIcon";
+import ProgressGoals from "./ProgressGoals";
 
 function CardProject(props: any) {
    return (
@@ -69,22 +70,7 @@ function CardProject(props: any) {
                   </div>
                )}
                {props.status == 2 && (
-                  <div className="mt-4">
-                     <div className="flex mb-1 justify-between">
-                        <h3>
-                           Progress{" "}
-                           <span className="text-white">{props.raised}%</span>
-                        </h3>
-                        <h3>
-                           {props.raised} / {props.goals} ETH
-                        </h3>
-                     </div>
-                     <progress
-                        className="progress progress-accent w-full"
-                        value={(props.raised / props.goals) * 100}
-                        max={props.goals}
-                     ></progress>
-                  </div>
+                  <ProgressGoals raised={props.raised} goals={props.goals} />
                )}
                <div className="divider mb-0"></div>
                <div className="card-actions justify-between items-center">
@@ -94,7 +80,7 @@ function CardProject(props: any) {
                   </div>
                   <div>
                      <a
-                        href="#"
+                        href="/launchpad/project"
                         className="btn btn-sm bg-teal-600 text-white hover:bg-teal-700"
                      >
                         View

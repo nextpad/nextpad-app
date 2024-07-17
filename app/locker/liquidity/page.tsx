@@ -7,7 +7,7 @@ function page() {
    return (
       <div className="min-h-screen">
          <div className="flex justify-between">
-            <h1 className="text-3xl font-bold mb-8">Liquidity Locker</h1>
+            <h1 className="text-3xl font-bold mb-8">Liquidity Lockers</h1>
             <button className="btn block btn-normal text-lg">
                <LockClosedIcon classList="size-5 mb-1 inline mr-2" /> Lock
                Liquidity
