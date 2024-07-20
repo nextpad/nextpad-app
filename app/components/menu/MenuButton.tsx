@@ -25,7 +25,7 @@ function MenuButton() {
          setClosed(locClose == "1" ? true : false);
       }
       console.log(locClose);
-   });
+   }, []);
 
    const toggleMenu = (e: any) => {
       e.preventDefault();
@@ -71,8 +71,8 @@ function MenuButton() {
             <li>
                <MenuLink
                   icon={ShieldIcon}
-                  href="/locker/liquidity"
-                  active={pathName == "/locker/liquidity"}
+                  href="/locker/token"
+                  active={pathName == "/locker/token"}
                >
                   Locker
                </MenuLink>

@@ -11,22 +11,28 @@ function FilterBar() {
             />
          </div>
          <div className="flex w-1/6 mr-4">
-            <select className="select select-bordered w-full">
-               <option disabled selected>
+            <select
+               defaultValue="default"
+               className="select select-bordered w-full"
+            >
+               <option value="default" disabled>
                   Blockchain
                </option>
-               <option>Core</option>
-               <option>Sepolia</option>
+               <option value="core">Core</option>
+               <option value="sepolia">Sepolia</option>
             </select>
          </div>
          <div className="flex w-1/6">
-            <select className="select select-bordered w-full">
-               <option disabled selected>
+            <select
+               className="select select-bordered w-full"
+               defaultValue="default"
+            >
+               <option value="default" disabled>
                   Short by
                </option>
-               <option>Token Name</option>
-               <option>Value</option>
-               <option>Token Amount</option>
+               <option value="token">Token Name</option>
+               <option value="value">Value</option>
+               <option value="amount">Token Amount</option>
             </select>
          </div>
       </>

@@ -2,6 +2,7 @@ import React from "react";
 import TokenLockedTable from "./TokenLockedTable";
 import FilterBar from "./FilterBar";
 import LockClosedIcon from "@/app/components/icons/LockClosedIcon";
+import Link from "next/link";
 
 function page() {
    return (
@@ -9,7 +10,10 @@ function page() {
          <div className="flex justify-between">
             <h1 className="text-3xl font-bold mb-8">Token Locker</h1>
             <button className="btn block btn-normal text-lg">
-               <LockClosedIcon classList="size-5 mb-1 inline mr-2" /> Lock Token
+               <Link href="/locker/token/create">
+                  <LockClosedIcon classList="size-5 mb-1 inline mr-2" /> Lock
+                  Token
+               </Link>
             </button>
          </div>
          <div className="flex-1 max-w-xs">

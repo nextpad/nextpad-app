@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import FireIcon from "./icons/FireIcon";
 import ProgressGoals from "./ProgressGoals";
+import BoltIcon from "./icons/BoltIcon";
 
 function CardProject(props: any) {
    return (
@@ -20,7 +21,7 @@ function CardProject(props: any) {
                {props.boost ? (
                   <div className="absolute z-10 right-0 top-0 mt-7 py-1 bg-rose-700 text-white pl-8 pr-4">
                      <span className="font-semibold">{props.boost}</span>
-                     <FireIcon classList="size-4 mb-1 ml-1 inline" />
+                     <BoltIcon classList="size-4 mb-1 ml-1 inline" />
                   </div>
                ) : (
                   ""

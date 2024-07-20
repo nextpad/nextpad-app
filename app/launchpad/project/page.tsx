@@ -1,7 +1,5 @@
-import Image from "next/image";
 import React from "react";
 import Carousel from "./Carousel";
-import ProgressGoals from "@/app/components/ProgressGoals";
 import ContributionCard from "./ContributionCard";
 import HeaderProject from "./HeaderProject";
 import DetailedProject from "./DetailedProject";
@@ -10,7 +8,7 @@ import TopParticipants from "./TopParticipants";
 
 function page() {
    return (
-      <div className="min-h-screen" style={{ backgroundImage: "" }}>
+      <div className="min-h-screen">
          <HeaderProject />
          <div className="flex flex-grow">
             <div className="flex w-3/5 flex-col mr-12">
