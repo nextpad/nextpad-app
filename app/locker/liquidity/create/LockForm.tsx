@@ -4,7 +4,6 @@ import React, { useState } from "react";
 
 type LockData = {
    network: number;
-   title: string;
    address: string;
    amount: string;
    unlocked: string;
@@ -14,7 +13,6 @@ type LockData = {
 function LockForm() {
    const [lockData, setLockData] = useState<LockData>({
       network: 1,
-      title: "",
       address: "",
       amount: "0",
       unlocked: "",
@@ -32,19 +30,8 @@ function LockForm() {
          </label>
          <NetworkButton network={lockData.network} setNetwork={setNetwork} />
 
-         <label className="text-lg font-semibold block mt-5">Title</label>
-         <p className="text-sm">e.g. Team, marketing</p>
-         <input
-            type="text"
-            value={lockData.title}
-            onChange={(e) =>
-               setLockData((prev) => ({ ...prev, title: e.target.value }))
-            }
-            className="input input-bordered w-full block my-3"
-         />
-
          <label className="text-lg font-semibold block mt-5">
-            Token Address
+            Pair Address
          </label>
          <input
             type="text"
@@ -55,7 +42,9 @@ function LockForm() {
             className="input input-bordered w-full block my-3"
          />
 
-         <label className="text-lg font-semibold block mt-5">Amount</label>
+         <label className="text-lg font-semibold block mt-5">
+            LP token amount
+         </label>
          <input
             type="number"
             value={lockData.amount}
@@ -64,6 +53,7 @@ function LockForm() {
             }
             className="input input-bordered w-full block my-3"
          />
+         <p className="text-sm">Balance: -</p>
 
          <label className="text-lg font-semibold block mt-5">
             Unlocking Date
@@ -97,7 +87,10 @@ function LockForm() {
             >
                Lock Now
             </button>
-            <a className="btn btn-neutral mt-2 min-w-20" href="/locker/token">
+            <a
+               className="btn btn-neutral mt-2 min-w-20"
+               href="/locker/liquidity"
+            >
                Back
             </a>
          </div>

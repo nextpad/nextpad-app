@@ -1,5 +1,7 @@
 import React from "react";
 import LockForm from "./LockForm";
+import Link from "next/link";
+import ChevronLeftIcon from "@/app/components/icons/ChevronLeftIcon";
 
 function page() {
    return (
@@ -8,7 +10,7 @@ function page() {
             className="card bg-base-300 border border-teal-800 mt-10"
             style={{
                minWidth: "40rem",
-               height: "54rem",
+               height: "48rem",
             }}
          >
             <div className="card-body p-0">
