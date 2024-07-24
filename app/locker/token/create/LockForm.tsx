@@ -54,6 +54,14 @@ function LockForm() {
             }
             className="input input-bordered w-full block my-3"
          />
+         <div className="card border border-slate-700 rounded-md mt-4">
+            <div className="card-body p-5">
+               <div className="flex justify-between">
+                  <div className="text-slate-300">OKE / Oke Token</div>
+                  <span className="block">0x000..000</span>
+               </div>
+            </div>
+         </div>
 
          <label className="text-lg font-semibold block mt-5">Amount</label>
          <input
@@ -64,6 +72,7 @@ function LockForm() {
             }
             className="input input-bordered w-full block my-3"
          />
+         <p className="text-sm">Balance: -</p>
 
          <label className="text-lg font-semibold block mt-5">
             Unlocking Date

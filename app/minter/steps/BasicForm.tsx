@@ -2,14 +2,14 @@ import React from "react";
 import NetworkButton from "../NetworkButton";
 import { TokenData } from "./ITokenData";
 
-interface Props {
+type Props = {
    network: number;
    step: number;
    tokenData: TokenData;
    setNetwork: (id: number) => void;
    setStep: (id: number) => void;
    setTokenData: (data: any) => void;
-}
+};
 
 function BasicForm(props: Props) {
    const changeTokenName = (event: any) => {

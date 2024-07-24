@@ -107,7 +107,7 @@ function DeployForm(props: Props) {
             </button>
             <button
                className="btn bg-teal-600 text-white px-10 hover:bg-teal-700"
-               onClick={() => console.log(props.tokenData)}
+               onClick={() => console.log(props.logo)}
             >
                Create Token
             </button>

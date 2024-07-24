@@ -8,7 +8,7 @@ function page() {
             className="card bg-base-300 border border-teal-800 mt-10"
             style={{
                minWidth: "40rem",
-               height: "54rem",
+               height: "61rem",
             }}
          >
             <div className="card-body p-0">
