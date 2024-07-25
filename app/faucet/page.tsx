@@ -1,5 +1,6 @@
 import React from "react";
 import InfoAlert from "./InfoAlert";
+import Claim from "./Claim";
 
 function page() {
    return (
@@ -15,17 +16,7 @@ function page() {
                   </div>
                   <div className="flex">
                      <div className="flex-1 pl-9 pr-4 py-5">
-                        <InfoAlert />
-
-                        <div className="text-center mt-10">
-                           <h2 className="text-2xl font-bold">
-                              Claim Interval
-                           </h2>
-                           <h3 className="text-4xl text-teal-600 mt-6">0</h3>
-                           <button className="btn bg-teal-600 text-white mt-10 px-12 hover:bg-teal-700">
-                              Claim $TOL
-                           </button>
-                        </div>
+                        <Claim />
                      </div>
                      <div className="divider divider-horizontal"></div>
                      <div className="flex-1 pr-9 py-5 pl-4">
@@ -37,7 +28,7 @@ function page() {
                               Claim <b>100 $TOL</b> tokens each time.
                            </li>
                            <li className="ml-4 mb-2">
-                              Claim once every specified interval
+                              Claim once every 1 hours.
                            </li>
                            <li className="ml-4 mb-2">
                               Tokens are for testing only, no real value.
