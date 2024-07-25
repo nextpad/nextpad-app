@@ -1,3 +1,4 @@
+"use client";
 import ProgressGoals from "@/app/components/ProgressGoals";
 import React from "react";
 import TimeCard from "./TimeCard";
@@ -58,7 +59,10 @@ function ContributionCard() {
                      step={0.001}
                      className="input input-bordered w-full"
                   />
-                  <button className="btn btn-normal mt-4">
+                  <button
+                     className="btn btn-normal mt-4"
+                     onClick={() => console.log()}
+                  >
                      Connect Wallet
                   </button>
                </div>
