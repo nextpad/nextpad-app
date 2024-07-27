@@ -8,11 +8,9 @@ import {
 import { BrowserProvider, ethers, JsonRpcSigner } from "ethers";
 import { Contract } from "ethers";
 import { tokenFactoryAddress } from "@/app/components/constants";
-import { TransactionReceipt } from "ethers";
 import ResultModal from "./ResultModal";
 import { uploadImage } from "@/app/components/helper";
 import { MetaToken } from "../page";
-import FailedAlert from "./FailedAlert";
 
 interface Props {
    step: number;
