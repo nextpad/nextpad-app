@@ -18,6 +18,18 @@ const nextConfig = {
             port: "",
             pathname: "/logos/**",
          },
+         {
+            protocol: "https",
+            hostname: "i.ibb.co",
+            port: "",
+            pathname: "/**",
+         },
+         {
+            protocol: "https",
+            hostname: "image-charts.com",
+            port: "",
+            pathname: "/**",
+         },
       ],
    },
 };
