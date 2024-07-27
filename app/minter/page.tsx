@@ -1,97 +1,59 @@
-"use client";
-import { useState } from "react";
-import BasicForm from "./steps/BasicForm";
-import { TokenData } from "./steps/ITokenData";
-import InfoForm from "./steps/InfoForm";
-import DeployForm from "./steps/DeployForm";
-import ChevronDownIcon from "../components/icons/ChevronDownIcon";
+import { PrismaClient } from "@prisma/client";
+import FormWrapper from "./FormWrapper";
+import { ethers } from "ethers";
+import { TransactionReceipt } from "ethers";
+import { tokenFactoryAddress } from "../components/constants";
 
-function Page() {
-   const [step, setStep] = useState(1);
-   const [network, setNetwork] = useState(1);
-   const [logo, setLogo] = useState(null);
-   const [tokenData, setTokenData] = useState<TokenData>({
-      // basic
-      name: "",
-      symbol: "",
-      supply: 0,
-      decimals: "18",
-      // detailed info
-      description: "",
-      website: "",
-      twitter: "",
-      telegram: "",
-   });
+export type MetaToken = {
+   name: string;
+   logo: string;
+   symbol: string;
+   supply: string;
+   address: string;
+   description: string;
+   blockchain: number;
+   web: string | null;
+   twitter: string | null;
+   telegram: string | null;
+};
 
-   let currentForm = (
-      <BasicForm
-         step={step}
-         setStep={setStep}
-         network={network}
-         setNetwork={setNetwork}
-         tokenData={tokenData}
-         setTokenData={setTokenData}
-      />
+async function saveToDatabase(
+   data: MetaToken,
+   hash: string
+): Promise<{ id: number } | null> {
+   "use server";
+
+   const provider = new ethers.JsonRpcProvider("https://rpc.test.btcs.network");
+   const tx: TransactionReceipt | null = await provider.getTransactionReceipt(
+      hash
    );
 
-   if (step === 2) {
-      currentForm = (
-         <InfoForm
-            step={step}
-            setStep={setStep}
-            tokenData={tokenData}
-            setLogo={setLogo}
-            setTokenData={setTokenData}
-         />
-      );
+   if (!tx) {
+      return null;
    }
 
-   if (step === 3) {
-      currentForm = (
-         <DeployForm
-            step={step}
-            setStep={setStep}
-            logo={logo}
-            network={network}
-            tokenData={tokenData}
-            setTokenData={setTokenData}
-         />
-      );
+   if (tx.to?.toLowerCase() !== tokenFactoryAddress.toLowerCase()) {
+      return null;
    }
 
+   if (!new URL(data.logo).hostname.includes("ibb.co")) {
+      return null;
+   }
+
+   const prisma = new PrismaClient();
+   const result = await prisma.token.create({
+      data: data,
+   });
+
+   return {
+      id: result.id,
+   };
+}
+
+function Page() {
    return (
       <div className="min-h-screen flex justify-center mt-3">
-         <div className="flex flex-col">
-            <div className="mb-10 text-center">
-               <ul className="steps steps-vertical lg:steps-horizontal w-1/2">
-                  <li className={`step ${step >= 1 ? "step-primary" : ""}`}>
-                     Basic
-                  </li>
-                  <li className={`step ${step >= 2 ? "step-primary" : ""}`}>
-                     Information
-                  </li>
-                  <li className={`step ${step >= 3 ? "step-primary" : ""}`}>
-                     Deploy
-                  </li>
-               </ul>
-            </div>
-            <div
-               className="card bg-base-300 border border-teal-800"
-               style={{ minWidth: "47rem", maxWidth: "47rem" }}
-            >
-               <div className="card-body p-0">
-                  <div className="card-title border-b border-teal-900">
-                     <h2 className="px-9 py-4 text-xl">Create Token</h2>
-                  </div>
-                  <div className="mt-6 px-9">{currentForm}</div>
-               </div>
-            </div>
-            <div className="text-center mt-6">
-               <a href="/tokens" className="btn btn-normal">
-                  <ChevronDownIcon classList="size-5" /> Explore Tokens
-               </a>
-            </div>
-         </div>
+         <FormWrapper onSaveDatabase={saveToDatabase} />
       </div>
    );
 }

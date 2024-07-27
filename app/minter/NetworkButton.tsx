@@ -13,9 +13,9 @@ function NetworkButton(props: Props) {
    return (
       <div>
          <button
-            onClick={() => props.setNetwork(1)}
+            onClick={() => props.setNetwork(1115)}
             className={`${classList} ${
-               props.network == 1 ? "border border-teal-700" : ""
+               props.network == 1115 ? "border border-teal-700" : ""
             }`}
          >
             <Image
@@ -27,9 +27,9 @@ function NetworkButton(props: Props) {
             Core
          </button>
          <button
-            onClick={() => props.setNetwork(2)}
+            onClick={() => props.setNetwork(11155111)}
             className={`${classList} ${
-               props.network == 2 ? "border border-teal-700" : ""
+               props.network == 11155111 ? "border border-teal-700" : ""
             }`}
          >
             <Image src="/images/eth.png" width={20} height={20} alt="logo" />

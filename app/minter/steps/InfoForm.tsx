@@ -1,9 +1,12 @@
 import React from "react";
-import NetworkButton from "../NetworkButton";
 import { TokenData } from "./ITokenData";
 import GlobeIcon from "@/app/components/icons/GlobeIcon";
 import XIcon from "@/app/components/icons/XIcon";
 import TelegramIcon from "@/app/components/icons/TelegramIcon";
+import ReactImagePickerEditor, {
+   ImagePickerConf,
+} from "react-image-picker-editor";
+import "react-image-picker-editor/dist/index.css";
 
 interface Props {
    step: number;
@@ -11,11 +14,21 @@ interface Props {
    tokenData: TokenData;
    setTokenData: (data: any) => void;
    setLogo: (data: any) => void;
+   logo: string;
 }
 
+const cfgPicker: ImagePickerConf = {
+   borderRadius: "8px",
+   language: "en",
+   width: "180px",
+   height: "150px",
+   objectFit: "contain",
+   compressInitial: null,
+};
+
 function InfoForm(props: Props) {
-   const changeLogo = (event: any) => {
-      props.setLogo(URL.createObjectURL(event.target.files[0]));
+   const changeLogo = (img: any) => {
+      props.setLogo(img);
    };
 
    const changeDescription = (event: any) => {
@@ -50,16 +63,16 @@ function InfoForm(props: Props) {
       <>
          <div className="flex flex-col">
             <div className="flex-1">
-               <label className="text-lg font-semibold block">
+               <label className="text-lg font-semibold block mb-3">
                   Logo for Token
                </label>
-               <input
-                  type="file"
-                  onChange={changeLogo}
-                  className="file-input file-input-bordered w-full my-4"
+               <ReactImagePickerEditor
+                  config={cfgPicker}
+                  imageSrcProp={props.logo}
+                  imageChanged={changeLogo}
                />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 mt-5">
                <label className="text-lg font-semibold flex justify-between">
                   <div>Short Description</div>
                   <div
