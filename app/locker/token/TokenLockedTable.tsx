@@ -22,8 +22,8 @@ function TokenLockedTable() {
                         <div className="flex items-center">
                            <div className="h-10 inline w-10">
                               <Image
-                                 width={64}
-                                 height={64}
+                                 width={40}
+                                 height={40}
                                  src="/images/eth.png"
                                  alt="Logo"
                                  className="rounded-full"
@@ -40,8 +40,8 @@ function TokenLockedTable() {
                      </td>
                      <td className="py-4">
                         <Image
-                           width={48}
-                           height={48}
+                           width={40}
+                           height={40}
                            src="/images/eth.png"
                            alt="Logo"
                            className="rounded-full"
@@ -71,8 +71,8 @@ function TokenLockedTable() {
                      </td>
                      <td className="py-4">
                         <Image
-                           width={48}
-                           height={48}
+                           width={40}
+                           height={40}
                            src="/images/core-dao.png"
                            alt="Logo"
                            className="rounded-full"

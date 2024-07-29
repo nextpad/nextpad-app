@@ -5,7 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -26,4 +27,16 @@ model Token {
   twitter     String?
   telegram    String?
   createdAt   DateTime @default(now())
+
+  @@fulltext([address])
+}
+
+model TokenLocked {
+  id         Int    @id @default(autoincrement())
+  logo       String
+  address    String
+  name       String
+  blockchain Int
+
+  @@fulltext([address])
 }

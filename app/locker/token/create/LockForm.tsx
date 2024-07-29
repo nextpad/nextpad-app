@@ -1,25 +1,84 @@
 "use client";
 import NetworkButton from "@/app/minter/NetworkButton";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import TokenAddress from "./inputs/TokenAddress";
+import {
+   useWeb3ModalAccount,
+   useWeb3ModalProvider,
+} from "@web3modal/ethers/react";
+import { BrowserProvider, Contract, JsonRpcSigner, lock } from "ethers";
+import { lockerAddress } from "@/app/components/constants";
+import LockButton from "./LockButton";
+import LockAmount from "./inputs/LockAmount";
+import UnlockDate from "./inputs/UnlockDate";
+import ReceiverAddress from "./inputs/ReceiverAddress";
 
-type LockData = {
+export type LockData = {
    network: number;
    title: string;
    address: string;
    amount: string;
-   unlocked: string;
+   unlocked: number;
    receiver: string;
 };
 
-function LockForm() {
+const ERCAbi = [
+   "function name() view returns (string)",
+   "function symbol() view returns (string)",
+   "function decimals() view returns (uint)",
+   "function balanceOf(address) view returns (uint)",
+   "function transfer(address to, uint amount)",
+   "function approve(address spender, uint amount)",
+   "function allowance(address owner, address spender) view returns (uint)",
+   "event Transfer(address indexed from, address indexed to, uint amount)",
+];
+
+type Props = {
+   saveToDatabase: ({
+      address,
+      name,
+      blockchain,
+   }: {
+      address: string;
+      name: string;
+      blockchain: number;
+   }) => Promise<void>;
+};
+
+function LockForm(props: Props) {
+   const { address, isConnected } = useWeb3ModalAccount();
+   const { walletProvider } = useWeb3ModalProvider();
+
+   const [signer, setSigner] = useState<JsonRpcSigner>();
+   const [lockerContract, setLockerContract] = useState<Contract>();
+   const [tokenContract, setTokenContract] = useState<Contract>();
    const [lockData, setLockData] = useState<LockData>({
-      network: 1,
+      network: 1115,
       title: "",
       address: "",
       amount: "0",
-      unlocked: "",
+      unlocked: Date.now(),
       receiver: "",
    });
+   const [token, setToken] = useState(["", ""]);
+   const [balance, setBalance] = useState("0");
+
+   useEffect(() => {
+      async function fetchWallet() {
+         if (!isConnected || !walletProvider) return;
+
+         const lockerJson = require("./Locker.json");
+
+         const provider = new BrowserProvider(walletProvider);
+         const _signer = await provider.getSigner();
+         setSigner(_signer);
+         setLockerContract(
+            new Contract(lockerAddress, lockerJson.abi, _signer)
+         );
+      }
+
+      fetchWallet();
+   }, [signer, walletProvider, isConnected]);
 
    function setNetwork(network: number) {
       setLockData((prev) => ({ ...prev, network: network }));
@@ -43,69 +102,42 @@ function LockForm() {
             className="input input-bordered w-full block my-3"
          />
 
-         <label className="text-lg font-semibold block mt-5">
-            Token Address
-         </label>
-         <input
-            type="text"
-            value={lockData.address}
-            onChange={(e) =>
-               setLockData((prev) => ({ ...prev, address: e.target.value }))
-            }
-            className="input input-bordered w-full block my-3"
-         />
-         <div className="card border border-slate-700 rounded-md mt-4">
-            <div className="card-body p-5">
-               <div className="flex justify-between">
-                  <div className="text-slate-300">OKE / Oke Token</div>
-                  <span className="block">0x000..000</span>
-               </div>
-            </div>
-         </div>
-
-         <label className="text-lg font-semibold block mt-5">Amount</label>
-         <input
-            type="number"
-            value={lockData.amount}
-            onChange={(e) =>
-               setLockData((prev) => ({ ...prev, amount: e.target.value }))
-            }
-            className="input input-bordered w-full block my-3"
-         />
-         <p className="text-sm">Balance: -</p>
-
-         <label className="text-lg font-semibold block mt-5">
-            Unlocking Date
-         </label>
-         <input
-            type="date"
-            value={lockData.unlocked}
-            onChange={(e) =>
-               setLockData((prev) => ({ ...prev, unlocked: e.target.value }))
-            }
-            className="input input-bordered w-full block my-3"
+         <TokenAddress
+            isConnected={isConnected}
+            address={address}
+            walletProvider={walletProvider}
+            abi={ERCAbi}
+            lockData={lockData}
+            setLockData={setLockData}
+            setBalance={setBalance}
+            setTokenContract={setTokenContract}
+            token={token}
+            setToken={setToken}
          />
 
-         <label className="text-lg font-semibold block mt-5">
-            Receiver Address
-         </label>
-         <p className="text-sm">The wallet who received back the token</p>
-         <input
-            type="text"
-            value={lockData.receiver}
-            onChange={(e) =>
-               setLockData((prev) => ({ ...prev, receiver: e.target.value }))
-            }
-            className="input input-bordered w-full block my-3"
+         <LockAmount
+            lockData={lockData}
+            setLockData={setLockData}
+            balance={balance}
          />
 
-         <div className="flex justify-between">
-            <button
-               className="btn btn-normal mt-2"
-               onClick={() => console.log(lockData)}
-            >
-               Lock Now
-            </button>
+         <UnlockDate lockData={lockData} setLockData={setLockData} />
+
+         <ReceiverAddress
+            address={address}
+            lockData={lockData}
+            setLockData={setLockData}
+         />
+
+         <div className="flex justify-between mb-7">
+            <LockButton
+               saveToDatabase={props.saveToDatabase}
+               token={token}
+               address={address}
+               contract={lockerContract}
+               tokenContract={tokenContract}
+               lockData={lockData}
+            />
             <a className="btn btn-neutral mt-2 min-w-20" href="/locker/token">
                Back
             </a>
