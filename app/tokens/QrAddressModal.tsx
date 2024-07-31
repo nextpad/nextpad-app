@@ -5,7 +5,7 @@ import Image from "next/image";
 
 function QrAddressModal({ address }: { address: string }) {
    function openModal() {
-      const myModal: any = document.getElementById("qr_modal");
+      const myModal: any = document.getElementById("qr_modal_" + address);
 
       if (myModal === null) {
          return;
@@ -15,7 +15,7 @@ function QrAddressModal({ address }: { address: string }) {
    }
    return (
       <div className="inline">
-         <dialog id="qr_modal" className="modal">
+         <dialog id={`qr_modal_${address}`} className="modal">
             <div className="modal-box">
                <form method="dialog">
                   {/* if there is a button in form, it will close the modal */}

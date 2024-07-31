@@ -9,6 +9,7 @@ import {
 import { BrowserProvider, Contract, ethers } from "ethers";
 import { faucetAddress, tokenAddress } from "../components/constants";
 import { JsonRpcSigner } from "ethers";
+import AddTOL from "./AddTOL";
 
 function Claim() {
    const [faucetContract, setFaucetContract] = useState<Contract>();
@@ -22,6 +23,9 @@ function Claim() {
       seconds: "00",
    });
    let intervalId = useRef<NodeJS.Timeout>();
+   let intErId = useRef<NodeJS.Timeout>();
+   const [errorAlert, setErrorAlert] = useState(false);
+   const [loading, setLoading] = useState(false);
 
    const faucetABI = require("./faucetABI.json");
    const { open } = useWeb3Modal();
@@ -89,8 +93,22 @@ function Claim() {
       }
       if (!faucetContract) return;
 
-      await faucetContract.claimTokens();
-      await getBalance();
+      try {
+         setLoading(true);
+         const tx = await faucetContract.claimTokens();
+         await tx.wait();
+         await getBalance();
+         setLoading(false);
+      } catch (err) {
+         if (err instanceof Error) {
+            setErrorAlert(true);
+            intErId.current = setInterval(() => {
+               setErrorAlert((prev) => false);
+               clearInterval(intErId.current);
+            }, 3000);
+         }
+         setLoading(false);
+      }
    };
 
    async function getBalance() {
@@ -107,6 +125,14 @@ function Claim() {
 
    return (
       <>
+         {errorAlert && (
+            <div className="toast toast-top toast-end">
+               <div className="alert alert-error">
+                  <span>Transaction failed!</span>
+               </div>
+            </div>
+         )}
+         <AddTOL />
          <div className="text-center mt-14">
             <h3 className="text-5xl text-teal-600 mt-6">
                {timeLeft.minutes} : {timeLeft.seconds}
@@ -115,10 +141,13 @@ function Claim() {
                Balance: <b>{tolBalance} TOL</b>
             </p>
             <button
-               className="btn bg-teal-600 text-white mt-8 px-12 hover:bg-teal-700"
+               className="btn disabled:bg-teal-800 disabled:text-slate-300 btn-normal mt-8"
                onClick={claimToken}
-               disabled={timeLeft.minutes == "00" ? false : true}
+               disabled={timeLeft.minutes != "00" || loading ? true : false}
             >
+               {loading && (
+                  <span className="loading loading-spinner loading-sm"></span>
+               )}{" "}
                {isConnected ? "Claim $TOL" : "Connect Wallet"}
             </button>
          </div>
