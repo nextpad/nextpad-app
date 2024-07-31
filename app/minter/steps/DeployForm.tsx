@@ -9,7 +9,6 @@ import { BrowserProvider, ethers, JsonRpcSigner } from "ethers";
 import { Contract } from "ethers";
 import { tokenFactoryAddress } from "@/app/components/constants";
 import ResultModal from "./ResultModal";
-import { uploadImage } from "@/app/components/helper";
 import { MetaToken } from "../page";
 
 interface Props {
@@ -99,14 +98,10 @@ function DeployForm(props: Props) {
    }
 
    async function saveToDatabase(address: string, hash: string) {
-      const img = await uploadImage(
-         props.logo.replace("data:image/jpeg;base64,", ""),
-         props.tokenData.name
-      );
       const saved = await props.onSaveDatabase(
          {
             name: props.tokenData.name,
-            logo: img,
+            logo: props.logo.replace("data:image/jpeg;base64,", ""),
             symbol: props.tokenData.symbol,
             supply: props.tokenData.supply.toString(),
             blockchain: props.network === 1115 ? 1 : 2,

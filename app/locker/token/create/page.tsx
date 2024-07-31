@@ -1,6 +1,8 @@
 import React from "react";
 import LockForm from "./LockForm";
 import { PrismaClient } from "@prisma/client";
+import { Contract, ethers } from "ethers";
+import { lockerAddress } from "@/app/components/constants";
 
 function page() {
    async function saveToDatabase({
@@ -13,6 +15,31 @@ function page() {
       blockchain: number;
    }) {
       "use server";
+
+      async function getTotalAmount(ca: string): Promise<string> {
+         const provider = new ethers.JsonRpcProvider(
+            "https://rpc.test.btcs.network"
+         );
+
+         const ERCAbi = ["function decimals() view returns (uint)"];
+         const lockerJson = require("./Locker.json");
+         const contract = new Contract(lockerAddress, lockerJson.abi, provider);
+         const tokenContract = new Contract(ca, ERCAbi, provider);
+
+         const decimals = await tokenContract.decimals();
+         const ids: bigint[] = await contract.getLockUpIdsByToken(ca, 0, 9999);
+
+         let result = 0;
+         for (let id of ids) {
+            let locks = await contract.lockUps(id);
+            result += parseInt(
+               ethers.formatUnits(locks[3].toString(), decimals)
+            );
+         }
+
+         return result.toString();
+      }
+
       const prisma = new PrismaClient();
 
       const tokenLocked = await prisma.tokenLocked.findFirst({
@@ -22,6 +49,7 @@ function page() {
             },
          },
       });
+      const totalAmount = await getTotalAmount(address);
 
       if (!tokenLocked) {
          const token = await prisma.token.findFirst({
@@ -38,13 +66,24 @@ function page() {
          const result = await prisma.tokenLocked.create({
             data: {
                address,
+               totalAmount,
                logo,
                name,
                blockchain,
             },
          });
-         console.log(result);
+
+         return;
       }
+
+      await prisma.tokenLocked.update({
+         where: {
+            id: tokenLocked.id,
+         },
+         data: {
+            totalAmount,
+         },
+      });
    }
    return (
       <div className="min-h-screen flex justify-center">

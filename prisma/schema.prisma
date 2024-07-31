@@ -32,11 +32,12 @@ model Token {
 }
 
 model TokenLocked {
-  id         Int    @id @default(autoincrement())
-  logo       String
-  address    String
-  name       String
-  blockchain Int
+  id          Int    @id @default(autoincrement())
+  logo        String
+  address     String
+  name        String
+  blockchain  Int
+  totalAmount String @default("0")
 
   @@fulltext([address])
 }

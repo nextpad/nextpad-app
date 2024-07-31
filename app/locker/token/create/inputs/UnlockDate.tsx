@@ -12,7 +12,7 @@ function UnlockDate(props: Props) {
       const date = new Date(e.target.value);
       props.setLockData((prev: LockData) => ({
          ...prev,
-         unlocked: date.getTime() / 1000,
+         unlocked: Math.ceil(date.getTime() / 1000),
       }));
    }
    return (
@@ -22,7 +22,7 @@ function UnlockDate(props: Props) {
          </label>
          <input
             type="date"
-            value={moment(props.lockData.unlocked).format("YYYY-MM-DD")}
+            value={moment(props.lockData.unlocked * 1000).format("YYYY-MM-DD")}
             onChange={onChange}
             className="input input-bordered w-full block my-3"
          />

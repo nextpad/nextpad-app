@@ -1,4 +1,5 @@
-import React from "react";
+import { Prisma, PrismaClient, TokenLocked } from "@prisma/client";
+import React, { cache } from "react";
 
 function page() {
    return (

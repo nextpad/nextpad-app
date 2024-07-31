@@ -26,7 +26,13 @@ function LockAmount(props: Props) {
          <div className="flex justify-between">
             <div className="text-sm">
                Balance:{" "}
-               <b>{props.balance ? ethers.formatEther(props.balance) : "-"}</b>
+               <b>
+                  {props.balance
+                     ? parseInt(
+                          ethers.formatEther(props.balance)
+                       ).toLocaleString()
+                     : "-"}
+               </b>
             </div>
             {props.lockData.amount != "" &&
                parseInt(props.lockData.amount) >

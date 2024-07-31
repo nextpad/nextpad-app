@@ -8,6 +8,9 @@ export async function uploadImage(image: string, title: string) {
       {
          method: "POST",
          body: formData,
+         headers: {
+            "Access-Control-Allow-Origin": "",
+         },
       }
    );
    res = await res.json();

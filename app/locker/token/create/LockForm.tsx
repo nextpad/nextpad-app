@@ -57,7 +57,7 @@ function LockForm(props: Props) {
       title: "",
       address: "",
       amount: "0",
-      unlocked: Date.now(),
+      unlocked: Math.ceil(Date.now() / 1000),
       receiver: "",
    });
    const [token, setToken] = useState(["", ""]);

@@ -3,6 +3,7 @@ import FormWrapper from "./FormWrapper";
 import { ethers } from "ethers";
 import { TransactionReceipt } from "ethers";
 import { tokenFactoryAddress } from "../components/constants";
+import { uploadImage } from "../components/helper";
 
 export type MetaToken = {
    name: string;
@@ -36,9 +37,7 @@ async function saveToDatabase(
       return null;
    }
 
-   if (!new URL(data.logo).hostname.includes("ibb.co")) {
-      return null;
-   }
+   data["logo"] = await uploadImage(data.logo, data.name);
 
    const prisma = new PrismaClient();
    const result = await prisma.token.create({
