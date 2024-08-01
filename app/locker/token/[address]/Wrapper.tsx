@@ -35,7 +35,7 @@ function Wrapper({ address, token }: Props) {
       }
 
       fetchRecords();
-   }, []);
+   }, [address]);
 
    return (
       <div>

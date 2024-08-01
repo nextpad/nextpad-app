@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { LockData } from "./LockForm";
-import { Contract, ethers, JsonRpcSigner } from "ethers";
+import { Contract, ethers } from "ethers";
 import { lockerAddress } from "@/app/components/constants";
-import { useRouter } from "next/router";
 
 type Props = {
    address: `0x${string}` | undefined;
