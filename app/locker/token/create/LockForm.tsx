@@ -37,10 +37,12 @@ type Props = {
    saveToDatabase: ({
       address,
       name,
+      symbol,
       blockchain,
    }: {
       address: string;
       name: string;
+      symbol: string;
       blockchain: number;
    }) => Promise<void>;
 };

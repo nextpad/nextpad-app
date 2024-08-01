@@ -38,6 +38,7 @@ model TokenLocked {
   name        String
   blockchain  Int
   totalAmount String @default("0")
+  symbol      String @default("NULL")
 
   @@fulltext([address])
 }

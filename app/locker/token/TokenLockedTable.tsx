@@ -42,7 +42,9 @@ async function TokenLockedTable() {
                                  />
                               </div>
                               <div className="ml-3 text-xl text-slate-300">
-                                 {val.name}
+                                 <a href={`/locker/token/${val.address}`}>
+                                    {val.name}
+                                 </a>
                               </div>
                            </div>
                         </td>
@@ -54,15 +56,14 @@ async function TokenLockedTable() {
                         </td>
                         <td className="py-4">
                            <Image
-                              width={40}
-                              height={40}
+                              width={29}
+                              height={29}
                               src={
                                  val.blockchain == 1
                                     ? "/images/core-dao.png"
                                     : "/images/eth.png"
                               }
                               alt="Logo"
-                              className="rounded-full"
                            />
                         </td>
                      </tr>

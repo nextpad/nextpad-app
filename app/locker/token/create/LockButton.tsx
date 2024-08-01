@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { LockData } from "./LockForm";
 import { Contract, ethers, JsonRpcSigner } from "ethers";
 import { lockerAddress } from "@/app/components/constants";
+import { useRouter } from "next/router";
 
 type Props = {
    address: `0x${string}` | undefined;
@@ -12,10 +13,12 @@ type Props = {
    saveToDatabase: ({
       name,
       address,
+      symbol,
       blockchain,
    }: {
       address: string;
       name: string;
+      symbol: string;
       blockchain: number;
    }) => Promise<void>;
 };
@@ -78,9 +81,11 @@ function LockButton({
       await saveToDatabase({
          address: lockData.address,
          name: token[0],
+         symbol: token[1],
          blockchain: lockData.network == 1115 ? 1 : 2,
       });
       setLoading(false);
+      window.location.replace("/locker/token/" + lockData.address);
    }
 
    return (

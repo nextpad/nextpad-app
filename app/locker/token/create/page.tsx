@@ -8,10 +8,12 @@ function page() {
    async function saveToDatabase({
       address,
       name,
+      symbol,
       blockchain,
    }: {
       address: string;
       name: string;
+      symbol: string;
       blockchain: number;
    }) {
       "use server";
@@ -68,6 +70,7 @@ function page() {
                address,
                totalAmount,
                logo,
+               symbol,
                name,
                blockchain,
             },
