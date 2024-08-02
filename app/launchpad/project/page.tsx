@@ -4,7 +4,7 @@ import ContributionCard from "./ContributionCard";
 import HeaderProject from "./HeaderProject";
 import DetailedProject from "./DetailedProject";
 import PoolCard from "./PoolCard";
-import TopParticipants from "./TopParticipants";
+import TopParticipants from "./TopVoters";
 
 function page() {
    return (

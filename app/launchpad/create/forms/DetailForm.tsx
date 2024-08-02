@@ -6,8 +6,10 @@ import ReactImagePickerEditor, {
 } from "react-image-picker-editor";
 import "react-image-picker-editor/dist/index.css";
 import MDEditor from "@uiw/react-md-editor";
-import PlusIcon from "@/app/components/icons/PlusIcon";
-import TrashIcon from "@/app/components/icons/TrashIcon";
+import GlobeIcon from "@/app/components/icons/GlobeIcon";
+import BookOpenIcon from "@/app/components/icons/BookOpenIcon";
+import XIcon from "@/app/components/icons/XIcon";
+import TelegramIcon from "@/app/components/icons/TelegramIcon";
 
 interface DetailProps extends Props {
    logo: string;
@@ -103,98 +105,74 @@ function DetailForm(props: DetailProps) {
             />
          </div>
 
-         <div className="flex flex-col mt-5">
-            <label className="text-lg font-semibold block">Tokenomics</label>
-            <p className="text-sm">
-               Token allocation represented as token amount
-            </p>
-            {props.launchpadData.tokenomics.map((val, key) => (
-               <div key={key} className="flex flex-row items-center">
+         <div className="divider divider-vertical my-9">
+            <span className="font-bold">Social Links</span>
+         </div>
+
+         <div className="flex mb-2">
+            <div className="flex-1">
+               <label className="text-lg font-semibold block">
+                  Project Website
+               </label>
+               <label className="input input-bordered flex items-center gap-2 my-4">
+                  <GlobeIcon classList="size-5" />
                   <input
                      type="text"
-                     placeholder="Community, liquidity etc"
-                     value={props.launchpadData.tokenomics[key].name}
-                     onChange={(e) =>
-                        props.setLaunchpadData((prev: LaunchpadData) => {
-                           let newValue = prev.tokenomics.map((val, i) => {
-                              if (i === key) {
-                                 return {
-                                    name: e.target.value,
-                                    amount: val.amount,
-                                 };
-                              }
-                              return val;
-                           });
-
-                           return { ...prev, tokenomics: newValue };
-                        })
-                     }
-                     className="input input-bordered w-full block mt-3 mr-3"
+                     onChange={(e) => onChange(props, e, "address")}
+                     className="grow"
                   />
+               </label>
+            </div>
+            <div className="flex-1 ml-6">
+               <label className="text-lg font-semibold block">
+                  Whitepaper / Documentation
+               </label>
+               <label className="input input-bordered flex items-center gap-2 my-4">
+                  <BookOpenIcon classList="size-5" />
                   <input
-                     type="number"
-                     value={props.launchpadData.tokenomics[key].amount}
-                     onChange={(e) =>
-                        props.setLaunchpadData((prev: LaunchpadData) => {
-                           let newValue = prev.tokenomics.map((val, i) => {
-                              if (i === key) {
-                                 return {
-                                    amount: e.target.value,
-                                    name: val.name,
-                                 };
-                              }
-                              return val;
-                           });
-
-                           return { ...prev, tokenomics: newValue };
-                        })
-                     }
-                     className="input input-bordered w-full block mt-3"
-                  />{" "}
-                  <TrashIcon
-                     className="size-14 mt-1 ml-3 text-rose-500 cursor-pointer"
-                     onClick={() =>
-                        props.setLaunchpadData(
-                           (prev: LaunchpadData): LaunchpadData => {
-                              const newValue = prev.tokenomics.filter(
-                                 (val, i) => i != key
-                              );
-                              return {
-                                 ...prev,
-                                 tokenomics: [...newValue],
-                              };
-                           }
-                        )
-                     }
+                     type="text"
+                     onChange={(e) => onChange(props, e, "address")}
+                     className="grow"
                   />
-               </div>
-            ))}
-            <button
-               className="btn btn-normal w-1/4 mt-4"
-               onClick={() =>
-                  props.setLaunchpadData((prev: LaunchpadData) => ({
-                     ...prev,
-                     tokenomics: [
-                        ...prev.tokenomics,
-                        { name: "", amount: "0" },
-                     ],
-                  }))
-               }
-            >
-               <PlusIcon classList="size-4" /> Add More
-            </button>
+               </label>
+            </div>
+         </div>
+
+         <div className="flex">
+            <div className="flex-1">
+               <label className="text-lg font-semibold block">Twitter</label>
+               <label className="input input-bordered flex items-center gap-2 my-4">
+                  <XIcon classList="size-5" />
+                  <input
+                     type="text"
+                     onChange={(e) => onChange(props, e, "address")}
+                     className="grow"
+                  />
+               </label>
+            </div>
+            <div className="flex-1 ml-6">
+               <label className="text-lg font-semibold block">Telegram</label>
+               <label className="input input-bordered flex items-center gap-2 my-4">
+                  <TelegramIcon classList="size-5" />
+                  <input
+                     type="text"
+                     onChange={(e) => onChange(props, e, "address")}
+                     className="grow"
+                  />
+               </label>
+            </div>
          </div>
 
          <div className="flex pb-10 justify-between mt-8">
             <button
                className="btn bg-base-100 border border-gray-700 px-10 hover:border-gray-700"
-               onClick={() => props.setStep(2)}
+               onClick={() => props.setStep(1)}
             >
                Back
             </button>
             <button
                className="btn bg-teal-600 text-white px-10 hover:bg-teal-700"
-               onClick={() => props.setStep(4)}
+               onClick={() => props.setStep(3)}
             >
                Next
             </button>

@@ -3,17 +3,19 @@ import { ReactElement, useState } from "react";
 import dynamic from "next/dynamic";
 import { LaunchpadData } from "./forms/ILaunchpad";
 import BasicForm from "./forms/BasicForm";
-import SaleForm from "./forms/SaleForm";
 import ReviewForm from "./forms/ReviewForm";
 import moment from "moment";
 
 const DetailForm = dynamic(() => import("./forms/DetailForm"), {
    ssr: false,
 });
+const TokenomicsForm = dynamic(() => import("./forms/TokenomicsForm"), {
+   ssr: false,
+});
 
 function Page() {
    const [step, setStep] = useState(1);
-   const [network, setNetwork] = useState(1);
+   const [network, setNetwork] = useState(1115);
    const [launchpadData, setLaunchpadData] = useState<LaunchpadData>({
       // basic
       address: "",
@@ -34,11 +36,18 @@ function Page() {
       description: "",
       tokenomics: [
          {
-            name: "",
+            name: "unknown",
             amount: "0",
          },
       ],
+      socials: {
+         website: "",
+         twitter: "",
+         telegram: "",
+         docs: "",
+      },
    });
+
    const [logo, setLogo] = useState("");
 
    const props = {
@@ -54,8 +63,8 @@ function Page() {
 
    const forms: ReactElement[] = [
       <BasicForm key={0} {...props} />,
-      <SaleForm key={1} {...props} />,
-      <DetailForm key={2} {...props} />,
+      <DetailForm key={1} {...props} />,
+      <TokenomicsForm key={2} {...props} />,
       <ReviewForm key={3} {...props} />,
    ];
 
@@ -63,17 +72,29 @@ function Page() {
       <div className="min-h-screen flex justify-center mt-3">
          <div className="flex flex-col">
             <div className="mb-10 text-center">
-               <ul className="steps steps-vertical lg:steps-horizontal w-2/3">
-                  <li className={`step ${step >= 1 ? "step-primary" : ""}`}>
-                     Token
+               <ul className="steps steps-vertical lg:steps-horizontal w-4/5 hover:cursor-pointer">
+                  <li
+                     className={`step ${step >= 1 ? "step-primary" : ""}`}
+                     onClick={() => setStep(1)}
+                  >
+                     Token & Sales
                   </li>
-                  <li className={`step ${step >= 2 ? "step-primary" : ""}`}>
-                     Sales
-                  </li>
-                  <li className={`step ${step >= 3 ? "step-primary" : ""}`}>
+                  <li
+                     className={`step ${step >= 2 ? "step-primary" : ""}`}
+                     onClick={() => setStep(2)}
+                  >
                      Details
                   </li>
-                  <li className={`step ${step >= 4 ? "step-primary" : ""}`}>
+                  <li
+                     className={`step ${step >= 3 ? "step-primary" : ""}`}
+                     onClick={() => setStep(3)}
+                  >
+                     Tokenomics
+                  </li>
+                  <li
+                     className={`step ${step >= 4 ? "step-primary" : ""}`}
+                     onClick={() => setStep(4)}
+                  >
                      Review
                   </li>
                </ul>

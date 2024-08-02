@@ -1,4 +1,8 @@
 "use client";
+import BookOpenIcon from "@/app/components/icons/BookOpenIcon";
+import GlobeIcon from "@/app/components/icons/GlobeIcon";
+import TelegramIcon from "@/app/components/icons/TelegramIcon";
+import XIcon from "@/app/components/icons/XIcon";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -16,6 +20,25 @@ function Carousel() {
 
    return (
       <>
+         <div className="pb-6">
+            <a href="" target="_blank" className="hover:text-warning">
+               <GlobeIcon classList="size-7 inline" />
+            </a>
+            <a href="" target="_blank" className="hover:text-white">
+               <XIcon classList="size-5 inline mx-4" />
+            </a>
+            <a href="" target="_blank" className="hover:text-blue-400">
+               <TelegramIcon classList="size-6 inline mr-4" />
+            </a>
+            <a
+               href=""
+               target="_blank"
+               title="Documentation pages"
+               className="hover:text-red-600"
+            >
+               <BookOpenIcon classList="size-7 inline" />
+            </a>
+         </div>
          <Image
             src={`/images/projects/${images[currImg]}`}
             width={695}

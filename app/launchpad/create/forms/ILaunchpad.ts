@@ -19,6 +19,12 @@ export interface LaunchpadData {
    shortDesc: string;
    banners: string[];
    description: string;
+   socials: {
+      website: string;
+      twitter: string;
+      telegram: string;
+      docs: string;
+   };
    tokenomics: Tokenomics[];
 }
 

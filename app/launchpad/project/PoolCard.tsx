@@ -5,7 +5,7 @@ function PoolCard() {
       <div className="mt-7">
          <div
             className="card bg-base-300 border w-full border-teal-800"
-            style={{ maxHeight: "26rem" }}
+            style={{ minHeight: "26rem" }}
          >
             <div className="card-body p-0">
                <div className="card-title border-b border-teal-900">
@@ -20,6 +20,7 @@ function PoolCard() {
                         <p className="mb-4">Price</p>
                         <p className="mb-4">Total Participants</p>
                         <p className="mb-4">Reward Vote</p>
+                        <p className="mb-4">Pool Address</p>
                      </div>
                      <div className="my-5">
                         <span className="badge bg-teal-700 text-white p-3 mb-4">
@@ -33,6 +34,9 @@ function PoolCard() {
                         <p className="mb-4 text-lg text-slate-300">40</p>
                         <p className="mb-4 text-lg text-slate-300">
                            1 TOL = 100 TRUF
+                        </p>
+                        <p className="mb-4 text-lg text-teal-600">
+                           0xeb790f1dcd136bd46eeb7e...
                         </p>
                      </div>
                   </div>

@@ -1,18 +1,18 @@
 import React from "react";
 
-function TopParticipants() {
+function TopVoters() {
    return (
       <div className="mt-7">
          <div
             className="card bg-base-300 border w-full border-teal-800"
-            style={{ minHeight: "37rem" }}
+            style={{ minHeight: "29rem" }}
          >
             <div className="card-body p-0">
                <div className="card-title border-b border-teal-900">
-                  <h2 className="px-9 py-4 text-xl">Top Participants</h2>
+                  <h2 className="px-9 py-4 text-xl">Top Voters</h2>
                </div>
                <div className="px-9">
-                  <table className="table">
+                  <table className="table table-zebra">
                      <thead>
                         <tr className="text-lg">
                            <th>Address</th>
@@ -40,26 +40,6 @@ function TopParticipants() {
                            <td>5. 0x0000000..</td>
                            <td>400</td>
                         </tr>
-                        <tr>
-                           <td>6. 0x0000000..</td>
-                           <td>400</td>
-                        </tr>
-                        <tr>
-                           <td>7. 0x0000000..</td>
-                           <td>400</td>
-                        </tr>
-                        <tr>
-                           <td>8. 0x0000000..</td>
-                           <td>400</td>
-                        </tr>
-                        <tr>
-                           <td>9. 0x0000000..</td>
-                           <td>400</td>
-                        </tr>
-                        <tr>
-                           <td>10. 0x0000000..</td>
-                           <td>400</td>
-                        </tr>
                      </tbody>
                   </table>
                </div>
@@ -69,4 +49,4 @@ function TopParticipants() {
    );
 }
 
-export default TopParticipants;
+export default TopVoters;
