@@ -1,19 +1,21 @@
 import TrashIcon from "@/app/components/icons/TrashIcon";
-import React from "react";
-import { LaunchpadData, Props } from "./ILaunchpad";
+import React, { useContext } from "react";
+import { LaunchpadData, MetaData, Props } from "./ILaunchpad";
 import PlusIcon from "@/app/components/icons/PlusIcon";
 import Chart from "react-apexcharts";
+import Context from "../Context";
 
-function TokenomicsForm(props: Props) {
+function TokenomicsForm() {
+   const values = useContext(Context);
    const data = {
       options: {
          chart: {
             foreColor: "white",
          },
-         labels: [...props.launchpadData.tokenomics.map((val) => val.name)],
+         labels: [...values.metadata.tokenomics.map((val) => val.name)],
       },
       series: [
-         ...props.launchpadData.tokenomics.map((val) => parseInt(val.amount)),
+         ...values.metadata.tokenomics.map((val) => parseInt(val.amount)),
       ],
    };
    return (
@@ -28,20 +30,23 @@ function TokenomicsForm(props: Props) {
                />
             </div>
             <h2 className="text-lg mb-5 text-right">
-               Total Supply: <span className="font-bold">20,000,000</span>
+               Total Supply:{" "}
+               <span className="font-bold">
+                  {parseInt(values.supply).toLocaleString()}
+               </span>
             </h2>
             <label className="text-lg font-semibold block">Tokenomics</label>
             <p className="text-sm">
                Token allocation represented as token amount
             </p>
-            {props.launchpadData.tokenomics.map((val, key) => (
+            {values.metadata.tokenomics.map((val, key) => (
                <div key={key} className="flex flex-row items-center">
                   <input
                      type="text"
                      placeholder="Community, liquidity etc"
-                     value={props.launchpadData.tokenomics[key].name}
+                     value={values.metadata.tokenomics[key].name}
                      onChange={(e) =>
-                        props.setLaunchpadData((prev: LaunchpadData) => {
+                        values.setMetadata((prev: MetaData) => {
                            let newValue = prev.tokenomics.map((val, i) => {
                               if (i === key) {
                                  return {
@@ -59,9 +64,9 @@ function TokenomicsForm(props: Props) {
                   />
                   <input
                      type="number"
-                     value={props.launchpadData.tokenomics[key].amount}
+                     value={values.metadata.tokenomics[key].amount}
                      onChange={(e) =>
-                        props.setLaunchpadData((prev: LaunchpadData) => {
+                        values.setMetadata((prev: MetaData) => {
                            let newValue = prev.tokenomics.map((val, i) => {
                               if (i === key) {
                                  return {
@@ -80,17 +85,15 @@ function TokenomicsForm(props: Props) {
                   <TrashIcon
                      className="size-14 mt-1 ml-3 text-rose-500 cursor-pointer"
                      onClick={() =>
-                        props.setLaunchpadData(
-                           (prev: LaunchpadData): LaunchpadData => {
-                              const newValue = prev.tokenomics.filter(
-                                 (val, i) => i != key
-                              );
-                              return {
-                                 ...prev,
-                                 tokenomics: [...newValue],
-                              };
-                           }
-                        )
+                        values.setMetadata((prev: MetaData): MetaData => {
+                           const newValue = prev.tokenomics.filter(
+                              (val, i) => i != key
+                           );
+                           return {
+                              ...prev,
+                              tokenomics: [...newValue],
+                           };
+                        })
                      }
                   />
                </div>
@@ -98,7 +101,7 @@ function TokenomicsForm(props: Props) {
             <button
                className="btn btn-normal w-1/4 mt-4"
                onClick={() =>
-                  props.setLaunchpadData((prev: LaunchpadData) => ({
+                  values.setMetadata((prev: MetaData) => ({
                      ...prev,
                      tokenomics: [
                         ...prev.tokenomics,
@@ -113,13 +116,13 @@ function TokenomicsForm(props: Props) {
          <div className="flex pb-10 justify-between mt-8">
             <button
                className="btn bg-base-100 border border-gray-700 px-10 hover:border-gray-700"
-               onClick={() => props.setStep(2)}
+               onClick={() => values.setStep(2)}
             >
                Back
             </button>
             <button
                className="btn bg-teal-600 text-white px-10 hover:bg-teal-700"
-               onClick={() => props.setStep(4)}
+               onClick={() => values.setStep(4)}
             >
                Next
             </button>

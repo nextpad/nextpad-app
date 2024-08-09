@@ -51,8 +51,8 @@ function Carousel() {
                <Image
                   key={i}
                   src={`/images/projects/${val}`}
-                  width={695}
-                  height={391}
+                  width={640}
+                  height={360}
                   className={`w-40 rounded-xl cursor-pointer hover:brightness-100 mr-3 ${
                      currImg == i
                         ? "border-white border-2 brightness-100"

@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useState } from "react";
-import { LaunchpadData, Props } from "./ILaunchpad";
+import React, { useContext } from "react";
+import { MetaData } from "./ILaunchpad";
 import { onChange } from "./helper";
 import ReactImagePickerEditor, {
    ImagePickerConf,
@@ -10,11 +10,7 @@ import GlobeIcon from "@/app/components/icons/GlobeIcon";
 import BookOpenIcon from "@/app/components/icons/BookOpenIcon";
 import XIcon from "@/app/components/icons/XIcon";
 import TelegramIcon from "@/app/components/icons/TelegramIcon";
-
-interface DetailProps extends Props {
-   logo: string;
-   setLogo: (data: any) => void;
-}
+import Context from "../Context";
 
 const cfgPicker: ImagePickerConf = {
    borderRadius: "8px",
@@ -25,9 +21,24 @@ const cfgPicker: ImagePickerConf = {
    compressInitial: null,
 };
 
-function DetailForm(props: DetailProps) {
+function DetailForm() {
+   const values = useContext(Context);
    const changeLogo = (img: any) => {
-      props.setLogo(img);
+      if (!img) return;
+      values.setLogo(img);
+   };
+
+   const changeBanner = (img: any, key: number) => {
+      if (!img) return;
+      values.setBanners((prev: string[]) => {
+         const newValue = prev.map((val, i) => {
+            if (i === key) {
+               return img;
+            }
+            return val;
+         });
+         return newValue;
+      });
    };
 
    return (
@@ -37,8 +48,10 @@ function DetailForm(props: DetailProps) {
             <input
                type="text"
                placeholder="Future Coin"
-               value={props.launchpadData.projectName}
-               onChange={(e) => onChange(props, e, "projectName")}
+               value={values.metadata.projectName}
+               onChange={(e) =>
+                  onChange<MetaData>(values.setMetadata, e, "projectName")
+               }
                className="input input-bordered w-full block mt-3"
             />
          </div>
@@ -50,8 +63,10 @@ function DetailForm(props: DetailProps) {
                <input
                   type="text"
                   placeholder="An Awesome project.."
-                  value={props.launchpadData.shortDesc}
-                  onChange={(e) => onChange(props, e, "shortDesc")}
+                  value={values.metadata.shortDesc}
+                  onChange={(e) =>
+                     onChange<MetaData>(values.setMetadata, e, "shortDesc")
+                  }
                   className="input input-bordered w-full block mt-3"
                />
             </div>
@@ -61,6 +76,7 @@ function DetailForm(props: DetailProps) {
                </label>
                <ReactImagePickerEditor
                   config={cfgPicker}
+                  imageSrcProp={values.logo}
                   imageChanged={changeLogo}
                />
             </div>
@@ -69,16 +85,32 @@ function DetailForm(props: DetailProps) {
          <label className="text-lg font-semibold block">List Banners</label>
          <div className="flex mt-3 mb-5">
             <div className="flex-1 w-1/5 box-content">
-               <ReactImagePickerEditor config={cfgPicker} />
+               <ReactImagePickerEditor
+                  imageSrcProp={values.banners[0]}
+                  imageChanged={(img: any) => changeBanner(img, 0)}
+                  config={cfgPicker}
+               />
             </div>
             <div className="flex-1 w-1/5 box-content ml-5">
-               <ReactImagePickerEditor config={cfgPicker} />
+               <ReactImagePickerEditor
+                  imageSrcProp={values.banners[1]}
+                  imageChanged={(img: any) => changeBanner(img, 1)}
+                  config={cfgPicker}
+               />
             </div>
             <div className="flex-1 w-1/5 box-content ml-5">
-               <ReactImagePickerEditor config={cfgPicker} />
+               <ReactImagePickerEditor
+                  imageSrcProp={values.banners[2]}
+                  imageChanged={(img: any) => changeBanner(img, 2)}
+                  config={cfgPicker}
+               />
             </div>
             <div className="flex-1 w-1/5 box-content ml-5">
-               <ReactImagePickerEditor config={cfgPicker} />
+               <ReactImagePickerEditor
+                  imageSrcProp={values.banners[3]}
+                  imageChanged={(img: any) => changeBanner(img, 3)}
+                  config={cfgPicker}
+               />
             </div>
          </div>
 
@@ -88,10 +120,10 @@ function DetailForm(props: DetailProps) {
          <p className="text-sm">Use Markdown format</p>
          <div className="flex mt-3 w-full">
             <MDEditor
-               value={props.launchpadData.description}
+               value={values.metadata.description}
                className="w-full"
                onChange={(val: any) =>
-                  props.setLaunchpadData((prev: any) => ({
+                  values.setMetadata((prev: any) => ({
                      ...prev,
                      description: val,
                   }))
@@ -118,7 +150,10 @@ function DetailForm(props: DetailProps) {
                   <GlobeIcon classList="size-5" />
                   <input
                      type="text"
-                     onChange={(e) => onChange(props, e, "address")}
+                     value={values.metadata.website}
+                     onChange={(e) =>
+                        onChange<MetaData>(values.setMetadata, e, "website")
+                     }
                      className="grow"
                   />
                </label>
@@ -131,7 +166,10 @@ function DetailForm(props: DetailProps) {
                   <BookOpenIcon classList="size-5" />
                   <input
                      type="text"
-                     onChange={(e) => onChange(props, e, "address")}
+                     value={values.metadata.docs}
+                     onChange={(e) =>
+                        onChange<MetaData>(values.setMetadata, e, "docs")
+                     }
                      className="grow"
                   />
                </label>
@@ -145,7 +183,10 @@ function DetailForm(props: DetailProps) {
                   <XIcon classList="size-5" />
                   <input
                      type="text"
-                     onChange={(e) => onChange(props, e, "address")}
+                     value={values.metadata.twitter}
+                     onChange={(e) =>
+                        onChange<MetaData>(values.setMetadata, e, "twitter")
+                     }
                      className="grow"
                   />
                </label>
@@ -156,7 +197,10 @@ function DetailForm(props: DetailProps) {
                   <TelegramIcon classList="size-5" />
                   <input
                      type="text"
-                     onChange={(e) => onChange(props, e, "address")}
+                     value={values.metadata.telegram}
+                     onChange={(e) =>
+                        onChange<MetaData>(values.setMetadata, e, "telegram")
+                     }
                      className="grow"
                   />
                </label>
@@ -166,13 +210,13 @@ function DetailForm(props: DetailProps) {
          <div className="flex pb-10 justify-between mt-8">
             <button
                className="btn bg-base-100 border border-gray-700 px-10 hover:border-gray-700"
-               onClick={() => props.setStep(1)}
+               onClick={() => values.setStep(1)}
             >
                Back
             </button>
             <button
                className="btn bg-teal-600 text-white px-10 hover:bg-teal-700"
-               onClick={() => props.setStep(3)}
+               onClick={() => values.setStep(3)}
             >
                Next
             </button>

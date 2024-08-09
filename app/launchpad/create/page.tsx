@@ -1,116 +1,96 @@
-"use client";
-import { ReactElement, useState } from "react";
-import dynamic from "next/dynamic";
-import { LaunchpadData } from "./forms/ILaunchpad";
-import BasicForm from "./forms/BasicForm";
-import ReviewForm from "./forms/ReviewForm";
-import moment from "moment";
+import { uploadImage } from "@/app/components/helper";
+import Wrapper from "./Wrapper";
+import PinataClient from "@pinata/sdk";
+import { MetaData } from "./forms/ILaunchpad";
+import { Launchpad, PrismaClient } from "@prisma/client";
 
-const DetailForm = dynamic(() => import("./forms/DetailForm"), {
-   ssr: false,
-});
-const TokenomicsForm = dynamic(() => import("./forms/TokenomicsForm"), {
-   ssr: false,
-});
+export type ProjectParams = {
+   metadata: MetaData;
+   logo: string;
+   banners: string[];
+};
+
+export type ImageParams = {
+   data: string;
+   name: string;
+};
+
+export type LaunchpadParams = {
+   poolAddress: string;
+   projectName: string;
+   description: string;
+   banner: string;
+   logo: string;
+   price: string;
+   goals: string;
+   allocation: string;
+};
 
 function Page() {
-   const [step, setStep] = useState(1);
-   const [network, setNetwork] = useState(1115);
-   const [launchpadData, setLaunchpadData] = useState<LaunchpadData>({
-      // basic
-      address: "",
-      symbol: "TEST",
-      allocation: "0",
-      rewardTol: "0",
-      // sales
-      minBuy: "0",
-      maxBuy: "0",
-      maxAllocation: "0",
-      priceNative: "0",
-      startDate: moment(Date.now()).format("yyyy-MM-DD"),
-      endDate: moment(Date.now()).format("yyyy-MM-DD"),
-      // detailed info
-      projectName: "",
-      shortDesc: "",
-      banners: [],
-      description: "",
-      tokenomics: [
+   async function imageUploader(params: ImageParams): Promise<string> {
+      "use server";
+      const result = await uploadImage(params.data, params.name);
+      return result;
+   }
+
+   async function ipfsUpload(data: ProjectParams) {
+      "use server";
+      const pinata = new PinataClient({
+         pinataApiKey: process.env.PINATA_API_KEY,
+         pinataSecretApiKey: process.env.PINATA_SECRET_KEY,
+      });
+      const res = await pinata.pinJSONToIPFS(
          {
-            name: "unknown",
-            amount: "0",
+            metadata: data.metadata,
+            logo: data.logo,
+            banners: data.banners,
          },
-      ],
-      socials: {
-         website: "",
-         twitter: "",
-         telegram: "",
-         docs: "",
-      },
-   });
+         {
+            pinataMetadata: {
+               name: "my-json",
+            },
+         }
+      );
 
-   const [logo, setLogo] = useState("");
+      return res.IpfsHash;
+   }
 
-   const props = {
-      network: network,
-      setNetwork: setNetwork,
-      step: step,
-      setStep: setStep,
-      launchpadData: launchpadData,
-      setLaunchpadData: setLaunchpadData,
-      setLogo: setLogo,
-      logo,
-   };
+   async function saveToDatabase(data: LaunchpadParams): Promise<string> {
+      "use server";
 
-   const forms: ReactElement[] = [
-      <BasicForm key={0} {...props} />,
-      <DetailForm key={1} {...props} />,
-      <TokenomicsForm key={2} {...props} />,
-      <ReviewForm key={3} {...props} />,
-   ];
+      try {
+         const prisma = new PrismaClient();
+         const result = await prisma.launchpad.create({
+            data: {
+               projectName: data.projectName,
+               logo: data.logo,
+               description: data.description,
+               allocation: data.allocation,
+               banner: data.banner,
+               goals: data.goals,
+               poolAddress: data.poolAddress,
+               price: data.price,
+               boostPoint: BigInt(0),
+            },
+         });
+
+         if (!result) {
+            return "null";
+         }
+
+         return result.id.toString();
+      } catch (err: any) {
+         return "null";
+      }
+   }
 
    return (
       <div className="min-h-screen flex justify-center mt-3">
-         <div className="flex flex-col">
-            <div className="mb-10 text-center">
-               <ul className="steps steps-vertical lg:steps-horizontal w-4/5 hover:cursor-pointer">
-                  <li
-                     className={`step ${step >= 1 ? "step-primary" : ""}`}
-                     onClick={() => setStep(1)}
-                  >
-                     Token & Sales
-                  </li>
-                  <li
-                     className={`step ${step >= 2 ? "step-primary" : ""}`}
-                     onClick={() => setStep(2)}
-                  >
-                     Details
-                  </li>
-                  <li
-                     className={`step ${step >= 3 ? "step-primary" : ""}`}
-                     onClick={() => setStep(3)}
-                  >
-                     Tokenomics
-                  </li>
-                  <li
-                     className={`step ${step >= 4 ? "step-primary" : ""}`}
-                     onClick={() => setStep(4)}
-                  >
-                     Review
-                  </li>
-               </ul>
-            </div>
-            <div
-               className="card bg-base-300 border border-teal-800"
-               style={{ minWidth: "47.5rem", maxWidth: "47rem" }}
-            >
-               <div className="card-body p-0">
-                  <div className="card-title border-b border-teal-900">
-                     <h2 className="px-9 py-4 text-xl">Create Launchpad</h2>
-                  </div>
-                  <div className="mt-6 px-9">{forms[step - 1]}</div>
-               </div>
-            </div>
-         </div>
+         <Wrapper
+            ipfsUpload={ipfsUpload}
+            imageUpload={imageUploader}
+            saveToDatabase={saveToDatabase}
+         />
       </div>
    );
 }

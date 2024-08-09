@@ -42,3 +42,16 @@ model TokenLocked {
 
   @@fulltext([address])
 }
+
+model Launchpad {
+  id          Int    @id @default(autoincrement())
+  poolAddress String
+  projectName String
+  description String
+  banner      String
+  logo        String
+  price       String
+  goals       String
+  allocation  String
+  boostPoint  BigInt @default(0)
+}

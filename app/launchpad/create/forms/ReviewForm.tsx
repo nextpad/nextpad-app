@@ -1,8 +1,18 @@
-import React from "react";
-import { Props } from "./ILaunchpad";
+import React, { useContext } from "react";
+import Context from "../Context";
+import { ImageParams, LaunchpadParams, ProjectParams } from "../page";
+import CreateButton from "./inputs/CreateButton";
+import { Launchpad } from "@prisma/client";
+
+interface Props {
+   ipfsUploader: (data: ProjectParams) => Promise<string>;
+   imageUploader: (data: ImageParams) => Promise<string>;
+   saveToDatabase: (data: LaunchpadParams) => Promise<string | "null">;
+}
 
 function ReviewForm(props: Props) {
-   const NATIVE = props.network === 1 ? "CORE" : "ETH";
+   const values = useContext(Context);
+   const NATIVE = values.network === 1115 ? "CORE" : "ETH";
    return (
       <>
          <div role="alert" className="alert alert-warning mb-6">
@@ -36,15 +46,15 @@ function ReviewForm(props: Props) {
             <div className="w-1/2">
                <p className="mb-4 text-lg text-slate-300 font-bold">
                   <span className="mr-3">:</span>
-                  {props.network == 1 ? "Core" : "Sepolia"}
+                  {values.network == 1115 ? "Core" : "Sepolia"}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>
-                  {props.launchpadData.projectName}
+                  {values.metadata.projectName}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>
-                  {props.launchpadData.address.slice(0, 28)}...
+                  {values.launchpadData.address.slice(0, 28)}...
                </p>
             </div>
          </div>
@@ -71,51 +81,51 @@ function ReviewForm(props: Props) {
                </span>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>
-                  {props.launchpadData.allocation}
+                  {values.launchpadData.allocation}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>
-                  {props.launchpadData.maxAllocation}
+                  {values.launchpadData.maxAllocation}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>
-                  {props.launchpadData.minBuy} {NATIVE}
+                  {values.launchpadData.minBuy} {NATIVE}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>
-                  {props.launchpadData.maxBuy} {NATIVE}
+                  {values.launchpadData.maxBuy} {NATIVE}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>1 {NATIVE} ={" "}
-                  {props.launchpadData.priceNative} {props.launchpadData.symbol}
+                  {values.launchpadData.priceNative}{" "}
+                  {values.launchpadData.symbol}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>1 TOL ={" "}
-                  {props.launchpadData.rewardTol} {props.launchpadData.symbol}
+                  {values.launchpadData.rewardTol} {values.launchpadData.symbol}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>
-                  {props.launchpadData.startDate}
+                  {values.launchpadData.startDate}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>
-                  {props.launchpadData.endDate}
+                  {values.launchpadData.endDate}
                </p>
             </div>
          </div>
          <div className="flex pb-10 justify-between mt-8">
             <button
                className="btn bg-base-100 border border-gray-700 px-10 hover:border-gray-700"
-               onClick={() => props.setStep(3)}
+               onClick={() => values.setStep(3)}
             >
                Back
             </button>
-            <button
-               className="btn bg-teal-600 text-white px-10 hover:bg-teal-700"
-               onClick={() => console.log()}
-            >
-               Create Now
-            </button>
+            <CreateButton
+               ipfsUploader={props.ipfsUploader}
+               imageUploader={props.imageUploader}
+               saveToDatabase={props.saveToDatabase}
+            />
          </div>
       </>
    );

@@ -1,14 +1,14 @@
 import { ChangeEvent } from "react";
 import { LaunchpadData, Props } from "./ILaunchpad";
 
-export const onChange = (
-   props: Partial<Props>,
+export const onChange = <T>(
+   setter: Function,
    event: ChangeEvent<HTMLInputElement>,
-   property: keyof LaunchpadData
+   property: keyof T
 ): void => {
-   if (!props.setLaunchpadData) return;
+   if (!setter) return;
 
-   props.setLaunchpadData((prev: LaunchpadData) => ({
+   setter((prev: Partial<T>) => ({
       ...prev,
       [property]: event.target.value,
    }));

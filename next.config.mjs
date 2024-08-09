@@ -4,6 +4,11 @@ const nextConfig = {
       config.externals.push("pino-pretty", "encoding");
       return config;
    },
+   experimental: {
+      serverActions: {
+         bodySizeLimit: "3mb",
+      },
+   },
    images: {
       remotePatterns: [
          {

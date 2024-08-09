@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE `Launchpad` MODIFY `banner` VARCHAR(191) NOT NULL,
+    MODIFY `logo` VARCHAR(191) NOT NULL,
+    MODIFY `price` VARCHAR(191) NOT NULL,
+    MODIFY `goals` VARCHAR(191) NOT NULL,
+    MODIFY `allocation` VARCHAR(191) NOT NULL;
