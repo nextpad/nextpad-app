@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import Context from "../../Context";
-import { ImageParams, LaunchpadParams, ProjectParams } from "../../page";
 import {
    useWeb3ModalAccount,
    useWeb3ModalProvider,
@@ -9,19 +8,14 @@ import { BrowserProvider, Contract, ethers } from "ethers";
 import { boardFactoryAddress } from "@/app/components/constants";
 import moment from "moment";
 import ResultModal from "./ResultModal";
-
-interface Props {
-   ipfsUploader: (data: ProjectParams) => Promise<string>;
-   imageUploader: (data: ImageParams) => Promise<string>;
-   saveToDatabase: (data: LaunchpadParams) => Promise<string | "null">;
-}
+import { imageUploader, ipfsUpload, saveToDatabase } from "./Uploader";
 
 const ERCAbi = [
    "function approve(address spender, uint amount)",
    "function allowance(address owner, address spender) view returns (uint)",
 ];
 
-function CreateButton(props: Props) {
+function CreateButton() {
    const values = useContext(Context);
    const [loading, setLoading] = useState(false);
    const [textBtn, setTextBtn] = useState("Create Now");
@@ -105,22 +99,23 @@ function CreateButton(props: Props) {
          const banners = values.banners.filter((val) => val != "");
          let [...photos] = await Promise.all([
             ...banners.map((val) =>
-               props.imageUploader({
+               imageUploader({
                   data: val.split(";base64,")[1],
                   name: values.metadata.projectName + " banner",
                })
             ),
-            props.imageUploader({
+            imageUploader({
                data: values.logo.split(";base64,")[1],
                name: values.metadata.projectName,
             }),
          ]);
-         const logo = photos[banners.length];
-         photos.splice(banners.length, 1);
+         let bannersUrl = photos.map((val) => val.url);
+         const logo = bannersUrl[banners.length];
+         bannersUrl.splice(banners.length, 1);
 
-         const cid = await props.ipfsUploader({
+         const { cid } = await ipfsUpload({
             metadata: values.metadata,
-            banners: photos,
+            banners: bannersUrl,
             logo,
          });
 
@@ -130,11 +125,11 @@ function CreateButton(props: Props) {
          const ldata = values.launchpadData;
          const mdata = values.metadata;
          const pCore = 1.1;
-         await props.saveToDatabase({
+         await saveToDatabase({
             projectName: mdata.projectName,
             description: mdata.shortDesc,
             logo,
-            banner: photos[0],
+            banner: bannersUrl[0],
             allocation: ldata.allocation,
             poolAddress,
             goals: Math.floor(

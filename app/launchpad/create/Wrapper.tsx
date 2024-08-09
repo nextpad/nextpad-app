@@ -7,7 +7,6 @@ import BasicForm from "./forms/BasicForm";
 import ReviewForm from "./forms/ReviewForm";
 import moment from "moment";
 import Context from "./Context";
-import { ImageParams, LaunchpadParams, ProjectParams } from "./page";
 
 const DetailForm = dynamic(() => import("./forms/DetailForm"), {
    ssr: false,
@@ -16,15 +15,7 @@ const TokenomicsForm = dynamic(() => import("./forms/TokenomicsForm"), {
    ssr: false,
 });
 
-function Wrapper({
-   ipfsUpload,
-   imageUpload,
-   saveToDatabase,
-}: {
-   ipfsUpload: (data: ProjectParams) => Promise<string>;
-   imageUpload: (data: ImageParams) => Promise<string>;
-   saveToDatabase: (data: LaunchpadParams) => Promise<string | "null">;
-}) {
+function Wrapper() {
    const [step, setStep] = useState(1);
    const [network, setNetwork] = useState(1115);
    const [launchpadData, setLaunchpadData] = useState<LaunchpadData>({
@@ -89,14 +80,7 @@ function Wrapper({
       <BasicForm key={0} />,
       <DetailForm key={1} />,
       <TokenomicsForm key={2} />,
-      <ReviewForm
-         key={3}
-         {...{
-            ipfsUploader: ipfsUpload,
-            imageUploader: imageUpload,
-            saveToDatabase: saveToDatabase,
-         }}
-      />,
+      <ReviewForm key={3} />,
    ];
    return (
       <Context.Provider value={props}>

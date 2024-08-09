@@ -1,16 +1,9 @@
 import React, { useContext } from "react";
 import Context from "../Context";
-import { ImageParams, LaunchpadParams, ProjectParams } from "../page";
 import CreateButton from "./inputs/CreateButton";
 import { Launchpad } from "@prisma/client";
 
-interface Props {
-   ipfsUploader: (data: ProjectParams) => Promise<string>;
-   imageUploader: (data: ImageParams) => Promise<string>;
-   saveToDatabase: (data: LaunchpadParams) => Promise<string | "null">;
-}
-
-function ReviewForm(props: Props) {
+function ReviewForm() {
    const values = useContext(Context);
    const NATIVE = values.network === 1115 ? "CORE" : "ETH";
    return (
@@ -121,11 +114,7 @@ function ReviewForm(props: Props) {
             >
                Back
             </button>
-            <CreateButton
-               ipfsUploader={props.ipfsUploader}
-               imageUploader={props.imageUploader}
-               saveToDatabase={props.saveToDatabase}
-            />
+            <CreateButton />
          </div>
       </>
    );
