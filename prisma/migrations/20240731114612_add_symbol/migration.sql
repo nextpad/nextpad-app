@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `TokenLocked` ADD COLUMN `symbol` VARCHAR(191) NOT NULL DEFAULT 'NULL';

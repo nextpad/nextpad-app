@@ -5,12 +5,11 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -27,8 +26,6 @@ model Token {
   twitter     String?
   telegram    String?
   createdAt   DateTime @default(now())
-
-  @@fulltext([address])
 }
 
 model TokenLocked {
@@ -39,8 +36,6 @@ model TokenLocked {
   blockchain  Int
   totalAmount String @default("0")
   symbol      String @default("NULL")
-
-  @@fulltext([address])
 }
 
 model Launchpad {
