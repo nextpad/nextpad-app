@@ -7,7 +7,7 @@ type Props = {
 };
 
 function ResultModal(props: Props) {
-   const boardLink = `${process.env.NEXT_PUBLIC_BASE_URL}/launchpad/project/${props.address}`;
+   const boardLink = `${process.env.NEXT_PUBLIC_BASE_URL}/launchpad/${props.address}`;
 
    const [alert, setAlert] = useState(false);
    let intervalId = useRef<NodeJS.Timeout>();

@@ -1,19 +1,61 @@
 "use client";
-import React from "react";
+import { Contract, ethers } from "ethers";
+import React, { useContext, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Description from "./content/Description";
 import TokenInfo from "./content/TokenInfo";
+import Context from "./Context";
 const Tokenomics = dynamic(() => import("./content/Tokenomics"), {
    ssr: false,
 });
 
+const ERCAbi = [
+   "function name() view returns (string)",
+   "function symbol() view returns (string)",
+   "function decimals() view returns (uint)",
+   "function totalSupply() view returns (uint)",
+];
+
 function DetailedProject() {
-   const [menu, setMenu] = React.useState(1);
+   const ctx = useContext(Context);
+   const [menu, setMenu] = useState(1);
+   const [token, setToken] = useState<[string, string, number, string]>([
+      "",
+      "",
+      18,
+      "",
+   ]);
+
+   useEffect(() => {
+      async function fetchTokenData() {
+         const BoardJSON = require("./Board.json");
+         const JSON_RPC_URL = "https://rpc.test.btcs.network";
+         const provider = new ethers.JsonRpcProvider(JSON_RPC_URL);
+
+         const contract = new Contract(ctx.address, BoardJSON.abi, provider);
+         const address = await contract.fundedToken();
+         const erc20 = new Contract(address, ERCAbi, provider);
+
+         const [symbol, decimals, supply] = await Promise.all([
+            erc20.symbol(),
+            erc20.decimals(),
+            erc20.totalSupply(),
+         ]);
+
+         setToken([
+            address,
+            symbol,
+            decimals,
+            ethers.formatUnits(supply, decimals),
+         ]);
+      }
+      fetchTokenData();
+   }, [ctx.address]);
 
    let content = <Description />;
 
    if (menu === 2) {
-      content = <TokenInfo />;
+      content = <TokenInfo token={token} />;
    }
 
    if (menu === 3) {

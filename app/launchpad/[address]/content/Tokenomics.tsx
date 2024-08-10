@@ -1,5 +1,7 @@
 "use client";
+import { useContext } from "react";
 import Chart from "react-apexcharts";
+import Context from "../Context";
 
 interface DataChart {
    options: {
@@ -12,14 +14,15 @@ interface DataChart {
 }
 
 const Tokenomics = () => {
-   const data = {
+   const ctx = useContext(Context);
+   const data: DataChart = {
       options: {
          chart: {
             foreColor: "white",
          },
-         labels: ["Team", "Marketing", "Community", "Sale", "Liquidity"],
+         labels: ctx.data.metadata.tokenomics.map((val) => val.name),
       },
-      series: [440000, 250000, 4100000, 1700000, 1500000],
+      series: ctx.data.metadata.tokenomics.map((val) => parseInt(val.amount)),
    };
 
    return (

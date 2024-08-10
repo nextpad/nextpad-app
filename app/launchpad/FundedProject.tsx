@@ -87,7 +87,7 @@ function FundedProject(props: any) {
                         <>
                            <td className="py-4">$0.002</td>
                            <td className="py-4">
-                              <span className="bg-teal-600 p-2 font-bold text-black rounded-sm">
+                              <span className="bg-green-500 p-1 font-bold text-black rounded">
                                  +200%
                               </span>
                            </td>
@@ -135,7 +135,7 @@ function FundedProject(props: any) {
                         <>
                            <td className="py-4">$0.002</td>
                            <td className="py-4">
-                              <span className="bg-teal-600 p-2 font-bold text-black rounded-sm">
+                              <span className="bg-green-500 p-1 font-bold text-black rounded">
                                  +1200%
                               </span>
                            </td>

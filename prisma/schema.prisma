@@ -48,5 +48,6 @@ model Launchpad {
   price       String
   goals       String
   allocation  String
-  boostPoint  BigInt @default(0)
+  blockchain  Int    @default(1)
+  boostPoint  Int    @default(0)
 }

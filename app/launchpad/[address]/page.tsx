@@ -1,28 +1,100 @@
-import React from "react";
-import Carousel from "./Carousel";
-import ContributionCard from "./ContributionCard";
-import HeaderProject from "./HeaderProject";
-import DetailedProject from "./DetailedProject";
-import PoolCard from "./PoolCard";
-import TopParticipants from "./TopVoters";
+import { ethers, Contract } from "ethers";
+import Wrapper from "./Wrapper";
+import { createClient } from "redis";
+import ABI from "./Board.json";
+import { notFound } from "next/navigation";
 
-function page() {
+export interface MetadataResponse {
+   metadata: {
+      projectName: string;
+      shortDesc: string;
+      description: string;
+      tokenomics: { amount: string; name: string }[];
+      website: string;
+      twitter: string;
+      telegram: string;
+      docs: string;
+   };
+   logo: string;
+   banners: string[];
+}
+
+const REDIS_EXPIRATION = 1800; // 30 minutes
+const JSON_RPC_URL = "https://rpc.test.btcs.network";
+
+class MetadataService {
+   private redisClient: ReturnType<typeof createClient>;
+
+   constructor() {
+      this.redisClient = createClient();
+   }
+
+   async getMetadata(address: string): Promise<MetadataResponse | null> {
+      await this.redisClient.connect();
+
+      try {
+         const key = `${address.toLowerCase()}_metadata`;
+         const cachedData = await this.redisClient.get(key);
+
+         if (cachedData) {
+            return JSON.parse(cachedData);
+         }
+
+         const cid = await this.getCID(address);
+         if (!cid) {
+            throw new Error("CID not found");
+         }
+
+         const data = await this.fetchFromIPFS(cid);
+         await this.cacheMetadata(key, data);
+
+         return data;
+      } catch (err) {
+         return null;
+      }
+   }
+
+   private async getCID(address: string): Promise<string | null> {
+      const provider = new ethers.JsonRpcProvider(JSON_RPC_URL);
+      const contract = new Contract(address, ABI.abi, provider);
+      const data = await contract.getLaunchpadDetail();
+      return data[6] || null;
+   }
+
+   private async fetchFromIPFS(cid: string) {
+      const response = await fetch(
+         `${process.env.IPFS_GATEWAY_URL}/ipfs/${cid}`
+      );
+      if (!response.ok) {
+         throw new Error(`Failed to fetch from IPFS: ${response.statusText}`);
+      }
+      return response.json();
+   }
+
+   private async cacheMetadata(
+      key: string,
+      metadata: MetadataResponse
+   ): Promise<void> {
+      await this.redisClient.setEx(
+         key,
+         REDIS_EXPIRATION,
+         JSON.stringify(metadata)
+      );
+   }
+}
+
+async function page({ params }: { params: { address: string } }) {
+   const metadataService = new MetadataService();
+   const metadata = await metadataService.getMetadata(params.address);
+
+   if (!metadata) {
+      return notFound();
+   }
+
    return (
-      <div className="min-h-screen">
-         <HeaderProject />
-         <div className="flex flex-grow">
-            <div className="flex w-3/5 flex-col mr-12">
-               <Carousel />
-
-               <DetailedProject />
-            </div>
-            <div className="flex flex-col w-2/5">
-               <ContributionCard />
-               <PoolCard />
-               <TopParticipants />
-            </div>
-         </div>
-      </div>
+      <>
+         <Wrapper address={params.address} data={metadata} />
+      </>
    );
 }
 
