@@ -68,7 +68,7 @@ export async function saveToDatabase(data: LaunchpadParams) {
             goals: data.goals,
             poolAddress: data.poolAddress,
             price: data.price,
-            boostPoint: BigInt(0),
+            boostPoint: 0,
          },
       });
 
@@ -78,6 +78,7 @@ export async function saveToDatabase(data: LaunchpadParams) {
 
       return { id: result.id };
    } catch (err: any) {
+      console.log(err.message);
       return { id: null };
    }
 }

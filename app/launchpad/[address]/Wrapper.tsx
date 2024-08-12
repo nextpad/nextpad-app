@@ -1,16 +1,15 @@
 "use client";
 import React, { createContext } from "react";
-import Carousel from "./Carousel";
-import ContributionCard from "./ContributionCard";
-import HeaderProject from "./HeaderProject";
+import Carousel from "./content/Carousel";
+import HeaderProject from "./content/HeaderProject";
 import DetailedProject from "./DetailedProject";
-import PoolCard from "./PoolCard";
-import TopParticipants from "./TopVoters";
 import Context from "./Context";
 import { MetadataResponse } from "./page";
+import SideCards from "./SideCards";
 
 type Props = {
    address: string;
+   blockchain: number;
    data: MetadataResponse;
 };
 
@@ -18,6 +17,7 @@ function Wrapper(props: Props) {
    const contextValue: Props = {
       address: props.address,
       data: props.data,
+      blockchain: props.blockchain,
    };
 
    return (
@@ -32,9 +32,7 @@ function Wrapper(props: Props) {
                      <DetailedProject />
                   </div>
                   <div className="flex flex-col w-2/5">
-                     <ContributionCard />
-                     <PoolCard />
-                     <TopParticipants />
+                     <SideCards />
                   </div>
                </div>
             </div>

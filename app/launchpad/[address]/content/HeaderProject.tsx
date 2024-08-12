@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useContext } from "react";
-import Context from "./Context";
+import Context from "../Context";
 
 function HeaderProject() {
    const ctx = useContext(Context);

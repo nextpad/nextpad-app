@@ -28,7 +28,7 @@ function page() {
          <div className="flex">
             <FilterBar />
          </div>
-         <div className="flex flex-wrap mt-7 mb-10">
+         <div className="flex mt-7 mb-10">
             <BrowseProject />
          </div>
 

@@ -198,6 +198,25 @@
          "type": "event"
       },
       {
+         "inputs": [
+            {
+               "internalType": "address",
+               "name": "",
+               "type": "address"
+            }
+         ],
+         "name": "allocation",
+         "outputs": [
+            {
+               "internalType": "uint256",
+               "name": "",
+               "type": "uint256"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
          "inputs": [],
          "name": "buyPresale",
          "outputs": [],
@@ -511,6 +530,25 @@
          "type": "function"
       },
       {
+         "inputs": [
+            {
+               "internalType": "address",
+               "name": "",
+               "type": "address"
+            }
+         ],
+         "name": "tolContributions",
+         "outputs": [
+            {
+               "internalType": "uint256",
+               "name": "",
+               "type": "uint256"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
          "inputs": [],
          "name": "tolToken",
          "outputs": [
@@ -518,6 +556,19 @@
                "internalType": "contract IERC20",
                "name": "",
                "type": "address"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [],
+         "name": "totalContributors",
+         "outputs": [
+            {
+               "internalType": "uint32",
+               "name": "",
+               "type": "uint32"
             }
          ],
          "stateMutability": "view",

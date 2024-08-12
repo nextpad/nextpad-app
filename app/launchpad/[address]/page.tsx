@@ -3,6 +3,7 @@ import Wrapper from "./Wrapper";
 import { createClient } from "redis";
 import ABI from "./Board.json";
 import { notFound } from "next/navigation";
+import { Launchpad, PrismaClient } from "@prisma/client";
 
 export interface MetadataResponse {
    metadata: {
@@ -84,8 +85,18 @@ class MetadataService {
 }
 
 async function page({ params }: { params: { address: string } }) {
+   const address = params.address;
+   const prisma = new PrismaClient();
+   const launchpad: Launchpad[] = await prisma.$queryRaw`
+      SELECT * FROM public."Launchpad"
+      WHERE to_tsvector('english', "poolAddress") @@ to_tsquery('english', ${address});`;
+
+   if (!launchpad) {
+      return notFound();
+   }
+
    const metadataService = new MetadataService();
-   const metadata = await metadataService.getMetadata(params.address);
+   const metadata = await metadataService.getMetadata(address);
 
    if (!metadata) {
       return notFound();
@@ -93,7 +104,11 @@ async function page({ params }: { params: { address: string } }) {
 
    return (
       <>
-         <Wrapper address={params.address} data={metadata} />
+         <Wrapper
+            address={params.address}
+            data={metadata}
+            blockchain={launchpad[0].blockchain}
+         />
       </>
    );
 }

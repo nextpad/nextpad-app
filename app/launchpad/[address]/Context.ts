@@ -3,11 +3,13 @@ import { MetadataResponse } from "./page";
 
 interface Project {
    address: string;
+   blockchain: number;
    data: MetadataResponse;
 }
 
 const Context = createContext<Project>({
    address: "",
+   blockchain: 0,
    data: {
       metadata: {
          description: "",

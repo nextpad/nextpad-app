@@ -2,8 +2,9 @@
 import ProgressGoals from "@/app/components/ProgressGoals";
 import React from "react";
 import TimeCard from "./TimeCard";
+import { PoolData } from "../SideCards";
 
-function ContributionCard() {
+function ContributionCard({ pool }: { pool: PoolData }) {
    return (
       <>
          <div

@@ -8,7 +8,7 @@ function CardProject(props: any) {
    return (
       <>
          <div
-            className="card w-full bg-base-300 hover:shadow-lg border border-teal-800 hover:shadow-teal-600"
+            className="card bg-base-300 hover:shadow-lg border border-teal-800 hover:shadow-teal-600"
             style={{ maxHeight: "37.5rem" }}
          >
             <figure>
@@ -56,17 +56,26 @@ function CardProject(props: any) {
                <p className="mt-2">{props.intros}</p>
                <div className="flex justify-between mt-3">
                   <div>Initial Price</div>
-                  <div className="font-bold">${props.initPrice}</div>
+                  <div className="font-bold">
+                     ${parseFloat(props.initPrice).toFixed(7)}
+                  </div>
                </div>
                <div className="flex justify-between">
                   <div>Fundraise Goal</div>
-                  <div className="font-bold">$100K</div>
+                  <div className="font-bold">
+                     $
+                     {props.goals > 1000000
+                        ? (props.goals / 1000000).toFixed(1) + "M"
+                        : props.goals > 1000
+                        ? (props.goals / 1000).toFixed(1) + "K"
+                        : props.goals}
+                  </div>
                </div>
                {props.status != 2 && (
                   <div className="flex justify-between">
                      <div>Max Allocation</div>
                      <div className="font-bold text-teal-700">
-                        {props.maxAlloc}
+                        {parseInt(props.maxAlloc).toLocaleString()}
                      </div>
                   </div>
                )}
@@ -81,7 +90,7 @@ function CardProject(props: any) {
                   </div>
                   <div>
                      <a
-                        href="/launchpad/project"
+                        href={`/launchpad/${props.address}`}
                         className="btn btn-sm bg-teal-600 text-white hover:bg-teal-700"
                      >
                         View

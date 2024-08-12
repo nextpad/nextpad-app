@@ -1,47 +1,39 @@
+"use server";
 import React from "react";
 import CardProject from "./components/CardProject";
+import { PrismaClient } from "@prisma/client";
 
-function UpcomingLaunchpad() {
+async function UpcomingLaunchpad() {
+   const prisma = new PrismaClient();
+   const launchpads = await prisma.launchpad.findMany({
+      where: {
+         status: 1,
+      },
+      take: 3,
+      orderBy: { id: "desc" },
+   });
    return (
       <>
-         <div className="flex-1 mr-7">
-            <CardProject
-               projectName="EARN!"
-               logo="/images/ex1.png"
-               banner="/images/exb1.png"
-               intros="Deflationary MobileFi & DePIN Rewards, Transforming Smartphones"
-               initPrice="0.1"
-               maxAlloc="200M ERN"
-               timeLeft="-"
-               status={1}
-            />
-         </div>
-         <div className="flex-1 mr-7">
-            <CardProject
-               projectName="Matrix One"
-               logo="/images/ex2.png"
-               banner="/images/exb2.png"
-               intros="AI Human"
-               initPrice="0.1"
-               maxAlloc="200M ERN"
-               timeLeft="-"
-               boost={120}
-               status={1}
-            />
-         </div>
-         <div className="flex-1">
-            <CardProject
-               projectName="Kima Network"
-               logo="/images/ex3.png"
-               banner="/images/exb3.png"
-               intros="Revolutionizing Financial Interoperability"
-               initPrice="0.1"
-               maxAlloc="200M ERN"
-               timeLeft="-"
-               boost={400}
-               status={1}
-            />
-         </div>
+         {launchpads.map((val, i) => (
+            <div
+               key={i}
+               className={`${i > 0 ? "ml-7" : ""} flex-1`}
+               style={{ maxWidth: "33.333%" }}
+            >
+               <CardProject
+                  address={val.poolAddress}
+                  projectName={val.projectName}
+                  logo={val.logo}
+                  banner={val.banner}
+                  intros={val.description}
+                  initPrice={val.price}
+                  maxAlloc={val.allocation}
+                  goals={val.goals}
+                  timeLeft="-"
+                  status={1}
+               />
+            </div>
+         ))}
       </>
    );
 }

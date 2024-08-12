@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import Context from "../Context";
+
 function TokenInfo(props: { token: any[] }) {
+   const ctx = useContext(Context);
    return (
       <>
          <div className="flex justify-between py-4 px-4 max-w-3xl bg-base-300 border border-gray-800 mb-2 rounded-md">
@@ -7,7 +11,9 @@ function TokenInfo(props: { token: any[] }) {
          </div>
          <div className="flex justify-between py-4 px-4 max-w-3xl bg-base-300 border border-gray-800 mb-2 rounded-md">
             <span className="block text-xl">Blockchain</span>
-            <span className="block text-xl">Sepolia</span>
+            <span className="block text-xl">
+               {ctx.blockchain == 1 ? "Core DAO" : "Sepolia"}
+            </span>
          </div>
          <div className="flex justify-between py-4 px-4 max-w-3xl bg-base-300 border border-gray-800 mb-2 rounded-md">
             <span className="block text-xl">Token Address</span>

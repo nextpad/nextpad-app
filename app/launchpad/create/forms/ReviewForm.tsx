@@ -74,11 +74,17 @@ function ReviewForm() {
                </span>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>
-                  {values.launchpadData.allocation}
+                  {parseInt(
+                     values.launchpadData.allocation
+                  ).toLocaleString()}{" "}
+                  {values.tokenInfo[1]}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>
-                  {values.launchpadData.maxAllocation}
+                  {parseInt(
+                     values.launchpadData.maxAllocation
+                  ).toLocaleString()}{" "}
+                  {values.tokenInfo[1]}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>
@@ -90,12 +96,11 @@ function ReviewForm() {
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>1 {NATIVE} ={" "}
-                  {values.launchpadData.priceNative}{" "}
-                  {values.launchpadData.symbol}
+                  {values.launchpadData.priceNative} {values.tokenInfo[1]}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>1 TOL ={" "}
-                  {values.launchpadData.rewardTol} {values.launchpadData.symbol}
+                  {values.launchpadData.rewardTol} {values.tokenInfo[1]}
                </p>
                <p className="mb-4 text-lg text-slate-300">
                   <span className="mr-3">:</span>

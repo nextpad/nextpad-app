@@ -5,7 +5,7 @@ import TelegramIcon from "@/app/components/icons/TelegramIcon";
 import XIcon from "@/app/components/icons/XIcon";
 import Image from "next/image";
 import React, { useContext, useState } from "react";
-import Context from "./Context";
+import Context from "../Context";
 
 function Carousel() {
    const { data } = useContext(Context);

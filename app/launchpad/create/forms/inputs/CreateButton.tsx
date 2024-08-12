@@ -69,7 +69,7 @@ function CreateButton() {
             data.address,
             ethers.parseEther(data.minBuy),
             ethers.parseEther(data.maxBuy),
-            ethers.parseEther(data.priceNative),
+            data.priceNative,
             moment(data.startDate).unix().toString(),
             moment(data.endDate).unix().toString(),
             ethers.parseEther(
