@@ -1,10 +1,28 @@
 "use client";
 import ProgressGoals from "@/app/components/ProgressGoals";
-import React from "react";
+import React, { useContext } from "react";
 import TimeCard from "./TimeCard";
 import { PoolData } from "../SideCards";
+import { ethers } from "ethers";
+import Context from "../Context";
+import {
+   useWeb3Modal,
+   useWeb3ModalAccount,
+   useWeb3ModalProvider,
+} from "@web3modal/ethers/react";
+import CountDown from "./CountDown";
 
-function ContributionCard({ pool }: { pool: PoolData }) {
+function ContributionCard({
+   pool,
+   token,
+}: {
+   pool: PoolData;
+   token: string[];
+}) {
+   const ctx = useContext(Context);
+   const { address, isConnected } = useWeb3ModalAccount();
+   const { open } = useWeb3Modal();
+
    return (
       <>
          <div
@@ -17,7 +35,11 @@ function ContributionCard({ pool }: { pool: PoolData }) {
                      <div className="flex flex-col">
                         <span className="block">Total Raised</span>
                         <span className="block text-2xl font-bold text-slate-200">
-                           400.18 ETH
+                           {pool.totalRaised &&
+                              parseInt(
+                                 ethers.formatEther(pool.totalRaised)
+                              ).toLocaleString()}{" "}
+                           {ctx.blockchain == 1 ? "CORE" : "ETH"}
                         </span>
                      </div>
                      <div className="flex justify-end p-0">
@@ -25,23 +47,31 @@ function ContributionCard({ pool }: { pool: PoolData }) {
                            className="bg-gray-700 rounded-lg text-slate-300 py-4 px-10"
                            title="Price per token"
                         >
-                           0.0005 ETH
+                           {pool.rates && parseFloat(pool.rates) < 1
+                              ? (1 / parseFloat(pool.rates)).toFixed(2)
+                              : (1 / parseFloat(pool.rates)).toFixed(7)}{" "}
+                           {ctx.blockchain == 1 ? "CORE" : "ETH"}
                         </div>
                      </div>
                   </div>
                </div>
                <div className="px-9">
                   <div className="flex justify-center mt-5 mb-7">
-                     <div className="flex flex-row">
-                        <TimeCard time={12} label="Day" />
-                        <TimeCard time={23} label="Hour" />
-                        <TimeCard time={43} label="Mins" />
-                        <TimeCard time={11} label="Secs" />
-                     </div>
+                     <CountDown
+                        targetTime={
+                           pool.status == 0 ? pool.startDate : pool.deadline
+                        }
+                     />
                   </div>
-                  <ProgressGoals goals={1000} raised={400} />
+                  {pool.targetRaised && (
+                     <ProgressGoals
+                        goals={ethers.formatEther(pool.targetRaised)}
+                        raised={ethers.formatEther(pool.totalRaised)}
+                     />
+                  )}
                   <div className="mt-2 float-end">
-                     Participants: <span className="text-slate-300">280</span>
+                     Participants:{" "}
+                     <span className="text-slate-300">{pool.participants}</span>
                   </div>
                   <div className="clear-both"></div>
                   <div className="flex flex-row justify-between text-lg">
@@ -50,22 +80,48 @@ function ContributionCard({ pool }: { pool: PoolData }) {
                         <p>Remaining Allocation</p>
                      </div>
                      <div className="my-5">
-                        <p className="text-slate-300 mb-1">900,000,000 TRUF</p>
-                        <p className="text-slate-300">10,000,000 TRUF</p>
+                        <p className="text-slate-300 mb-1">
+                           {pool.totalAllocation &&
+                              parseInt(
+                                 ethers.formatUnits(pool.totalAllocation)
+                              ).toLocaleString()}{" "}
+                           {token[1] && token[1]}
+                        </p>
+                        <p className="text-slate-300 text-right">
+                           {pool.totalAllocation &&
+                              (
+                                 parseInt(
+                                    ethers.formatUnits(pool.totalAllocation)
+                                 ) -
+                                 parseInt(ethers.formatUnits(pool.allocated))
+                              ).toLocaleString()}{" "}
+                           {token[1] && token[1]}
+                        </p>
                      </div>
                   </div>
-                  <span className="text-lg mb-2 block">Amount ETH</span>
+                  <span className="text-lg mb-2 block">
+                     Amount {ctx.blockchain == 1 ? "CORE" : "ETH"}
+                  </span>
                   <input
                      type="number"
                      step={0.001}
                      className="input input-bordered w-full"
                   />
-                  <button
-                     className="btn btn-normal mt-4"
-                     onClick={() => console.log()}
-                  >
-                     Connect Wallet
-                  </button>
+                  {isConnected ? (
+                     <button
+                        className="btn btn-normal mt-4"
+                        onClick={() => console.log()}
+                     >
+                        Commit Buy
+                     </button>
+                  ) : (
+                     <button
+                        className="btn btn-normal mt-4"
+                        onClick={() => open()}
+                     >
+                        Connect Wallet
+                     </button>
+                  )}
                </div>
             </div>
          </div>

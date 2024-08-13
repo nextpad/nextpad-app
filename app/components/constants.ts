@@ -6,5 +6,5 @@ export const tokenFactoryAddress = "0x080b1A1EDDeB591C43B77362987fFAE26dbbA006";
 // Lockers
 export const lockerAddress = "0x9F62aA25c15Ed6e4b5e99f93EBF02778aE51985B";
 // Launchpad
-export const oceanAddress = "0xedA40371b5402b01dD2fB5AeaE87b7AD36343B0c";
-export const boardFactoryAddress = "0xB7257F8863B799f0ee5537B710a94A5479dD169D";
+export const oceanAddress = "0xF530b2Fe38Fd4C917214CB4D550FacF2461F15F2";
+export const boardFactoryAddress = "0x7A76eBc407AA827A211C9145d6D9eFF4c2e452e8";
