@@ -9,12 +9,12 @@ function page() {
       <div className="min-h-screen">
          <div className="flex justify-between">
             <h1 className="text-3xl font-bold mb-8">Token Locker</h1>
-            <button className="btn block btn-normal text-lg">
-               <Link href="/locker/token/create">
+            <Link href="/locker/token/create">
+               <button className="btn block btn-normal text-lg">
                   <LockClosedIcon classList="size-5 mb-1 inline mr-2" /> Lock
                   Token
-               </Link>
-            </button>
+               </button>
+            </Link>
          </div>
          <div className="flex-1 max-w-xs">
             <div

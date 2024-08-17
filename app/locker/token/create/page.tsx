@@ -1,6 +1,6 @@
 import React from "react";
 import LockForm from "./LockForm";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Token, TokenLocked } from "@prisma/client";
 import { Contract, ethers } from "ethers";
 import { lockerAddress } from "@/app/components/constants";
 
@@ -44,26 +44,20 @@ function page() {
 
       const prisma = new PrismaClient();
 
-      const tokenLocked = await prisma.tokenLocked.findFirst({
-         where: {
-            address: {
-               search: address,
-            },
-         },
-      });
+      const tokenLocked: TokenLocked[] = await prisma.$queryRaw`
+        SELECT * FROM public."TokenLocked"
+        WHERE to_tsvector('english', "address") @@ to_tsquery('english', ${address})
+      `;
       const totalAmount = await getTotalAmount(address);
 
-      if (!tokenLocked) {
-         const token = await prisma.token.findFirst({
-            where: {
-               address: {
-                  search: address,
-               },
-            },
-         });
-         const logo = !token?.id
+      if (tokenLocked.length === 0) {
+         const token: Token[] = await prisma.$queryRaw`
+         SELECT * FROM public."Token"
+         WHERE to_tsvector('english', "address") @@ to_tsquery('english', ${address})
+       `;
+         const logo = !token[0]?.id
             ? "https://i.ibb.co.com/TByjbdx/Unknown.png"
-            : token.logo;
+            : token[0].logo;
 
          const result = await prisma.tokenLocked.create({
             data: {
@@ -81,7 +75,7 @@ function page() {
 
       await prisma.tokenLocked.update({
          where: {
-            id: tokenLocked.id,
+            id: tokenLocked[0].id,
          },
          data: {
             totalAmount,
