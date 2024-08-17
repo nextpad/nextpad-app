@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import ContributionCard from "./side/ContributionCard";
 import PoolCard from "./side/PoolCard";
-import TopVoters from "./side/TopVoters";
+import TopVoters from "./side/LatestVoters";
 import Context from "./Context";
 import { Contract, ethers } from "ethers";
-import { oceanAddress } from "@/app/components/constants";
 
 export interface PoolData {
    status: number;
@@ -48,14 +47,15 @@ function SideCards() {
    });
    const [token, setToken] = useState<[string, string, string]>(["", "", ""]);
 
-   useEffect(() => {
-      const BoardJSON = require("./Board.json");
-      const OceanJSON = require("./Ocean.json");
-      const JSON_RPC_URL = "https://rpc.test.btcs.network";
-      const provider = new ethers.JsonRpcProvider(JSON_RPC_URL);
+   const BoardJSON = require("./Board.json");
+   const JSON_RPC_URL = "https://rpc.test.btcs.network";
+   const provider = new ethers.JsonRpcProvider(JSON_RPC_URL);
+   const contract = new Contract(ctx.address, BoardJSON.abi, provider);
 
+   useEffect(() => {
       async function fetchPool() {
-         const contract = new Contract(ctx.address, BoardJSON.abi, provider);
+         const OceanJSON = require("./Ocean.json");
+         const oceanAddress = await contract.ocean();
          const ocean = new Contract(oceanAddress, OceanJSON.abi, provider);
          const [data, reward, participants, allocation, allocated] =
             await Promise.all([
@@ -83,7 +83,6 @@ function SideCards() {
       }
 
       async function fetchToken() {
-         const contract = new Contract(ctx.address, BoardJSON.abi, provider);
          const address = await contract.fundedToken();
          const erc20 = new Contract(address, ERCAbi, provider);
          const [symbol, decimals] = await Promise.all([
@@ -101,7 +100,7 @@ function SideCards() {
       <>
          <ContributionCard pool={poolInformation} token={token} />
          <PoolCard pool={poolInformation} token={token} />
-         <TopVoters />
+         <TopVoters contract={contract} />
       </>
    );
 }

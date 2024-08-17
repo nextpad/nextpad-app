@@ -11,6 +11,7 @@ import {
    useWeb3ModalProvider,
 } from "@web3modal/ethers/react";
 import CountDown from "./CountDown";
+import Commit from "./Commit";
 
 function ContributionCard({
    pool,
@@ -20,7 +21,6 @@ function ContributionCard({
    token: string[];
 }) {
    const ctx = useContext(Context);
-   const { address, isConnected } = useWeb3ModalAccount();
    const { open } = useWeb3Modal();
 
    return (
@@ -99,29 +99,7 @@ function ContributionCard({
                         </p>
                      </div>
                   </div>
-                  <span className="text-lg mb-2 block">
-                     Amount {ctx.blockchain == 1 ? "CORE" : "ETH"}
-                  </span>
-                  <input
-                     type="number"
-                     step={0.001}
-                     className="input input-bordered w-full"
-                  />
-                  {isConnected ? (
-                     <button
-                        className="btn btn-normal mt-4"
-                        onClick={() => console.log()}
-                     >
-                        Commit Buy
-                     </button>
-                  ) : (
-                     <button
-                        className="btn btn-normal mt-4"
-                        onClick={() => open()}
-                     >
-                        Connect Wallet
-                     </button>
-                  )}
+                  <Commit pool={pool} token={token} />
                </div>
             </div>
          </div>

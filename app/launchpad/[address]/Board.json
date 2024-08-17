@@ -6,54 +6,14 @@
       {
          "inputs": [
             {
-               "internalType": "address",
-               "name": "_owner",
-               "type": "address"
+               "internalType": "address[4]",
+               "name": "data1",
+               "type": "address[4]"
             },
             {
-               "internalType": "address",
-               "name": "_tolToken",
-               "type": "address"
-            },
-            {
-               "internalType": "address",
-               "name": "_fundedToken",
-               "type": "address"
-            },
-            {
-               "internalType": "uint256",
-               "name": "_minimumTOLRequired",
-               "type": "uint256"
-            },
-            {
-               "internalType": "uint256",
-               "name": "_minBuy",
-               "type": "uint256"
-            },
-            {
-               "internalType": "uint256",
-               "name": "_maxBuy",
-               "type": "uint256"
-            },
-            {
-               "internalType": "uint256",
-               "name": "_rates",
-               "type": "uint256"
-            },
-            {
-               "internalType": "uint256",
-               "name": "_deadline",
-               "type": "uint256"
-            },
-            {
-               "internalType": "uint256",
-               "name": "_targetRaised",
-               "type": "uint256"
-            },
-            {
-               "internalType": "uint256",
-               "name": "_rewardRatePerTOL",
-               "type": "uint256"
+               "internalType": "uint256[8]",
+               "name": "data2",
+               "type": "uint256[8]"
             },
             {
                "internalType": "string",
@@ -368,6 +328,19 @@
       },
       {
          "inputs": [],
+         "name": "getVoters",
+         "outputs": [
+            {
+               "internalType": "address[]",
+               "name": "",
+               "type": "address[]"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [],
          "name": "launchpad",
          "outputs": [
             {
@@ -452,6 +425,19 @@
       },
       {
          "inputs": [],
+         "name": "ocean",
+         "outputs": [
+            {
+               "internalType": "contract IOcean",
+               "name": "",
+               "type": "address"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [],
          "name": "owner",
          "outputs": [
             {
@@ -501,19 +487,6 @@
             }
          ],
          "stateMutability": "view",
-         "type": "function"
-      },
-      {
-         "inputs": [
-            {
-               "internalType": "uint256",
-               "name": "_startDate",
-               "type": "uint256"
-            }
-         ],
-         "name": "setStartDate",
-         "outputs": [],
-         "stateMutability": "nonpayable",
          "type": "function"
       },
       {
