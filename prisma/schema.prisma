@@ -19,6 +19,7 @@ model Token {
   name        String
   symbol      String
   supply      String
+  decimals    Int      @default(18)
   address     String
   blockchain  Int
   description String   @db.Text

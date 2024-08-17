@@ -76,7 +76,12 @@ async function TokenTable() {
                            {val.address}
                         </a>
                         <CopyAddress address={val.address} />
-                        <QrAddressModal address={val.address} />
+                        <QrAddressModal
+                           address={val.address}
+                           decimals={val.decimals}
+                           symbol={val.symbol}
+                           logo={val.logo}
+                        />
                      </td>
                      <td className="py-4">
                         <Image

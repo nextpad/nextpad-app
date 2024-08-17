@@ -15,6 +15,7 @@ function CopyAddress({ address }: { address: string }) {
          clearInterval(inId.current);
       }, 1000);
    }
+
    return (
       <div className="inline">
          {!checked ? (
