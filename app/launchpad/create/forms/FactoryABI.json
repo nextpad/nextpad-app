@@ -7,7 +7,7 @@
          "inputs": [
             {
                "internalType": "address",
-               "name": "_tolToken",
+               "name": "_nxpToken",
                "type": "address"
             },
             {
@@ -156,14 +156,19 @@
                "internalType": "uint256",
                "name": "_allocation",
                "type": "uint256"
+            },
+            {
+               "internalType": "uint256",
+               "name": "_maxAllocation",
+               "type": "uint256"
             }
          ],
          "name": "createLaunchpad",
          "outputs": [
             {
-               "internalType": "uint256",
+               "internalType": "bool",
                "name": "",
-               "type": "uint256"
+               "type": "bool"
             }
          ],
          "stateMutability": "payable",
@@ -190,6 +195,19 @@
                "internalType": "uint256",
                "name": "",
                "type": "uint256"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [],
+         "name": "nxpToken",
+         "outputs": [
+            {
+               "internalType": "address",
+               "name": "",
+               "type": "address"
             }
          ],
          "stateMutability": "view",
@@ -248,16 +266,22 @@
          "type": "function"
       },
       {
-         "inputs": [],
-         "name": "tolToken",
-         "outputs": [
+         "inputs": [
             {
-               "internalType": "address",
-               "name": "",
-               "type": "address"
+               "internalType": "uint256",
+               "name": "value",
+               "type": "uint256"
             }
          ],
-         "stateMutability": "view",
+         "name": "setTOLRequired",
+         "outputs": [
+            {
+               "internalType": "bool",
+               "name": "",
+               "type": "bool"
+            }
+         ],
+         "stateMutability": "nonpayable",
          "type": "function"
       },
       {

@@ -16,12 +16,13 @@ import Commit from "./Commit";
 function ContributionCard({
    pool,
    token,
+   setPool,
 }: {
    pool: PoolData;
    token: string[];
+   setPool: (data: any) => void;
 }) {
    const ctx = useContext(Context);
-   const { open } = useWeb3Modal();
 
    return (
       <>
@@ -36,10 +37,10 @@ function ContributionCard({
                         <span className="block">Total Raised</span>
                         <span className="block text-2xl font-bold text-slate-200">
                            {pool.totalRaised &&
-                              parseInt(
-                                 ethers.formatEther(pool.totalRaised)
-                              ).toLocaleString()}{" "}
-                           {ctx.blockchain == 1 ? "CORE" : "ETH"}
+                              parseFloat(ethers.formatEther(pool.totalRaised))
+                                 .toFixed(2)
+                                 .toLocaleString()}{" "}
+                           {ctx.blockchain == 1 ? "EDU" : "ETH"}
                         </span>
                      </div>
                      <div className="flex justify-end p-0">
@@ -63,15 +64,25 @@ function ContributionCard({
                         }
                      />
                   </div>
-                  {pool.targetRaised && (
-                     <ProgressGoals
-                        goals={ethers.formatEther(pool.targetRaised)}
-                        raised={ethers.formatEther(pool.totalRaised)}
-                     />
-                  )}
+                  {pool.targetRaised &&
+                     (pool.status == 0 ? (
+                        <ProgressGoals
+                           goals={ethers.formatEther(pool.minNXP)}
+                           raised={ethers.formatEther(pool.totalNXP)}
+                           symbol="NXP"
+                        />
+                     ) : (
+                        <ProgressGoals
+                           goals={ethers.formatEther(pool.targetRaised)}
+                           raised={ethers.formatEther(pool.totalRaised)}
+                           symbol={ctx.blockchain == 1 ? "EDU" : "ETH"}
+                        />
+                     ))}
                   <div className="mt-2 float-end">
                      Participants:{" "}
-                     <span className="text-slate-300">{pool.participants}</span>
+                     <span className="text-slate-300">
+                        {pool.status == 0 ? pool.voters : pool.participants}
+                     </span>
                   </div>
                   <div className="clear-both"></div>
                   <div className="flex flex-row justify-between text-lg">
@@ -99,7 +110,7 @@ function ContributionCard({
                         </p>
                      </div>
                   </div>
-                  <Commit pool={pool} token={token} />
+                  <Commit pool={pool} setPool={setPool} token={token} />
                </div>
             </div>
          </div>

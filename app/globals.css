@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .btn-normal {
-   @apply bg-teal-600 text-white px-8 hover:bg-teal-700;
+   @apply bg-purple-600 text-white px-8 hover:bg-purple-700;
 }
 
 * {

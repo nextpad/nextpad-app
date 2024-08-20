@@ -80,6 +80,7 @@ function CreateButton() {
             data.rewardTol,
             cid,
             ethers.parseUnits(data.allocation, values.tokenInfo[3]),
+            ethers.parseUnits(data.maxAllocation, values.tokenInfo[3]),
             {
                value: baseFee.toString(),
             }

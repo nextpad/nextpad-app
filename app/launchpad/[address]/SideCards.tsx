@@ -14,11 +14,13 @@ export interface PoolData {
    deadline: number;
    totalRaised: string;
    targetRaised: string;
-   totalTOL: string;
+   totalNXP: string;
+   minNXP: string;
    rewardRate: string;
-   participants: string;
+   participants: number;
    totalAllocation: string;
    allocated: string;
+   voters: number;
 }
 
 const ERCAbi = [
@@ -39,11 +41,13 @@ function SideCards() {
       deadline: 0,
       totalRaised: "",
       targetRaised: "",
-      totalTOL: "",
+      totalNXP: "",
+      minNXP: "",
       rewardRate: "",
-      participants: "",
+      participants: 0,
       totalAllocation: "",
       allocated: "",
+      voters: 0,
    });
    const [token, setToken] = useState<[string, string, string]>(["", "", ""]);
 
@@ -57,14 +61,23 @@ function SideCards() {
          const OceanJSON = require("./Ocean.json");
          const oceanAddress = await contract.ocean();
          const ocean = new Contract(oceanAddress, OceanJSON.abi, provider);
-         const [data, reward, participants, allocation, allocated] =
-            await Promise.all([
-               contract.getLaunchpadDetail(),
-               contract.rewardRatePerTOL(),
-               contract.totalContributors(),
-               ocean.totalAllocation(ctx.address),
-               ocean.allocated(ctx.address),
-            ]);
+         const [
+            data,
+            reward,
+            participants,
+            requiredNXP,
+            allocation,
+            allocated,
+            voters,
+         ] = await Promise.all([
+            contract.getLaunchpadDetail(),
+            contract.rewardRatePerTOL(),
+            contract.totalContributors(),
+            contract.minimumTOLRequired(),
+            ocean.totalAllocation(ctx.address),
+            ocean.allocated(ctx.address),
+            contract.totalVoters(),
+         ]);
          setPoolInformation({
             status: data[0].toString(),
             minBuy: data[1].toString(),
@@ -74,11 +87,13 @@ function SideCards() {
             deadline: parseInt(data[5]),
             totalRaised: data[7].toString(),
             targetRaised: data[8].toString(),
-            totalTOL: data[9].toString(),
+            totalNXP: data[9].toString(),
+            minNXP: requiredNXP.toString(),
             rewardRate: reward.toString(),
-            participants: participants.toString(),
+            participants: parseInt(participants),
             totalAllocation: allocation.toString(),
             allocated: allocated.toString(),
+            voters: parseInt(voters),
          });
       }
 
@@ -98,7 +113,11 @@ function SideCards() {
 
    return (
       <>
-         <ContributionCard pool={poolInformation} token={token} />
+         <ContributionCard
+            pool={poolInformation}
+            setPool={setPoolInformation}
+            token={token}
+         />
          <PoolCard pool={poolInformation} token={token} />
          <TopVoters contract={contract} />
       </>

@@ -6,6 +6,7 @@ import Context from "../launchpad/[address]/Context";
 interface Props {
    raised: string;
    goals: string;
+   symbol: string;
 }
 
 function ProgressGoals(props: Props) {
@@ -17,15 +18,16 @@ function ProgressGoals(props: Props) {
                <h3>
                   Progress{" "}
                   <span className="text-white">
-                     {(parseFloat(props.raised) / parseFloat(props.goals)) *
-                        100}
+                     {(
+                        (parseFloat(props.raised) / parseFloat(props.goals)) *
+                        100
+                     ).toFixed(2)}
                      %
                   </span>
                </h3>
                <h3>
-                  {parseInt(props.raised).toLocaleString()} /{" "}
-                  {parseInt(props.goals).toLocaleString()}{" "}
-                  {ctx.blockchain == 1 ? "CORE" : "ETH"}
+                  {parseFloat(props.raised).toFixed(2).toLocaleString()} /{" "}
+                  {parseInt(props.goals).toLocaleString()} {props.symbol}
                </h3>
             </div>
             <progress

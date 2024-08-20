@@ -21,6 +21,9 @@ function Navbar() {
                      />
                   </a>
                </div>
+               <span className="badge bg-sky-700 text-white mb-6 -ml-4">
+                  Beta
+               </span>
             </div>
             <div className="navbar-end">
                <NavLink />
