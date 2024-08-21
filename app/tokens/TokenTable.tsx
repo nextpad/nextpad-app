@@ -5,17 +5,53 @@ import XIcon from "../components/icons/XIcon";
 import TelegramIcon from "../components/icons/TelegramIcon";
 import DuplicateIcon from "../components/icons/DuplicateIcon";
 import QrCodeIcon from "../components/icons/QrCodeIcon";
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient, Token } from "@prisma/client";
 import moment from "moment";
 import CopyAddress from "./CopyAddress";
 import QrAddressModal from "./QrAddressModal";
 
-async function TokenTable() {
+async function TokenTable(params: {
+   query?: string;
+   chain?: string;
+   page?: number;
+   limit?: number;
+}) {
    const prisma = new PrismaClient();
-   const tokens = await prisma.token.findMany({
-      take: 10,
-      orderBy: { createdAt: "desc" },
-   });
+   let tokens: Token[];
+
+   const { query, chain, page = 1, limit = 12 } = params;
+   const offset = (page - 1) * limit;
+
+   if (query && chain) {
+      tokens = await prisma.$queryRaw`
+         ${Prisma.raw(`SELECT * FROM public."Token"
+         WHERE to_tsvector('english', "name" || ' ' || "symbol" || ' ' || "address") @@ to_tsquery('english', '${query}')
+         ${chain ? "AND blockchain = " + chain : ""}
+         ORDER BY "id" DESC
+         LIMIT ${limit} OFFSET ${offset}`)}
+      `;
+   } else if (query) {
+      tokens = await prisma.$queryRaw`
+         ${Prisma.raw(`SELECT * FROM public."Token"
+         WHERE to_tsvector('english', "name" || ' ' || "symbol" || ' ' || "address") @@ to_tsquery('english', '${query}')
+         ORDER BY "id" DESC
+         LIMIT ${limit} OFFSET ${offset}`)}
+      `;
+   } else if (chain) {
+      tokens = await prisma.token.findMany({
+         where: {
+            blockchain: parseInt(chain),
+         },
+         take: 12,
+         orderBy: { createdAt: "desc" },
+      });
+   } else {
+      tokens = await prisma.token.findMany({
+         take: 12,
+         orderBy: { createdAt: "desc" },
+      });
+   }
+
    return (
       <>
          <table className="table">
