@@ -68,7 +68,7 @@ function Commit({
             }
 
             setTextBtn(() => "Voting..");
-            const tx = await contract.placeTOL(ethers.parseUnits(amount));
+            const tx = await contract.voteProject(ethers.parseUnits(amount));
             await tx.wait();
             setTextBtn("Vote");
          }

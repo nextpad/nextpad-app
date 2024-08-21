@@ -1,17 +1,31 @@
 "use server";
 import React from "react";
 import CardProject from "./components/CardProject";
-import { PrismaClient } from "@prisma/client";
+import { Launchpad, PrismaClient } from "@prisma/client";
 
-async function UpcomingLaunchpad() {
+async function UpcomingLaunchpad({ query }: { query?: string }) {
    const prisma = new PrismaClient();
-   const launchpads = await prisma.launchpad.findMany({
-      where: {
-         status: 1,
-      },
-      take: 3,
-      orderBy: { id: "desc" },
-   });
+
+   let launchpads: Launchpad[];
+
+   if (query) {
+      launchpads = await prisma.$queryRaw`
+        SELECT * FROM public."Launchpad"
+        WHERE to_tsvector('english', "projectName" || ' ' || "poolAddress") @@ to_tsquery('english', ${query}) 
+        AND status = 1 
+        ORDER BY "id" DESC
+        LIMIT 3
+      `;
+   } else {
+      launchpads = await prisma.launchpad.findMany({
+         where: {
+            status: 1,
+         },
+         take: 3,
+         orderBy: { id: "desc" },
+      });
+   }
+
    return (
       <>
          {launchpads.map((val, i) => (

@@ -11,9 +11,9 @@
                "type": "address[4]"
             },
             {
-               "internalType": "uint256[8]",
+               "internalType": "uint256[9]",
                "name": "data2",
-               "type": "uint256[8]"
+               "type": "uint256[9]"
             },
             {
                "internalType": "string",
@@ -41,6 +41,25 @@
             }
          ],
          "name": "EmergencyWithdraw",
+         "type": "event"
+      },
+      {
+         "anonymous": false,
+         "inputs": [
+            {
+               "indexed": false,
+               "internalType": "address",
+               "name": "placer",
+               "type": "address"
+            },
+            {
+               "indexed": false,
+               "internalType": "uint256",
+               "name": "amount",
+               "type": "uint256"
+            }
+         ],
+         "name": "NXPPlaced",
          "type": "event"
       },
       {
@@ -117,25 +136,6 @@
             }
          ],
          "name": "Refund",
-         "type": "event"
-      },
-      {
-         "anonymous": false,
-         "inputs": [
-            {
-               "indexed": false,
-               "internalType": "address",
-               "name": "placer",
-               "type": "address"
-            },
-            {
-               "indexed": false,
-               "internalType": "uint256",
-               "name": "amount",
-               "type": "uint256"
-            }
-         ],
-         "name": "TOLPlaced",
          "type": "event"
       },
       {
@@ -328,19 +328,6 @@
       },
       {
          "inputs": [],
-         "name": "getVoters",
-         "outputs": [
-            {
-               "internalType": "address[]",
-               "name": "",
-               "type": "address[]"
-            }
-         ],
-         "stateMutability": "view",
-         "type": "function"
-      },
-      {
-         "inputs": [],
          "name": "launchpad",
          "outputs": [
             {
@@ -390,7 +377,7 @@
             },
             {
                "internalType": "uint256",
-               "name": "totalTOLPlaced",
+               "name": "totalNXPPlaced",
                "type": "uint256"
             }
          ],
@@ -412,12 +399,44 @@
       },
       {
          "inputs": [],
-         "name": "minimumTOLRequired",
+         "name": "minimumNXPRequired",
          "outputs": [
             {
                "internalType": "uint256",
                "name": "",
                "type": "uint256"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [
+            {
+               "internalType": "address",
+               "name": "",
+               "type": "address"
+            }
+         ],
+         "name": "nxpContributions",
+         "outputs": [
+            {
+               "internalType": "uint256",
+               "name": "",
+               "type": "uint256"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [],
+         "name": "nxpToken",
+         "outputs": [
+            {
+               "internalType": "contract IERC20",
+               "name": "",
+               "type": "address"
             }
          ],
          "stateMutability": "view",
@@ -450,19 +469,6 @@
          "type": "function"
       },
       {
-         "inputs": [
-            {
-               "internalType": "uint256",
-               "name": "_amount",
-               "type": "uint256"
-            }
-         ],
-         "name": "placeTOL",
-         "outputs": [],
-         "stateMutability": "nonpayable",
-         "type": "function"
-      },
-      {
          "inputs": [],
          "name": "refund",
          "outputs": [],
@@ -478,7 +484,7 @@
       },
       {
          "inputs": [],
-         "name": "rewardRatePerTOL",
+         "name": "rewardRatePerNXP",
          "outputs": [
             {
                "internalType": "uint256",
@@ -497,38 +503,6 @@
                "internalType": "uint256",
                "name": "",
                "type": "uint256"
-            }
-         ],
-         "stateMutability": "view",
-         "type": "function"
-      },
-      {
-         "inputs": [
-            {
-               "internalType": "address",
-               "name": "",
-               "type": "address"
-            }
-         ],
-         "name": "tolContributions",
-         "outputs": [
-            {
-               "internalType": "uint256",
-               "name": "",
-               "type": "uint256"
-            }
-         ],
-         "stateMutability": "view",
-         "type": "function"
-      },
-      {
-         "inputs": [],
-         "name": "tolToken",
-         "outputs": [
-            {
-               "internalType": "contract IERC20",
-               "name": "",
-               "type": "address"
             }
          ],
          "stateMutability": "view",
@@ -569,6 +543,19 @@
             }
          ],
          "name": "transferOwnership",
+         "outputs": [],
+         "stateMutability": "nonpayable",
+         "type": "function"
+      },
+      {
+         "inputs": [
+            {
+               "internalType": "uint256",
+               "name": "_amount",
+               "type": "uint256"
+            }
+         ],
+         "name": "voteProject",
          "outputs": [],
          "stateMutability": "nonpayable",
          "type": "function"

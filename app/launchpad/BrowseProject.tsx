@@ -1,49 +1,84 @@
 import React from "react";
 import CardProject from "../components/CardProject";
+import { Launchpad, Prisma, PrismaClient } from "@prisma/client";
 
-function BrowseProject() {
+async function BrowseProject(params: {
+   query?: string;
+   status?: string;
+   short?: string;
+   chain?: string;
+   page?: number;
+   limit?: number;
+}) {
+   const prisma = new PrismaClient();
+
+   let launchpads: Launchpad[];
+
+   if (params.query || params.status || params.short || params.chain) {
+      const { query, status, short, chain, page = 1, limit = 12 } = params;
+      const offset = (page - 1) * limit;
+
+      let whereClause = "";
+      let ordered = `ORDER BY "id" DESC`;
+      const conditions = [];
+
+      if (query) {
+         conditions.push(
+            `to_tsvector('english', "projectName" || ' ' || "poolAddress") @@ to_tsquery('english', '${query}')`
+         );
+      }
+
+      if (short) {
+         ordered = `ORDER BY "${short}" DESC`;
+      }
+
+      if (status) {
+         conditions.push(`"status" = ${status}`);
+      }
+
+      if (chain) {
+         conditions.push(`"blockchain" = ${chain}`);
+      }
+
+      if (conditions.length > 0) {
+         whereClause = "WHERE " + conditions.join(" AND ");
+      }
+
+      launchpads = await prisma.$queryRaw`
+         ${Prisma.raw(`SELECT * FROM public."Launchpad"
+         ${whereClause}
+         ${ordered}
+         LIMIT ${limit} OFFSET ${offset}`)}
+      `;
+   } else {
+      launchpads = await prisma.launchpad.findMany({
+         take: 12,
+         orderBy: { id: "desc" },
+      });
+   }
+
    return (
       <>
-         <div className="flex-1 mr-7">
-            <CardProject
-               projectName="EARN!"
-               logo="/images/ex1.png"
-               banner="/images/exb1.png"
-               intros="Deflationary MobileFi & DePIN Rewards, Transforming Smartphones"
-               initPrice="0.1"
-               maxAlloc="200M ERN"
-               timeLeft="-"
-               status={1}
-            />
-         </div>
-         <div className="flex-1 mr-7">
-            <CardProject
-               projectName="Matrix One"
-               logo="/images/ex2.png"
-               banner="/images/exb2.png"
-               intros="AI Human"
-               initPrice="0.1"
-               maxAlloc="200M ERN"
-               timeLeft="-"
-               boost={120}
-               status={2}
-               goals={100}
-               raised={77}
-            />
-         </div>
-         <div className="flex-1">
-            <CardProject
-               projectName="Kima Network"
-               logo="/images/ex3.png"
-               banner="/images/exb3.png"
-               intros="Revolutionizing Financial Interoperability"
-               initPrice="0.1"
-               maxAlloc="200M ERN"
-               timeLeft="-"
-               boost={400}
-               status={3}
-            />
-         </div>
+         {launchpads.map((val, i) => (
+            <div
+               key={i}
+               className={`${i > 0 ? "ml-7" : ""} flex-1`}
+               style={{ maxWidth: "33.333%" }}
+            >
+               <CardProject
+                  address={val.poolAddress}
+                  projectName={val.projectName}
+                  logo={val.logo}
+                  banner={val.banner}
+                  intros={val.description}
+                  initPrice={val.price}
+                  maxAlloc={val.allocation}
+                  goals={val.goals}
+                  timeLeft="-"
+                  status={1}
+               />
+            </div>
+         ))}
       </>
    );
 }

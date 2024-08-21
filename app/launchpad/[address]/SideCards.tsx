@@ -71,9 +71,9 @@ function SideCards() {
             voters,
          ] = await Promise.all([
             contract.getLaunchpadDetail(),
-            contract.rewardRatePerTOL(),
+            contract.rewardRatePerNXP(),
             contract.totalContributors(),
-            contract.minimumTOLRequired(),
+            contract.minimumNXPRequired(),
             ocean.totalAllocation(ctx.address),
             ocean.allocated(ctx.address),
             contract.totalVoters(),
