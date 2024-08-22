@@ -1,19 +1,57 @@
-import { PrismaClient, TokenLocked } from "@prisma/client";
+import { Launchpad, Prisma, PrismaClient, TokenLocked } from "@prisma/client";
 import Image from "next/image";
 import React, { cache } from "react";
 
-const getLockedToken = async (): Promise<TokenLocked[]> => {
+async function TokenLockedTable(params: {
+   query?: string;
+   sort?: string;
+   chain?: string;
+   page?: number;
+   limit?: number;
+}) {
    const prisma = new PrismaClient();
-   const tokens = await prisma.tokenLocked.findMany({
-      take: 10,
-      orderBy: { id: "desc" },
-   });
 
-   return tokens;
-};
+   let tokens: TokenLocked[];
 
-async function TokenLockedTable() {
-   const tokens: TokenLocked[] = await getLockedToken();
+   if (params.query || params.sort || params.chain) {
+      const { query, sort, chain, page = 1, limit = 12 } = params;
+      const offset = (page - 1) * limit;
+
+      let whereClause = "";
+      let ordered = `ORDER BY "id" DESC`;
+      const conditions = [];
+
+      if (query) {
+         conditions.push(
+            `to_tsvector('english', "address" || ' ' || "name" || ' ' || "symbol") @@ to_tsquery('english', '${query}')`
+         );
+      }
+
+      if (sort) {
+         ordered = `ORDER BY "${sort}" DESC`;
+      }
+
+      if (chain) {
+         conditions.push(`"blockchain" = ${chain}`);
+      }
+
+      if (conditions.length > 0) {
+         whereClause = "WHERE " + conditions.join(" AND ");
+      }
+
+      tokens = await prisma.$queryRaw`
+         ${Prisma.raw(`SELECT * FROM public."TokenLocked"
+         ${whereClause}
+         ${ordered}
+         LIMIT ${limit} OFFSET ${offset}`)}
+      `;
+   } else {
+      tokens = await prisma.tokenLocked.findMany({
+         take: 12,
+         orderBy: { id: "desc" },
+      });
+   }
+
    return (
       <>
          <div className="overflow-x-auto mt-6 border border-teal-800">
@@ -49,7 +87,8 @@ async function TokenLockedTable() {
                            </div>
                         </td>
                         <td className="py-5">
-                           {parseInt(val.totalAmount).toLocaleString()}
+                           {parseInt(val.totalAmount).toLocaleString()}{" "}
+                           {val.symbol}
                         </td>
                         <td className="py-5">
                            <span className="text-teal-600">$0</span>

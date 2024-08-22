@@ -5,7 +5,7 @@ import { Launchpad, Prisma, PrismaClient } from "@prisma/client";
 async function BrowseProject(params: {
    query?: string;
    status?: string;
-   short?: string;
+   sort?: string;
    chain?: string;
    page?: number;
    limit?: number;
@@ -14,8 +14,8 @@ async function BrowseProject(params: {
 
    let launchpads: Launchpad[];
 
-   if (params.query || params.status || params.short || params.chain) {
-      const { query, status, short, chain, page = 1, limit = 12 } = params;
+   if (params.query || params.status || params.sort || params.chain) {
+      const { query, status, sort, chain, page = 1, limit = 12 } = params;
       const offset = (page - 1) * limit;
 
       let whereClause = "";
@@ -28,8 +28,8 @@ async function BrowseProject(params: {
          );
       }
 
-      if (short) {
-         ordered = `ORDER BY "${short}" DESC`;
+      if (sort) {
+         ordered = `ORDER BY "${sort}" DESC`;
       }
 
       if (status) {

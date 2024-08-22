@@ -13,7 +13,7 @@ function page({
    searchParams?: {
       query?: string;
       status?: string;
-      short?: string;
+      sort?: string;
       chain: string;
    };
 }) {
@@ -42,7 +42,7 @@ function page({
             <BrowseProject
                query={searchParams?.query}
                status={searchParams?.status}
-               short={searchParams?.short}
+               sort={searchParams?.sort}
                chain={searchParams?.chain}
             />
          </div>

@@ -9,7 +9,7 @@ function FilterBar() {
    const { replace } = useRouter();
    const params = new URLSearchParams(searchParams);
 
-   const [chain, setChain] = useState(1);
+   const [chain, setChain] = useState(0);
 
    function handleChain(code: number) {
       if (code) {

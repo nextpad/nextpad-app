@@ -31,11 +31,11 @@ function FilterBar() {
       replace(`${pathname}?${params.toString()}`);
    }
 
-   function handleShort(term: string) {
+   function handleSort(term: string) {
       if (term) {
-         params.set("short", term);
+         params.set("sort", term);
       } else {
-         params.delete("short");
+         params.delete("sort");
       }
 
       replace(`${pathname}?${params.toString()}`);
@@ -102,11 +102,11 @@ function FilterBar() {
                className="select select-bordered w-full max-w-xs"
                defaultValue="default"
                onChange={(e) => {
-                  handleShort(e.target.value);
+                  handleSort(e.target.value);
                }}
             >
                <option disabled value="default">
-                  Short
+                  Sort By
                </option>
                <option value="">Default</option>
                <option value="start">Start time</option>

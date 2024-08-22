@@ -4,7 +4,11 @@ import FilterBar from "./FilterBar";
 import LockClosedIcon from "@/app/components/icons/LockClosedIcon";
 import Link from "next/link";
 
-function page() {
+function page({
+   searchParams,
+}: {
+   searchParams?: { query?: string; chain?: string; sort: string };
+}) {
    return (
       <div className="min-h-screen">
          <div className="flex justify-between">
@@ -32,7 +36,11 @@ function page() {
          <div className="flex mt-6">
             <FilterBar />
          </div>
-         <TokenLockedTable />
+         <TokenLockedTable
+            query={searchParams?.query}
+            chain={searchParams?.chain}
+            sort={searchParams?.sort}
+         />
       </div>
    );
 }
