@@ -8,7 +8,7 @@ function CardProject(props: any) {
    return (
       <>
          <div
-            className="card bg-base-300 hover:shadow-lg border border-teal-800 hover:shadow-teal-600"
+            className="card bg-base-100 hover:shadow-lg border-2 hover:shadow-base-300"
             style={{ maxHeight: "37.5rem" }}
          >
             <figure>
@@ -74,13 +74,17 @@ function CardProject(props: any) {
                {props.status != 2 && (
                   <div className="flex justify-between">
                      <div>Max Allocation</div>
-                     <div className="font-bold text-teal-700">
+                     <div className="font-bold">
                         {parseInt(props.maxAlloc).toLocaleString()}
                      </div>
                   </div>
                )}
                {props.status == 2 && (
-                  <ProgressGoals raised={props.raised} goals={props.goals} />
+                  <ProgressGoals
+                     raised={props.raised}
+                     goals={props.goals}
+                     symbol="TEST"
+                  />
                )}
                <div className="divider mb-0"></div>
                <div className="card-actions justify-between items-center">
@@ -91,7 +95,7 @@ function CardProject(props: any) {
                   <div>
                      <a
                         href={`/launchpad/${props.address}`}
-                        className="btn btn-sm bg-teal-600 text-white hover:bg-teal-700"
+                        className="btn btn-sm bg-purple-600 text-white hover:bg-purple-700"
                      >
                         View
                      </a>

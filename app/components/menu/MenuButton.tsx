@@ -35,7 +35,7 @@ function MenuButton() {
 
    let elMenu = (
       <div className="flex justify-center p-4 mt-auto mb-3 z-50 sticky bottom-0">
-         <ul className="menu bg-base-300 border-teal-800 border lg:menu-horizontal rounded-md shadow-md shadow-teal-500">
+         <ul className="menu bg-base-200 border-base-300 border-2 lg:menu-horizontal rounded-md shadow-md shadow-base-300">
             <li>
                <MenuLink icon={HomeIcon} href="/" active={pathName == "/"}>
                   Home
@@ -91,7 +91,7 @@ function MenuButton() {
          <div className="flex justify-center p-4 mt-auto mb-3 z-50 sticky bottom-0">
             <button
                onClick={toggleMenu}
-               className="btn bg-base-300 border-teal-800 border rounded-md shadow-md shadow-teal-500 px-5"
+               className="btn bg-base-300 border-purple-800 border rounded-md shadow-md shadow-purple-500 px-5"
             >
                <SquaresIcon classList="size-7" />
             </button>

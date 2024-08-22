@@ -10,9 +10,9 @@ function FundedProject(props: any) {
          {props.extend ? (
             <div
                role="tablist"
-               className="tabs tabs-boxed border border-teal-800 p-0 max-w-sm mt-7"
+               className="tabs tabs-boxed border border-purple-800 p-0 max-w-sm mt-7"
             >
-               <a role="tab" className="tab  bg-teal-600 text-white">
+               <a role="tab" className="tab  bg-purple-600 text-white">
                   All
                </a>
                <a role="tab" className="tab">
@@ -26,7 +26,7 @@ function FundedProject(props: any) {
             <div className="flex justify-between mt-2">
                <div className="text-xl">Successfully projects is here</div>
 
-               <div className="text-teal-600 text-base mt-1">
+               <div className="text-purple-600 text-base mt-1">
                   <a href="#">
                      Explore More <ChevronRightIcon classList="size-4 inline" />
                   </a>
@@ -34,7 +34,7 @@ function FundedProject(props: any) {
             </div>
          )}
 
-         <div className="overflow-x-auto mt-6 border border-teal-800">
+         <div className="overflow-x-auto mt-6 border-2 border-base-300">
             <table className="table">
                {/* head */}
                <thead className="bg-base-200">
@@ -53,9 +53,9 @@ function FundedProject(props: any) {
                      )}
                   </tr>
                </thead>
-               <tbody className="text-base bg-base-300">
+               <tbody className="text-base bg-base-100">
                   {/* row 1 */}
-                  <tr className="border-t-2 border-base-100">
+                  <tr className="border-t-2 border-base-300">
                      <td className="py-4">
                         <div className="flex items-center gap-3">
                            <div className="avatar">
@@ -103,7 +103,7 @@ function FundedProject(props: any) {
                         </>
                      )}
                   </tr>
-                  <tr className="border-t-2 border-base-100">
+                  <tr className="border-t-2 border-base-300">
                      <td className="py-4">
                         <div className="flex items-center gap-3">
                            <div className="avatar">

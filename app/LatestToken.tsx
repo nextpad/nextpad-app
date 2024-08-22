@@ -17,13 +17,13 @@ async function LatestToken() {
          <div className="flex justify-between mt-2">
             <div className="text-xl">List of all created token here</div>
 
-            <div className="text-teal-600 text-base mt-1">
+            <div className="text-purple-600 text-base mt-1">
                <a href="/tokens">
                   Explore More <ChevronRightIcon classList="size-4 inline" />
                </a>
             </div>
          </div>
-         <div className="overflow-x-auto mt-4 border border-teal-800">
+         <div className="overflow-x-auto mt-4 border-2 border-base-300">
             <table className="table">
                {/* head */}
                <thead className="bg-base-200">
@@ -33,9 +33,9 @@ async function LatestToken() {
                      <th>Created At</th>
                   </tr>
                </thead>
-               <tbody className="text-base bg-base-300">
+               <tbody className="text-base bg-base-100">
                   {tokens.map((val, i) => (
-                     <tr key={i} className="border-t-2 border-base-100">
+                     <tr key={i} className="border-t-2 border-base-300">
                         <td className="py-4">
                            <div className="flex items-center gap-3">
                               <div
