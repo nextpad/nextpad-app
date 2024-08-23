@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import ChevronRightIcon from "../components/icons/ChevronRightIcon";
+import Link from "next/link";
 
 function FundedProject(props: any) {
    return (
@@ -10,7 +11,7 @@ function FundedProject(props: any) {
          {props.extend ? (
             <div
                role="tablist"
-               className="tabs tabs-boxed border border-purple-800 p-0 max-w-sm mt-7"
+               className="tabs tabs-boxed bg-base-300 p-0 max-w-sm mt-7"
             >
                <a role="tab" className="tab  bg-purple-600 text-white">
                   All
@@ -27,17 +28,17 @@ function FundedProject(props: any) {
                <div className="text-xl">Successfully projects is here</div>
 
                <div className="text-purple-600 text-base mt-1">
-                  <a href="#">
+                  <Link href="/launchpad">
                      Explore More <ChevronRightIcon classList="size-4 inline" />
-                  </a>
+                  </Link>
                </div>
             </div>
          )}
 
-         <div className="overflow-x-auto mt-6 border-2 border-base-300">
+         <div className="overflow-x-auto mt-4 border-2 border-base-300">
             <table className="table">
                {/* head */}
-               <thead className="bg-base-200">
+               <thead className="bg-base-100">
                   <tr className="text-base">
                      <th>Project Name</th>
                      {props.extend && <th>Type</th>}
@@ -87,7 +88,7 @@ function FundedProject(props: any) {
                         <>
                            <td className="py-4">$0.002</td>
                            <td className="py-4">
-                              <span className="bg-green-500 p-1 font-bold text-black rounded">
+                              <span className="bg-green-500 p-1 font-bold text-slate-100 rounded">
                                  +200%
                               </span>
                            </td>
@@ -135,7 +136,7 @@ function FundedProject(props: any) {
                         <>
                            <td className="py-4">$0.002</td>
                            <td className="py-4">
-                              <span className="bg-green-500 p-1 font-bold text-black rounded">
+                              <span className="bg-green-500 p-1 font-bold text-slate-100 rounded">
                                  +1200%
                               </span>
                            </td>

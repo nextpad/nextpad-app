@@ -11,7 +11,7 @@ function ProposalForm() {
             <label className="text-lg font-semibold block">Title</label>
             <input
                type="text"
-               className="input input-bordered w-full block my-4 bg-base-300"
+               className="input input-bordered w-full block my-4 bg-base-100"
             />
          </div>
          <div className="flex flex-col mr-7">
@@ -35,23 +35,23 @@ function ProposalForm() {
          </div>
          <div className="mt-6 mr-7">
             <div
-               className="card bg-base-300 border w-full border-teal-800"
+               className="card bg-base-100 border-2 w-full border-base-300"
                style={{ maxHeight: "26rem" }}
             >
                <div className="card-body p-0">
-                  <div className="card-title border-b border-teal-900">
+                  <div className="card-title border-b-2 border-base-300">
                      <h2 className="px-9 py-4 text-xl">Options</h2>
                   </div>
                   <div className="px-9">
                      <input
                         type="text"
                         placeholder="Enter option"
-                        className="input input-bordered w-full block my-5 bg-base-300"
+                        className="input input-bordered w-full block my-5"
                      />
                      <input
                         type="text"
                         placeholder="Enter option"
-                        className="input input-bordered w-full block my-5 bg-base-300"
+                        className="input input-bordered w-full block my-5"
                      />
                      <button className="btn btn-normal mb-7 mt-2">
                         <PlusIcon classList="size-5" /> Add Option

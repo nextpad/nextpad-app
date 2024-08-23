@@ -8,14 +8,17 @@ interface Props {
 }
 
 function NetworkButton(props: Props) {
-   const classList = "btn bg-base-100 hover:border hover:border-teal-700 mr-5";
+   const classList =
+      "btn bg-base-100 hover:border hover:border-purple-700 mr-5";
 
    return (
       <div>
          <button
             onClick={() => props.setNetwork(1115)}
             className={`${classList} ${
-               props.network == 1115 ? "border border-teal-700" : ""
+               props.network == 1115
+                  ? "border-2 border-base-300 bg-base-200"
+                  : ""
             }`}
          >
             <Image
@@ -29,7 +32,9 @@ function NetworkButton(props: Props) {
          <button
             onClick={() => props.setNetwork(11155111)}
             className={`${classList} ${
-               props.network == 11155111 ? "border border-teal-700" : ""
+               props.network == 11155111
+                  ? "border-2 border-base-300 bg-base-200"
+                  : ""
             }`}
          >
             <Image src="/images/eth.png" width={20} height={20} alt="logo" />

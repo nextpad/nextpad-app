@@ -54,10 +54,10 @@ async function TokenLockedTable(params: {
 
    return (
       <>
-         <div className="overflow-x-auto mt-6 border border-teal-800">
+         <div className="overflow-x-auto mt-6 border-2 border-base-300 ">
             <table className="table">
                {/* head */}
-               <thead className="bg-base-200">
+               <thead className="bg-base-100">
                   <tr className="text-base">
                      <th>Token</th>
                      <th>Total Amount</th>
@@ -65,9 +65,9 @@ async function TokenLockedTable(params: {
                      <th>Blockchain</th>
                   </tr>
                </thead>
-               <tbody className="text-base bg-base-300">
+               <tbody className="text-base bg-base-100">
                   {tokens.map((val, i) => (
-                     <tr key={i} className="border-t-2 border-base-100">
+                     <tr key={i} className="border-t-2 border-base-300">
                         <td className="py-5">
                            <div className="flex items-center">
                               <div className="h-10 inline w-10">
@@ -79,7 +79,7 @@ async function TokenLockedTable(params: {
                                     className="rounded-full"
                                  />
                               </div>
-                              <div className="ml-3 text-xl text-slate-300">
+                              <div className="ml-3 text-xl">
                                  <a href={`/locker/token/${val.address}`}>
                                     {val.name}
                                  </a>

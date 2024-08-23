@@ -6,7 +6,7 @@ function LockedAllocation({ records }: { records: any[] }) {
    const data = {
       options: {
          chart: {
-            foreColor: "white",
+            foreColor: "grey",
          },
          labels: records.map((val) => val[5]),
       },
@@ -14,11 +14,11 @@ function LockedAllocation({ records }: { records: any[] }) {
    };
    return (
       <div
-         className="card bg-base-300 border w-full border-teal-800"
+         className="card bg-base-100 border-2 w-full border--base-300"
          style={{ maxHeight: "26rem" }}
       >
          <div className="card-body p-0">
-            <div className="card-title border-b border-teal-900">
+            <div className="card-title border-b-2 border-base-300">
                <h2 className="px-9 py-4 text-xl">Locked Allocation</h2>
             </div>
             <div className="px-9 mb-9 pt-7">

@@ -27,15 +27,15 @@ function ContributionCard({
    return (
       <>
          <div
-            className="card bg-base-300 border w-full border-teal-800"
+            className="card bg-base-100 border-2 w-full border-base-300"
             style={{ minHeight: "36rem" }}
          >
             <div className="card-body p-0">
-               <div className="border-b border-teal-900">
+               <div className="border-b-2 border-base-300">
                   <div className="flex justify-between py-5 px-8">
                      <div className="flex flex-col">
                         <span className="block">Total Raised</span>
-                        <span className="block text-2xl font-bold text-slate-200">
+                        <span className="block text-2xl font-bold">
                            {pool.totalRaised &&
                               parseFloat(ethers.formatEther(pool.totalRaised))
                                  .toFixed(2)
@@ -45,7 +45,7 @@ function ContributionCard({
                      </div>
                      <div className="flex justify-end p-0">
                         <div
-                           className="bg-gray-700 rounded-lg text-slate-300 py-4 px-10"
+                           className="bg-base-300 rounded-lg font-semibold py-4 px-10"
                            title="Price per token"
                         >
                            {pool.rates && parseFloat(pool.rates) < 1
@@ -91,14 +91,14 @@ function ContributionCard({
                         <p>Remaining Allocation</p>
                      </div>
                      <div className="my-5">
-                        <p className="text-slate-300 mb-1">
+                        <p className="font-semibold mb-1">
                            {pool.totalAllocation &&
                               parseInt(
                                  ethers.formatUnits(pool.totalAllocation)
                               ).toLocaleString()}{" "}
                            {token[1] && token[1]}
                         </p>
-                        <p className="text-slate-300 text-right">
+                        <p className="font-semibold text-right">
                            {pool.totalAllocation &&
                               (
                                  parseInt(

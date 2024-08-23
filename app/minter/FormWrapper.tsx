@@ -88,11 +88,11 @@ function FormWrapper(props: Props) {
                </ul>
             </div>
             <div
-               className="card bg-base-300 border border-teal-800"
+               className="card bg-base-100 border-base-300 border-2 shadow-lg"
                style={{ minWidth: "47rem", maxWidth: "47rem" }}
             >
                <div className="card-body p-0">
-                  <div className="card-title border-b border-teal-900">
+                  <div className="card-title border-b-2 border-base-300">
                      <h2 className="px-9 py-4 text-xl">Create Token</h2>
                   </div>
                   <div className="mt-6 px-9">{currentForm}</div>

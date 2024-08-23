@@ -35,10 +35,7 @@ function FilterBar() {
    return (
       <>
          <div className="flex-1 max-w-xs">
-            <div
-               role="tablist"
-               className="tabs tabs-boxed border border-teal-800 p-0"
-            >
+            <div role="tablist" className="tabs tabs-boxed p-0 bg-base-300">
                <a
                   role="tab"
                   className={`tab ${

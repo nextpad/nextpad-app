@@ -56,7 +56,7 @@ async function TokenTable(params: {
       <>
          <table className="table">
             {/* head */}
-            <thead className="bg-base-200">
+            <thead className="bg-base-100">
                <tr className="text-base">
                   <th>Token</th>
                   <th>Total Supply</th>
@@ -66,9 +66,9 @@ async function TokenTable(params: {
                   <th>Created At</th>
                </tr>
             </thead>
-            <tbody className="text-base bg-base-300">
+            <tbody className="text-base bg-base-100">
                {tokens.map((val, i) => (
-                  <tr key={i} className="border-t-2 border-base-100">
+                  <tr key={i} className="border-t-2 border-base-300">
                      <td className="py-4">
                         <div className="flex items-center gap-3">
                            <div

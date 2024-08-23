@@ -9,7 +9,7 @@ function ListRecord({ records }: Props) {
       <>
          {records.map((data, i) => {
             return (
-               <tr key={i}>
+               <tr key={i} className="border-b-2 border-base-300">
                   <td>{data[5]}</td>
                   <td>
                      <a

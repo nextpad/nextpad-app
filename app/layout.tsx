@@ -5,8 +5,8 @@ import MenuButton from "./components/menu/MenuButton";
 import { Web3Modal } from "./components/Web3Modal";
 
 export const metadata: Metadata = {
-   title: "The Open Launchpad",
-   description: "The main app of TOL platform",
+   title: "Nextpad",
+   description: "The next-gen of launchpad protocol",
 };
 
 export default function RootLayout({
@@ -15,11 +15,11 @@ export default function RootLayout({
    children: React.ReactNode;
 }>) {
    return (
-      <html lang="en">
+      <html lang="en" data-color-mode="light">
          <body className="min-h-screen">
             <Web3Modal>
                <Navbar />
-               <div className="px-32 py-10">{children}</div>
+               <div className="px-32 py-10 bg-base-200">{children}</div>
                <MenuButton />
             </Web3Modal>
          </body>

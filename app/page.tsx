@@ -3,6 +3,7 @@ import Overview from "./Overview";
 import UpcomingLaunchpad from "./UpcomingLaunchpad";
 import FundedProject from "./launchpad/FundedProject";
 import LatestToken from "./LatestToken";
+import Link from "next/link";
 
 export default function Home() {
    return (
@@ -22,12 +23,12 @@ export default function Home() {
             <UpcomingLaunchpad />
          </div>
          <div className="pt-10 text-center">
-            <a
-               href="#"
+            <Link
+               href="/launchpad"
                className="btn px-10 hover:bg-purple-700 bg-purple-600 text-white"
             >
                More Launchpad
-            </a>
+            </Link>
          </div>
          <div className="flex mt-16 mb-5">
             <div className="flex-1 mr-7">

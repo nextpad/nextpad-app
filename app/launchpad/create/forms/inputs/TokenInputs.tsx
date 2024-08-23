@@ -39,7 +39,10 @@ function TokenInputs() {
                   className="input input-bordered w-full block mt-3"
                />
                <p className="text-sm mt-2">
-                  Balance: {parseInt(values.balance).toLocaleString()}
+                  Balance:{" "}
+                  {values.balance
+                     ? parseInt(values.balance).toLocaleString()
+                     : "-"}
                </p>
             </div>
             <div className="flex-1 ml-6">

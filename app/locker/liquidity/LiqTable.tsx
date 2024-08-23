@@ -4,10 +4,10 @@ import React from "react";
 function LiqTable() {
    return (
       <>
-         <div className="overflow-x-auto mt-6 border border-teal-800">
+         <div className="overflow-x-auto mt-6 border-2 border-base-300">
             <table className="table">
                {/* head */}
-               <thead className="bg-base-200">
+               <thead className="bg-base-100">
                   <tr className="text-base">
                      <th>Pair</th>
                      <th>Total Liquidity</th>
@@ -16,9 +16,9 @@ function LiqTable() {
                      <th>Exchange</th>
                   </tr>
                </thead>
-               <tbody className="text-base bg-base-300">
+               <tbody className="text-base bg-base-100">
                   {/* row 1 */}
-                  <tr className="border-t-2 border-base-100">
+                  <tr className="border-t-2 border-base-300">
                      <td className="py-5">
                         <div className="flex items-center">
                            <div className="h-10 w-10 inline -mr-2 z-10">
@@ -39,9 +39,7 @@ function LiqTable() {
                                  className="rounded-full"
                               />
                            </div>
-                           <div className="ml-3 text-xl text-slate-300">
-                              COOKIE / ETH
-                           </div>
+                           <div className="ml-3 text-xl">COOKIE / ETH</div>
                         </div>
                      </td>
                      <td className="py-5">200M / 2000</td>
@@ -59,7 +57,7 @@ function LiqTable() {
                         />
                      </td>
                   </tr>
-                  <tr className="border-t-2 border-base-100">
+                  <tr className="border-t-2 border-base-300">
                      <td className="py-5">
                         <div className="flex items-center">
                            <div className="h-10 w-10 inline -mr-2 z-10">
@@ -80,9 +78,7 @@ function LiqTable() {
                                  className="rounded-full"
                               />
                            </div>
-                           <div className="ml-3 text-xl text-slate-300">
-                              CORE / ETH
-                           </div>
+                           <div className="ml-3 text-xl">CORE / ETH</div>
                         </div>
                      </td>
                      <td className="py-5">200M / 2000</td>

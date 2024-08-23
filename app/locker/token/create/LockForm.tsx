@@ -140,7 +140,10 @@ function LockForm(props: Props) {
                tokenContract={tokenContract}
                lockData={lockData}
             />
-            <a className="btn btn-neutral mt-2 min-w-20" href="/locker/token">
+            <a
+               className="btn border-gray-400 bg-base-100 mt-2 min-w-20"
+               href="/locker/token"
+            >
                Back
             </a>
          </div>

@@ -115,13 +115,13 @@ function TokenomicsForm() {
          </div>
          <div className="flex pb-10 justify-between mt-8">
             <button
-               className="btn bg-base-100 border border-gray-700 px-10 hover:border-gray-700"
+               className="btn border-gray-400 bg-base-100 px-10"
                onClick={() => values.setStep(2)}
             >
                Back
             </button>
             <button
-               className="btn bg-teal-600 text-white px-10 hover:bg-teal-700"
+               className="btn bg-purple-600 text-white px-10 hover:bg-purple-700"
                onClick={() => values.setStep(4)}
             >
                Next

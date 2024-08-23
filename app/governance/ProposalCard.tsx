@@ -7,7 +7,7 @@ import CheckBadgeIcon from "../components/icons/CheckBadgeIcon";
 function ProposalCard() {
    return (
       <>
-         <div className="card border border-gray-700 bg-base-200 hover:border-gray-600 mb-4 cursor-pointer hover:bg-base-300">
+         <div className="card border-2 shadow-sm border-base-300 bg-base-100 mb-4 cursor-pointer hover:bg-base-300">
             <div className="card-body">
                <Link href="/governance/proposal">
                   <div className="flex justify-between mb-1">

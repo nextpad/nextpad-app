@@ -32,11 +32,11 @@ function LatestVoters({ contract }: { contract: Contract }) {
    return (
       <div className="mt-7">
          <div
-            className="card bg-base-300 border w-full border-teal-800"
+            className="card bg-base-100 border-2 w-full border-base-300"
             style={{ minHeight: "29rem" }}
          >
             <div className="card-body p-0">
-               <div className="card-title border-b border-teal-900">
+               <div className="card-title border-b-2 border-base-300">
                   <h2 className="px-9 py-4 text-xl">Latest Voters</h2>
                </div>
                <div className="px-5">

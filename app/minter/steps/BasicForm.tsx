@@ -77,7 +77,7 @@ function BasicForm(props: Props) {
          </div>
          <div className="flex mt-3 pb-10 justify-end">
             <button
-               className="btn bg-teal-600 text-white px-10 hover:bg-teal-700"
+               className="btn bg-purple-600 text-white px-10 hover:bg-purple-700"
                onClick={() => props.setStep(2)}
             >
                Next

@@ -35,7 +35,7 @@ function CardProject(props: any) {
                   height={90}
                   src={props.logo}
                />
-               <h2 className="card-title mt-2  text-slate-100">
+               <h2 className="card-title mt-2 text-2xl">
                   <a href="#">{props.projectName}</a>
                </h2>
                <div

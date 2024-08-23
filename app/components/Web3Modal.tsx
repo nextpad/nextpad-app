@@ -27,7 +27,7 @@ const hardhat = {
 };
 
 const metadata = {
-   name: "The Open Launchpad",
+   name: "Nextpad",
    description: "A decentralized community-driven launchpad protocol",
    url: "https://mywebsite.com", // origin must match your domain & subdomain
    icons: ["https://avatars.mywebsite.com/"],
@@ -43,6 +43,7 @@ createWeb3Modal({
    projectId,
    enableAnalytics: true, // Optional - defaults to your Cloud configuration
    enableOnramp: true, // Optional - false as default
+   themeMode: "light",
 });
 
 export function Web3Modal({ children }: { children: React.ReactNode }) {

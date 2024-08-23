@@ -4,15 +4,15 @@ function ProposalVote() {
    return (
       <>
          <div
-            className="card bg-base-300 border w-full border-teal-800 my-5"
+            className="card bg-base-100 border-2 w-full border-base-300 my-5"
             style={{ maxHeight: "26rem" }}
          >
             <div className="card-body p-0">
-               <div className="card-title border-b border-teal-900">
+               <div className="card-title border-b-2 border-base-300">
                   <h2 className="px-9 py-4 text-xl">Sent your vote</h2>
                </div>
                <div className="px-9 py-3">
-                  <div className="card border border-gray-700 mb-4">
+                  <div className="card border-2 border-base-300 mb-4">
                      <div className="card-body p-5">
                         <div className="flex items-center">
                            <input
@@ -25,7 +25,7 @@ function ProposalVote() {
                         </div>
                      </div>
                   </div>
-                  <div className="card border border-gray-700 mb-4">
+                  <div className="card border-2 border-base-300 mb-4">
                      <div className="card-body p-5">
                         <div className="flex items-center">
                            <input

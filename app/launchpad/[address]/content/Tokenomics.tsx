@@ -18,7 +18,7 @@ const Tokenomics = () => {
    const data: DataChart = {
       options: {
          chart: {
-            foreColor: "white",
+            foreColor: "grey",
          },
          labels: ctx.data.metadata.tokenomics.map((val) => val.name),
       },
@@ -28,7 +28,7 @@ const Tokenomics = () => {
    return (
       <div>
          <div className="card">
-            <div className="card-body bg-base-300 rounded-lg">
+            <div className="card-body bg-base-100 rounded-lg border-base-300 border-2">
                <div className="flex justify-center py-4">
                   <div>
                      <Chart

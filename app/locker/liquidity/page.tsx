@@ -19,12 +19,12 @@ function page() {
          <div className="flex-1 max-w-xs">
             <div
                role="tablist"
-               className="tabs tabs-boxed border border-teal-800 p-0"
+               className="tabs tabs-boxed border p-0 bg-base-300"
             >
                <a href="/locker/token" role="tab" className="tab">
                   Lock Token
                </a>
-               <a role="tab" className="tab bg-teal-600 text-white">
+               <a role="tab" className="tab bg-purple-600 text-white">
                   Lock Liquidity
                </a>
             </div>

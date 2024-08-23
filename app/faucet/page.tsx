@@ -7,11 +7,11 @@ function page() {
       <div className="min-h-screen flex justify-center">
          <div className="flex w-3/4 px-10 mt-10 ">
             <div
-               className="card bg-base-300 border w-full border-teal-800"
+               className="card bg-base-100 border-2 w-full border-base-300 shadow-lg"
                style={{ maxHeight: "26rem" }}
             >
                <div className="card-body p-0">
-                  <div className="card-title border-b border-teal-900">
+                  <div className="card-title border-b-2 border-base-300">
                      <h2 className="px-9 py-4 text-xl">Faucet Token</h2>
                   </div>
                   <div className="flex">
@@ -25,7 +25,7 @@ function page() {
                         </h2>
                         <ul className="list-disc">
                            <li className="ml-4 mb-2">
-                              Claim <b>100 $TOL</b> tokens each time.
+                              Claim <b>100 $NXP</b> tokens each time.
                            </li>
                            <li className="ml-4 mb-2">
                               Claim once every 1 hours.

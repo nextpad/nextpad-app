@@ -4,11 +4,11 @@ function ProposalDetail() {
    return (
       <>
          <div
-            className="card bg-base-300 border w-full border-teal-800"
+            className="card bg-base-100 border-2 w-full border-base-300"
             style={{ maxHeight: "32rem" }}
          >
             <div className="card-body p-0">
-               <div className="card-title border-b border-teal-900">
+               <div className="card-title border-b-2 border-base-300">
                   <h2 className="px-9 py-4 text-xl">Details</h2>
                </div>
                <div className="flex flex-row px-9 mt-5">
@@ -16,7 +16,7 @@ function ProposalDetail() {
                      <label className="font-semibold block">Start date</label>
                      <input
                         type="date"
-                        className="input input-bordered w-full block my-4 bg-base-300"
+                        className="input input-bordered w-full block my-4"
                      />
                   </div>
                   <div className="flex flex-col">
@@ -24,7 +24,7 @@ function ProposalDetail() {
                      <input
                         type="time"
                         style={{ minWidth: "10rem" }}
-                        className="input input-bordered w-full block my-4 bg-base-300"
+                        className="input input-bordered w-full block my-4"
                      />
                   </div>
                </div>
@@ -34,7 +34,7 @@ function ProposalDetail() {
                      <label className="font-semibold block">End date</label>
                      <input
                         type="date"
-                        className="input input-bordered w-full block my-4 bg-base-300"
+                        className="input input-bordered w-full block my-4"
                      />
                   </div>
                   <div className="flex flex-col">
@@ -42,16 +42,16 @@ function ProposalDetail() {
                      <input
                         type="time"
                         style={{ minWidth: "10rem" }}
-                        className="input input-bordered block my-4 bg-base-300"
+                        className="input input-bordered block my-4"
                      />
                   </div>
                </div>
 
                <div className="px-9">
                   <label className="font-semibold block mb-3">Snapshot</label>
-                  <div className="card bg-base-100">
+                  <div className="card bg-base-200">
                      <div className="card-body p-3">
-                        <a href="" className="text-teal-600">
+                        <a href="" className="text-purple-600">
                            1313123
                         </a>
                      </div>

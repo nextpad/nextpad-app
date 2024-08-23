@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import ContributionCard from "./side/ContributionCard";
 import PoolCard from "./side/PoolCard";
-import TopVoters from "./side/LatestVoters";
+import LatestVoters from "./side/LatestVoters";
 import Context from "./Context";
 import { Contract, ethers } from "ethers";
 
@@ -119,7 +119,7 @@ function SideCards() {
             token={token}
          />
          <PoolCard pool={poolInformation} token={token} />
-         <TopVoters contract={contract} />
+         <LatestVoters contract={contract} />
       </>
    );
 }

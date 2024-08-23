@@ -13,7 +13,7 @@ function page({
          <div className="flex justify-between items-center mt-5">
             <FilterBar />
          </div>
-         <div className="overflow-x-auto mt-6 border border-teal-800">
+         <div className="overflow-x-auto mt-6 border-2 border-base-300">
             <TokenTable
                query={searchParams?.query}
                chain={searchParams?.chain}

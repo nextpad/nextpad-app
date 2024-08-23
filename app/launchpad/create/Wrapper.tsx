@@ -114,11 +114,11 @@ function Wrapper() {
                </ul>
             </div>
             <div
-               className="card bg-base-300 border border-teal-800"
+               className="card bg-base-100 border-2 border-base-300"
                style={{ minWidth: "47.5rem", maxWidth: "47rem" }}
             >
                <div className="card-body p-0">
-                  <div className="card-title border-b border-teal-900">
+                  <div className="card-title border-b-2 border-base-300">
                      <h2 className="px-9 py-4 text-xl">Create Launchpad</h2>
                   </div>
                   <div className="mt-6 px-9">{forms[step - 1]}</div>

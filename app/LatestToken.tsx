@@ -26,7 +26,7 @@ async function LatestToken() {
          <div className="overflow-x-auto mt-4 border-2 border-base-300">
             <table className="table">
                {/* head */}
-               <thead className="bg-base-200">
+               <thead className="bg-base-100">
                   <tr className="text-base">
                      <th>Token</th>
                      <th>Total Supply</th>

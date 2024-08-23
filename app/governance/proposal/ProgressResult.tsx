@@ -18,7 +18,9 @@ function ProgressResult(props: Props) {
       <div className="mb-6">
          <span className="font-bold">{props.option}</span>
          <progress
-            className="progress progress-primary w-full block mt-3"
+            className={`progress w-full block mt-3 ${
+               props.option == "Yes" ? "progress-accent" : "progress-secondary"
+            }`}
             value={curr}
             max="1000"
          ></progress>

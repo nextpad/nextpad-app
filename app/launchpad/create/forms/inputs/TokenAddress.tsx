@@ -90,7 +90,7 @@ function TokenAddress() {
             </div>
             <div className="flex flex-row items-end w-2/6">
                <span className="block mb-3 mx-3 font-bold">OR</span>
-               <a href="/minter" className="btn btn-outline bg-gray-800 px-12">
+               <a href="/minter" className="btn btn-outline bg-base-100 px-12">
                   Create Token
                </a>
             </div>

@@ -37,15 +37,15 @@ function ReviewForm() {
                <p className="mb-4">Token Address</p>
             </div>
             <div className="w-1/2">
-               <p className="mb-4 text-lg text-slate-300 font-bold">
+               <p className="mb-4 text-lg font-bold">
                   <span className="mr-3">:</span>
                   {values.network == 1115 ? "Core" : "Sepolia"}
                </p>
-               <p className="mb-4 text-lg text-slate-300">
+               <p className="mb-4 text-lg">
                   <span className="mr-3">:</span>
                   {values.metadata.projectName}
                </p>
-               <p className="mb-4 text-lg text-slate-300">
+               <p className="mb-4 text-lg">
                   <span className="mr-3">:</span>
                   {values.launchpadData.address.slice(0, 28)}...
                </p>
@@ -72,41 +72,41 @@ function ReviewForm() {
                   <span className="mr-3">:</span>
                   <b className="text-primary">Public</b>
                </span>
-               <p className="mb-4 text-lg text-slate-300">
+               <p className="mb-4 text-lg">
                   <span className="mr-3">:</span>
                   {parseInt(
                      values.launchpadData.allocation
                   ).toLocaleString()}{" "}
                   {values.tokenInfo[1]}
                </p>
-               <p className="mb-4 text-lg text-slate-300">
+               <p className="mb-4 text-lg">
                   <span className="mr-3">:</span>
                   {parseInt(
                      values.launchpadData.maxAllocation
                   ).toLocaleString()}{" "}
                   {values.tokenInfo[1]}
                </p>
-               <p className="mb-4 text-lg text-slate-300">
+               <p className="mb-4 text-lg">
                   <span className="mr-3">:</span>
                   {values.launchpadData.minBuy} {NATIVE}
                </p>
-               <p className="mb-4 text-lg text-slate-300">
+               <p className="mb-4 text-lg">
                   <span className="mr-3">:</span>
                   {values.launchpadData.maxBuy} {NATIVE}
                </p>
-               <p className="mb-4 text-lg text-slate-300">
+               <p className="mb-4 text-lg">
                   <span className="mr-3">:</span>1 {NATIVE} ={" "}
                   {values.launchpadData.priceNative} {values.tokenInfo[1]}
                </p>
-               <p className="mb-4 text-lg text-slate-300">
+               <p className="mb-4 text-lg">
                   <span className="mr-3">:</span>1 TOL ={" "}
                   {values.launchpadData.rewardTol} {values.tokenInfo[1]}
                </p>
-               <p className="mb-4 text-lg text-slate-300">
+               <p className="mb-4 text-lg">
                   <span className="mr-3">:</span>
                   {values.launchpadData.startDate}
                </p>
-               <p className="mb-4 text-lg text-slate-300">
+               <p className="mb-4 text-lg">
                   <span className="mr-3">:</span>
                   {values.launchpadData.endDate}
                </p>
@@ -114,7 +114,7 @@ function ReviewForm() {
          </div>
          <div className="flex pb-10 justify-between mt-8">
             <button
-               className="btn bg-base-100 border border-gray-700 px-10 hover:border-gray-700"
+               className="btn border-gray-400 bg-base-100 px-10"
                onClick={() => values.setStep(3)}
             >
                Back

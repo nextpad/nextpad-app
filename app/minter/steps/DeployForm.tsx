@@ -28,12 +28,12 @@ function DeployForm(props: Props) {
 
                <div className="flex">
                   <div className="flex-2 flex-col">
-                     <div className="card bg-base-100 my-5">
+                     <div className="card bg-base-200 my-5">
                         <div className="flex justify-between">
                            <div className="flex">
                               <div className="card-body p-6">
                                  <div className="card-title">Token Name</div>
-                                 <p className="text-lg text-slate-200">
+                                 <p className="text-lg">
                                     {props.tokenData.name}
                                  </p>
                               </div>
@@ -50,14 +50,14 @@ function DeployForm(props: Props) {
                         </div>
                      </div>
 
-                     <div className="card bg-base-100 my-5">
+                     <div className="card bg-base-200 my-5">
                         <div className="flex justify-between">
                            <div className="flex">
                               <div className="card-body p-6">
                                  <div className="card-title">
                                     Blockchain Network
                                  </div>
-                                 <p className="text-lg text-slate-200">
+                                 <p className="text-lg">
                                     {props.network === 1115
                                        ? "Core"
                                        : "Sepolia"}
@@ -82,12 +82,12 @@ function DeployForm(props: Props) {
                   </div>
                   <div className="flex-1 ml-5">
                      <div
-                        className="card my-5 bg-base-100"
+                        className="card my-5 bg-base-200"
                         style={{ minHeight: "15.5rem", maxHeight: "15.5rem" }}
                      >
                         <div className="card-body">
                            <div className="card-title">Description</div>
-                           <p className="text-lg text-slate-200">
+                           <p className="text-lg">
                               {props.tokenData.description}
                            </p>
                         </div>
@@ -95,10 +95,10 @@ function DeployForm(props: Props) {
                   </div>
                </div>
 
-               <div className="card mb-5 bg-base-100 -mt-1">
+               <div className="card mb-5 bg-base-200 -mt-1">
                   <div className="card-body p-6">
                      <div className="card-title">Total Supply</div>
-                     <p className="text-lg text-slate-200">
+                     <p className="text-lg">
                         {props.tokenData.supply.toLocaleString()}{" "}
                         <b className="ml-1">{props.tokenData.symbol}</b>
                      </p>
@@ -108,7 +108,7 @@ function DeployForm(props: Props) {
          </div>
          <div className="flex mt-2 pb-10 justify-between">
             <button
-               className="btn bg-base-100 border border-gray-700 px-10 hover:border-gray-700"
+               className="btn border-gray-400 bg-base-100 px-10"
                onClick={() => props.setStep(2)}
             >
                Back
