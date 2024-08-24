@@ -136,7 +136,7 @@ function CreateButton(props: Props) {
             </div>
          )}
          <button
-            className="btn disabled:bg-teal-800 disabled:text-slate-300 btn-normal mt-2"
+            className="btn disabled:bg-purple-800 disabled:text-slate-300 btn-normal mt-2"
             disabled={loading}
             onClick={createToken}
          >

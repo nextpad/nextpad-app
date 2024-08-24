@@ -26,8 +26,6 @@ function TokenAddress() {
    const { isConnected, address } = useWeb3ModalAccount();
    const { walletProvider } = useWeb3ModalProvider();
 
-   const [tokenAddress, setTokenAddress] = useState("");
-
    React.useEffect(() => {
       async function checkTokenInfo() {
          if (!isConnected || !walletProvider || !values.launchpadData.address)
@@ -97,13 +95,13 @@ function TokenAddress() {
          </div>
 
          {values.tokenInfo[0] && (
-            <div className="card border border-slate-700 rounded-md mt-4">
+            <div className="card border-4 border-base-300 rounded-md mt-4">
                <div className="card-body p-5">
                   <div className="flex justify-between">
-                     <div className="text-slate-300">
+                     <div>
                         {values.tokenInfo[1]} / {values.tokenInfo[0]}
                      </div>
-                     <span className="block">
+                     <span className="block font-semibold">
                         {parseInt(values.tokenInfo[2]).toLocaleString()}
                      </span>
                   </div>

@@ -68,16 +68,16 @@ function TokenAddress(props: Props) {
             className="input input-bordered w-full block my-3"
          />
          {props.token[0] && props.token[1] && (
-            <div className="card border border-slate-700 rounded-md mt-4">
+            <div className="card border-4 border-base-300 rounded-md mt-4">
                <div className="card-body p-5">
                   <div className="flex justify-between">
-                     <div className="text-slate-300">
+                     <div>
                         {props.token[1]} / {props.token[0]}
                      </div>
                      <span className="block">
                         <a
                            href={`https://scan.test.btcs.network/token/${address}`}
-                           className="text-teal-600"
+                           className="text-purple-600"
                            target="_blank"
                         >
                            Explorer{" "}

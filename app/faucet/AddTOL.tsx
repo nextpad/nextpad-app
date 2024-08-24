@@ -41,8 +41,8 @@ function AddTOL() {
 
    return (
       <div>
-         <button className="btn btn-secondary btn-sm" onClick={addToken}>
-            <span className="text-xs font-bold">Import TOL to Wallet</span>
+         <button className="btn bg-base-300 btn-sm" onClick={addToken}>
+            <span className="text-xs font-bold">Import NXP to Wallet</span>
          </button>
       </div>
    );

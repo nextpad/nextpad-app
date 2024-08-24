@@ -8,7 +8,7 @@ function ReviewForm() {
    const NATIVE = values.network === 1115 ? "CORE" : "ETH";
    return (
       <>
-         <div role="alert" className="alert alert-warning mb-6">
+         <div role="alert" className="alert bg-yellow-400 mb-6">
             <svg
                xmlns="http://www.w3.org/2000/svg"
                className="h-6 w-6 shrink-0 stroke-current"
@@ -27,7 +27,7 @@ function ReviewForm() {
                not for all information
             </span>
          </div>
-         <h2 className="font-bold text-xl mb-4 text-teal-600">
+         <h2 className="font-bold text-xl mb-4 text-purple-600">
             Project Information
          </h2>
          <div className="flex flex-row justify-start text-lg">
@@ -52,7 +52,7 @@ function ReviewForm() {
             </div>
          </div>
          <div className="divider"></div>
-         <h2 className="font-bold text-xl mb-4 text-teal-600">
+         <h2 className="font-bold text-xl mb-4 text-purple-600">
             Pool Information
          </h2>
          <div className="flex flex-row justify-start text-lg">

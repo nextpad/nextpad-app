@@ -48,7 +48,7 @@ function ReceiverAddress(props: Props) {
                <input
                   onChange={onSameWallet}
                   type="checkbox"
-                  className="checkbox checkbox-accent checkbox-xs"
+                  className="checkbox checkbox-secondary checkbox-xs"
                />
                <span className="label-text ml-2">Use current wallet</span>
             </div>

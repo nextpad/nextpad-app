@@ -55,42 +55,47 @@ function LockButton({
    async function lockToken() {
       if (!tokenContract || !contract) return;
 
-      setLoading(true);
-      if (!approved) {
-         const result = await tokenContract.approve(
-            lockerAddress,
-            ethers.MaxUint256
+      try {
+         setLoading(true);
+         if (!approved) {
+            const result = await tokenContract.approve(
+               lockerAddress,
+               ethers.MaxUint256
+            );
+            await result.wait();
+            setApproved(true);
+            setLoading(false);
+            return;
+         }
+
+         const decimals = await tokenContract.decimals();
+         const tx = await contract.createLockUp(
+            lockData.address,
+            ethers.parseUnits(lockData.amount, decimals),
+            lockData.unlocked,
+            lockData.receiver,
+            lockData.title
          );
-         await result.wait();
-         setApproved(true);
+         await tx.wait();
+
+         await saveToDatabase({
+            address: lockData.address,
+            name: token[0],
+            symbol: token[1],
+            blockchain: lockData.network == 1115 ? 1 : 2,
+         });
          setLoading(false);
-         return;
+         window.location.replace("/locker/token/" + lockData.address);
+      } catch (err: any) {
+         setLoading(false);
+         console.log(err.reason);
       }
-
-      const decimals = await tokenContract.decimals();
-      const tx = await contract.createLockUp(
-         lockData.address,
-         ethers.parseUnits(lockData.amount, decimals),
-         lockData.unlocked,
-         lockData.receiver,
-         lockData.title
-      );
-      await tx.wait();
-
-      await saveToDatabase({
-         address: lockData.address,
-         name: token[0],
-         symbol: token[1],
-         blockchain: lockData.network == 1115 ? 1 : 2,
-      });
-      setLoading(false);
-      window.location.replace("/locker/token/" + lockData.address);
    }
 
    return (
       <>
          <button
-            className="btn disabled:bg-teal-800 disabled:text-slate-300 btn-normal mt-2"
+            className="btn disabled:bg-purple-800 disabled:text-slate-300 btn-normal mt-2"
             disabled={loading}
             onClick={lockToken}
          >

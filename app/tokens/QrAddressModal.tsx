@@ -74,13 +74,13 @@ function QrAddressModal({
                      className="btn-normal mt-5 py-2 rounded-md font-semibold"
                      onClick={addToken}
                   >
-                     Import to Wallet
+                     Import ${symbol} to Wallet
                   </button>
                </div>
             </div>
          </dialog>
          <button onClick={openModal}>
-            <QrCodeIcon classList="size-4 inline hover:text-teal-600 ml-3 mb-1 cursor-pointer" />
+            <QrCodeIcon classList="size-4 inline hover:text-purple-600 ml-3 mb-1 cursor-pointer" />
          </button>
       </div>
    );

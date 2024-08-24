@@ -14,7 +14,7 @@ function VoterRow(props: Props) {
 
    useEffect(() => {
       async function fetchAmount() {
-         const amount = await props.contract.tolContributions(props.address);
+         const amount = await props.contract.nxpContributions(props.address);
          const formatted = ethers.formatEther(amount);
          setAmount(formatted);
       }

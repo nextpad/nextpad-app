@@ -75,7 +75,7 @@ function PoolCard({ pool, token }: { pool: PoolData; token: string[] }) {
                               href={`https://scan.test.btcs.network/address/${ctx.address}`}
                               target="_blank"
                            >
-                              {ctx.address.slice(0, 20)}...
+                              {ctx.address.slice(0, 24)}...
                            </a>
                         </p>
                      </div>

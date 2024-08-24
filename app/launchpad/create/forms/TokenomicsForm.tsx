@@ -10,7 +10,7 @@ function TokenomicsForm() {
    const data = {
       options: {
          chart: {
-            foreColor: "white",
+            foreColor: "grey",
          },
          labels: [...values.metadata.tokenomics.map((val) => val.name)],
       },
