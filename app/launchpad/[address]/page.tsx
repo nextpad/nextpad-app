@@ -27,7 +27,9 @@ class MetadataService {
    private redisClient: ReturnType<typeof createClient>;
 
    constructor() {
-      this.redisClient = createClient();
+      this.redisClient = createClient({
+         url: process.env.REDIS_URL,
+      });
    }
 
    async getMetadata(address: string): Promise<MetadataResponse | null> {
