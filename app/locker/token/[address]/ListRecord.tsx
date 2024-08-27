@@ -28,6 +28,19 @@ function ListRecord({ records, full = true }: Props) {
                         parseInt((data[1] as bigint).toString()) * 1000
                      ).format("D-MM-Y")}
                   </td>
+                  {!full && (
+                     <td>
+                        {parseInt(data[1]) <= Math.ceil(Date.now() / 1000) ? (
+                           <span className="text-teal-500 font-semibold">
+                              Available
+                           </span>
+                        ) : (
+                           <span className="text-error font-semibold">
+                              Locked
+                           </span>
+                        )}
+                     </td>
+                  )}
                </tr>
             );
          })}

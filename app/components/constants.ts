@@ -4,7 +4,7 @@ export const faucetAddress = "0x9c408624130f60EF8999aF25F2553EfbCbfbB606";
 // Minter
 export const tokenFactoryAddress = "0x080b1A1EDDeB591C43B77362987fFAE26dbbA006";
 // Lockers
-export const lockerAddress = "0x9F62aA25c15Ed6e4b5e99f93EBF02778aE51985B";
+export const lockerAddress = "0xc110ebf01276c1565a048407c4Deb8a4e4145bD8";
 // Launchpad
 export const oceanAddress = "0xcDEc8DF5A5b8D87A6b0AFa53f5fCcb19Ccb11140";
 export const boardFactoryAddress = "0x2A244731C3171B384F1709545eeEcBbbEED2719a";

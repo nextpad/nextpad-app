@@ -1,12 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ListRecord from "./ListRecord";
 import { TokenLocked } from "@prisma/client";
 import InfoCard from "./InfoCard";
-import { Contract, ethers } from "ethers";
+import { BrowserProvider, Contract, ethers } from "ethers";
 import { lockerAddress } from "@/app/components/constants";
 import dynamic from "next/dynamic";
-import { useWeb3ModalAccount } from "@web3modal/ethers/react";
+import {
+   useWeb3ModalAccount,
+   useWeb3ModalProvider,
+} from "@web3modal/ethers/react";
+import { formatUnits } from "ethers";
 const LockedAllocation = dynamic(() => import("./LockedAllocation"), {
    ssr: false,
 });
@@ -17,29 +21,80 @@ type Props = {
 };
 
 function Wrapper({ address, token }: Props) {
+   let intErId = useRef<NodeJS.Timeout>();
    const [records, setRecords] = useState<any[]>([]);
-   const [receivers, setReceivers] = useState<any[]>([]);
+   const [unlocked, setUnlocked] = useState([0, ""]);
+   const [errorAlert, setErrorAlert] = useState("");
+   const [loading, setLoading] = useState(false);
 
-   const { address: addr } = useWeb3ModalAccount();
+   const { address: addr, isConnected } = useWeb3ModalAccount();
+   const { walletProvider } = useWeb3ModalProvider();
 
-   useEffect(() => {
-      const lockerJson = require("../create/Locker.json");
+   const lockerJson = require("../create/Locker.json");
+   const provider = new ethers.JsonRpcProvider("https://rpc.test.btcs.network");
+   const locker = new Contract(lockerAddress, lockerJson.abi, provider);
 
-      const provider = new ethers.JsonRpcProvider(
-         "https://rpc.test.btcs.network"
-      );
-      const locker = new Contract(lockerAddress, lockerJson.abi, provider);
+   async function fetchRecords() {
+      const ids = await locker.getLockUpIdsByToken(address, 0, 999);
+      const lockups = ids.map((val: any) => locker.lockUps(val));
+      const result: any[] = await Promise.all(lockups);
 
-      async function fetchRecords() {
-         const ids = await locker.getLockUpIdsByToken(address, 0, 999);
-         const lockups = ids.map((val: any) => locker.lockUps(val));
-         const result: any[] = await Promise.all(lockups);
+      setRecords(result);
+   }
 
-         setRecords(result);
+   async function getLatestUnlocked() {
+      if (!isConnected || !addr) return;
+
+      let ids: any[] = await locker.getLockUpIdsByReceiver(addr, 0, 99);
+
+      let resId = 0;
+      for (let id of ids) {
+         const data = await locker.lockUps(id);
+
+         if (
+            parseInt(data[1]) <= Math.ceil(Date.now() / 1000) &&
+            data[0] == address
+         ) {
+            resId = id;
+            break;
+         }
       }
 
+      const result = await locker.lockUps(resId);
+      setUnlocked([resId, parseInt(formatUnits(result[3])).toLocaleString()]);
+   }
+
+   useEffect(() => {
       fetchRecords();
-   }, [address]);
+      getLatestUnlocked();
+   }, [address, addr]);
+
+   async function unlockLatest() {
+      if (!unlocked[1] || !isConnected || !walletProvider) return;
+
+      try {
+         setLoading(true);
+         const ethersProvider = new BrowserProvider(walletProvider);
+         const signer = await ethersProvider.getSigner();
+
+         const contract = new Contract(lockerAddress, lockerJson.abi, signer);
+
+         const tx = await contract.unlock(unlocked[0]);
+         await tx.wait();
+
+         await fetchRecords();
+         await getLatestUnlocked();
+      } catch (err: any) {
+         setLoading(false);
+         if (err) {
+            setErrorAlert(err.reason);
+            intErId.current = setInterval(() => {
+               setErrorAlert(() => "");
+               clearInterval(intErId.current);
+            }, 3000);
+         }
+      }
+   }
 
    return (
       <div>
@@ -48,7 +103,7 @@ function Wrapper({ address, token }: Props) {
                <InfoCard token={token} records={records.length} />
             </div>
             <div className="flex w-2/5">
-               <LockedAllocation records={records} />
+               <LockedAllocation records={records.filter((val) => !val[2])} />
             </div>
          </div>
          <div className="flex flex-col mt-7">
@@ -58,6 +113,13 @@ function Wrapper({ address, token }: Props) {
                   style={{ minHeight: "15.4rem" }}
                >
                   <div className="card-body p-0">
+                     {errorAlert && (
+                        <div className="toast toast-top toast-end">
+                           <div className="alert alert-error text-slate-100 font-semibold">
+                              <span>{errorAlert}</span>
+                           </div>
+                        </div>
+                     )}
                      <div className="card-title border-b-2 border-base-300">
                         <h2 className="px-9 py-4 text-xl">
                            Your Locked Records
@@ -70,24 +132,44 @@ function Wrapper({ address, token }: Props) {
                                  <th>Title</th>
                                  <th>Amount</th>
                                  <th>Unlock Date</th>
+                                 <th>Status</th>
                               </tr>
                            </thead>
                            <tbody>
                               <ListRecord
                                  records={records.filter(
-                                    (val) => val[4] == addr
+                                    (val) => val[4] == addr && !val[2]
                                  )}
                                  full={false}
                               />
                            </tbody>
                         </table>
 
-                        <button
-                           className="button btn btn-normal mt-5"
-                           disabled={true}
-                        >
-                           No unlocked available
-                        </button>
+                        {records.filter(
+                           (val) =>
+                              parseInt(val[1]) <=
+                                 Math.ceil(Date.now() / 1000) &&
+                              val[4] == addr &&
+                              !val[2]
+                        ).length > 0 ? (
+                           <button
+                              className="button btn btn-normal mt-5 disabled:bg-purple-700 disabled:text-slate-100"
+                              disabled={loading}
+                              onClick={unlockLatest}
+                           >
+                              {loading && (
+                                 <span className="loading loading-spinner loading-md"></span>
+                              )}
+                              Unlock {unlocked[1] && unlocked[1]}
+                           </button>
+                        ) : (
+                           <button
+                              className="button btn btn-normal mt-5"
+                              disabled={true}
+                           >
+                              No unlocked available
+                           </button>
+                        )}
                      </div>
                   </div>
                </div>
@@ -112,7 +194,10 @@ function Wrapper({ address, token }: Props) {
                            </tr>
                         </thead>
                         <tbody>
-                           <ListRecord records={records} full={true} />
+                           <ListRecord
+                              records={records.filter((val) => !val[2])}
+                              full={true}
+                           />
                         </tbody>
                      </table>
                   </div>
