@@ -17,12 +17,12 @@ function NavLink() {
                </Link>
             </li>
             <li>
-               <a href="https://github.com/toldapp" target="_blank">
+               <a href="https://github.com/nextpad" target="_blank">
                   Github
                </a>
             </li>
             <li>
-               <a href="https://twitter.com/tol_dapp" target="_blank">
+               <a href="https://twitter.com/the_nextpad" target="_blank">
                   Twitter
                </a>
             </li>

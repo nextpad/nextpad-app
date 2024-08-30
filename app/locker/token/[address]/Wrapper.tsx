@@ -86,13 +86,11 @@ function Wrapper({ address, token }: Props) {
          await getLatestUnlocked();
       } catch (err: any) {
          setLoading(false);
-         if (err) {
-            setErrorAlert(err.reason);
-            intErId.current = setInterval(() => {
-               setErrorAlert(() => "");
-               clearInterval(intErId.current);
-            }, 3000);
-         }
+         setErrorAlert(err.reason || "Something went wrong");
+         intErId.current = setInterval(() => {
+            setErrorAlert(() => "");
+            clearInterval(intErId.current);
+         }, 3000);
       }
    }
 
