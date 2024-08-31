@@ -34,6 +34,8 @@ function page() {
          let result = 0;
          for (let id of ids) {
             let locks = await contract.lockUps(id);
+
+            if (locks[2]) continue;
             result += parseInt(
                ethers.formatUnits(locks[3].toString(), decimals)
             );

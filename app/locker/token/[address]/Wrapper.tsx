@@ -11,6 +11,7 @@ import {
    useWeb3ModalProvider,
 } from "@web3modal/ethers/react";
 import { formatUnits } from "ethers";
+import { updateAmount } from "./unlocked";
 const LockedAllocation = dynamic(() => import("./LockedAllocation"), {
    ssr: false,
 });
@@ -46,22 +47,18 @@ function Wrapper({ address, token }: Props) {
       if (!isConnected || !addr) return;
 
       let ids: any[] = await locker.getLockUpIdsByReceiver(addr, 0, 99);
-
-      let resId = 0;
       for (let id of ids) {
          const data = await locker.lockUps(id);
 
          if (
             parseInt(data[1]) <= Math.ceil(Date.now() / 1000) &&
-            data[0] == address
+            data[0].toLowerCase() == address &&
+            !data[2]
          ) {
-            resId = id;
+            setUnlocked([id, parseInt(formatUnits(data[3])).toLocaleString()]);
             break;
          }
       }
-
-      const result = await locker.lockUps(resId);
-      setUnlocked([resId, parseInt(formatUnits(result[3])).toLocaleString()]);
    }
 
    useEffect(() => {
@@ -82,6 +79,7 @@ function Wrapper({ address, token }: Props) {
          const tx = await contract.unlock(unlocked[0]);
          await tx.wait();
 
+         await updateAmount(address);
          await fetchRecords();
          await getLatestUnlocked();
       } catch (err: any) {

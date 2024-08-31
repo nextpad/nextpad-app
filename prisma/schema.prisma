@@ -32,7 +32,7 @@ model Token {
 model TokenLocked {
   id          Int    @id @default(autoincrement())
   logo        String
-  address     String
+  address     String @unique
   name        String
   blockchain  Int
   totalAmount String @default("0")
