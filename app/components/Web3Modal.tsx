@@ -4,12 +4,12 @@ import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
 
 const projectId = "6a0623b331d6813cd59fe1d77a91c68f";
 
-const coreTestnet = {
-   name: "Core Blockchain TestNet",
-   rpcUrl: "https://rpc.test.btcs.network",
-   chainId: 1115,
-   currency: "CORE",
-   explorerUrl: "https://scan.test.btcs.network",
+const opencampus = {
+   name: "Open Campus Codex",
+   rpcUrl: "https://rpc.open-campus-codex.gelato.digital",
+   chainId: 656476,
+   currency: "EDU",
+   explorerUrl: "https://opencampus-codex.blockscout.com",
 };
 const sepolia = {
    name: "Ethereum Sepolia",
@@ -29,8 +29,10 @@ const hardhat = {
 const metadata = {
    name: "Nextpad",
    description: "A decentralized community-driven launchpad protocol",
-   url: "https://mywebsite.com", // origin must match your domain & subdomain
-   icons: ["https://avatars.mywebsite.com/"],
+   url: "https://app.nextpad.org/", // origin must match your domain & subdomain
+   icons: [
+      "https://app.nextpad.org/_next/image?url=/images/nextpad.png&w=48&q=75",
+   ],
 };
 const ethersConfig = defaultConfig({
    /*Required*/
@@ -39,7 +41,7 @@ const ethersConfig = defaultConfig({
 
 createWeb3Modal({
    ethersConfig,
-   chains: [coreTestnet, sepolia, hardhat],
+   chains: [opencampus, sepolia, hardhat],
    projectId,
    enableAnalytics: true, // Optional - defaults to your Cloud configuration
    enableOnramp: true, // Optional - false as default

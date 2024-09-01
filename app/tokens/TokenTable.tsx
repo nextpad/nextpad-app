@@ -121,7 +121,7 @@ async function TokenTable(params: {
                      </td>
                      <td className="py-4">
                         <Image
-                           src="/images/core-dao.png"
+                           src="/images/open-campus.svg"
                            alt="token logo"
                            width={32}
                            height={32}

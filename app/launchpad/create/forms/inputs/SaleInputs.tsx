@@ -12,7 +12,7 @@ function SaleInputs() {
          <div className="flex">
             <div className="flex-1">
                <label className="text-lg font-semibold block">
-                  Min Buy ({values.network === 1115 ? "CORE" : "ETH"})
+                  Min Buy ({values.network === 656476 ? "EDU" : "ETH"})
                </label>
                <input
                   type="number"
@@ -29,7 +29,7 @@ function SaleInputs() {
             </div>
             <div className="flex-1 ml-6">
                <label className="text-lg font-semibold block">
-                  Max Buy ({values.network === 1115 ? "CORE" : "ETH"})
+                  Max Buy ({values.network === 656476 ? "EDU" : "ETH"})
                </label>
                <input
                   type="number"
@@ -49,7 +49,7 @@ function SaleInputs() {
          <div className="flex my-8">
             <div className="flex-1">
                <label className="text-lg font-semibold block">
-                  Price per {values.network === 1115 ? "CORE" : "ETH"}
+                  Price per {values.network === 656476 ? "EDU" : "ETH"}
                   <div
                      className="inline tooltip tooltip-right"
                      data-tip="The token amount users get for every commit"

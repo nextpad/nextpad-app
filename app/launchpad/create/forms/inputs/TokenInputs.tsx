@@ -47,10 +47,10 @@ function TokenInputs() {
             </div>
             <div className="flex-1 ml-6">
                <label className="text-lg font-semibold block">
-                  Reward per TOL{" "}
+                  Reward per NXP{" "}
                   <div
                      className="inline tooltip tooltip-right"
-                     data-tip="The incentive for those who vote based on the TOL tokens they stake."
+                     data-tip="The incentive for those who vote based on the NXP tokens they stake."
                   >
                      <QuestionIcon classList="size-5 ml-1 inline" />
                   </div>

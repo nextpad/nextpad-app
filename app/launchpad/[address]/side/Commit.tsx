@@ -142,7 +142,7 @@ function Commit({
          )}
          {status === "LIVE" ? (
             <span className="text-lg mb-2 block">
-               Amount {ctx.blockchain == 1 ? "CORE" : "ETH"}
+               Amount {ctx.blockchain == 1 ? "EDU" : "ETH"}
             </span>
          ) : (
             <div className="flex justify-between">

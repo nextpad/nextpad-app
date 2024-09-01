@@ -37,6 +37,12 @@ const nextConfig = {
          },
          {
             protocol: "https",
+            hostname: "iili.io",
+            port: "",
+            pathname: "/**",
+         },
+         {
+            protocol: "https",
             hostname: "image-charts.com",
             port: "",
             pathname: "/**",

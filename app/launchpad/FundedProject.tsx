@@ -17,7 +17,7 @@ function FundedProject(props: any) {
                   All
                </a>
                <a role="tab" className="tab">
-                  Core
+                  Educhain
                </a>
                <a role="tab" className="tab">
                   Sepolia
@@ -95,7 +95,7 @@ function FundedProject(props: any) {
                            <td className="py-4">Mar 13 2024</td>
                            <td className="py-4">
                               <Image
-                                 src="/images/core-dao.png"
+                                 src="/images/open-campus.svg"
                                  width={42}
                                  height={42}
                                  alt="logo"

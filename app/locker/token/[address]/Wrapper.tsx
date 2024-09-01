@@ -32,7 +32,9 @@ function Wrapper({ address, token }: Props) {
    const { walletProvider } = useWeb3ModalProvider();
 
    const lockerJson = require("../create/Locker.json");
-   const provider = new ethers.JsonRpcProvider("https://rpc.test.btcs.network");
+   const provider = new ethers.JsonRpcProvider(
+      "https://rpc.open-campus-codex.gelato.digital"
+   );
    const locker = new Contract(lockerAddress, lockerJson.abi, provider);
 
    async function fetchRecords() {

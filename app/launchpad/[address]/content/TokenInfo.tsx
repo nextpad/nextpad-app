@@ -12,7 +12,7 @@ function TokenInfo(props: { token: any[] }) {
          <div className="flex justify-between py-4 px-4 max-w-3xl bg-base-100 border-2 border-base-300 mb-2 rounded-md">
             <span className="block text-xl">Blockchain</span>
             <span className="block text-xl">
-               {ctx.blockchain == 1 ? "Core DAO" : "Sepolia"}
+               {ctx.blockchain == 1 ? "Educhain" : "Sepolia"}
             </span>
          </div>
          <div className="flex justify-between py-4 px-4 max-w-3xl bg-base-100 border-2 border-base-300 mb-2 rounded-md">

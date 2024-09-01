@@ -119,6 +119,7 @@ function CreateButton() {
             banners: bannersUrl,
             logo,
          });
+         console.log(cid);
 
          const deployed = await deployContract(cid);
          const poolAddress = await getBoardAddress(deployed.hash);

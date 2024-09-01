@@ -17,7 +17,8 @@ export async function uploadImage(image: string, title: string) {
       res = await res.json();
       const url = res.data.display_url;
       return url;
-   } catch (err) {
+   } catch (err: any) {
+      console.log(err.message);
       return null;
    }
 }

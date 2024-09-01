@@ -6,7 +6,7 @@ function AddTOL() {
    const { walletProvider } = useWeb3ModalProvider();
 
    async function addToken() {
-      const tokenSymbol = "TOL";
+      const tokenSymbol = "NXP";
       const tokenDecimals = 18;
       const tokenImage = "https://i.ibb.co/P5WydH6/TOL.png";
 

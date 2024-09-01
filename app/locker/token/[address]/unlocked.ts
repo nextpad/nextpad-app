@@ -4,7 +4,9 @@ import { PrismaClient } from "@prisma/client";
 import { Contract, ethers } from "ethers";
 
 async function getTotalAmount(ca: string): Promise<string> {
-   const provider = new ethers.JsonRpcProvider("https://rpc.test.btcs.network");
+   const provider = new ethers.JsonRpcProvider(
+      "https://rpc.open-campus-codex.gelato.digital"
+   );
 
    const ERCAbi = ["function decimals() view returns (uint)"];
    const lockerJson = require("../create/Locker.json");

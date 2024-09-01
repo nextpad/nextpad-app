@@ -88,7 +88,8 @@ function CreateButton(props: Props) {
          await saveToDatabase(tokenAddress, receipt.hash);
          setLoading(false);
          openModal();
-      } catch (err) {
+      } catch (err: any) {
+         console.log(err.message);
          setLoading(false);
          setErrorAlert(true);
          intervalId.current = setInterval(() => {
@@ -105,7 +106,7 @@ function CreateButton(props: Props) {
             logo: props.logo.replace("data:image/jpeg;base64,", ""),
             symbol: props.tokenData.symbol,
             supply: props.tokenData.supply.toString(),
-            blockchain: props.network === 1115 ? 1 : 2,
+            blockchain: props.network === 656476 ? 1 : 2,
             address: address,
             description: props.tokenData.description,
             web: props.tokenData.website,
@@ -114,7 +115,6 @@ function CreateButton(props: Props) {
          },
          hash
       );
-      console.log(saved);
    }
 
    function openModal() {

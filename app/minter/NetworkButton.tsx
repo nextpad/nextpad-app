@@ -14,20 +14,20 @@ function NetworkButton(props: Props) {
    return (
       <div>
          <button
-            onClick={() => props.setNetwork(1115)}
+            onClick={() => props.setNetwork(656476)}
             className={`${classList} ${
-               props.network == 1115
+               props.network == 656476
                   ? "border-2 border-base-300 bg-base-200"
                   : ""
             }`}
          >
             <Image
-               src="/images/core-dao.png"
+               src="/images/open-campus.svg"
                width={20}
                height={20}
                alt="logo"
             />
-            Core
+            Educhain
          </button>
          <button
             onClick={() => props.setNetwork(11155111)}

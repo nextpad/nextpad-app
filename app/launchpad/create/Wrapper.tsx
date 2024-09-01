@@ -17,7 +17,7 @@ const TokenomicsForm = dynamic(() => import("./forms/TokenomicsForm"), {
 
 function Wrapper() {
    const [step, setStep] = useState(1);
-   const [network, setNetwork] = useState(1115);
+   const [network, setNetwork] = useState(656476);
    const [launchpadData, setLaunchpadData] = useState<LaunchpadData>({
       // basic
       address: "",

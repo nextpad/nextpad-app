@@ -31,7 +31,7 @@ function FilterBar() {
                <option value="default" disabled>
                   Blockchain
                </option>
-               <option value="core">Core</option>
+               <option value="edu">Educhain</option>
                <option value="sepolia">Sepolia</option>
             </select>
          </div>

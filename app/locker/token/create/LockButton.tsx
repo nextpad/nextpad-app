@@ -82,7 +82,7 @@ function LockButton({
             address: lockData.address,
             name: token[0],
             symbol: token[1],
-            blockchain: lockData.network == 1115 ? 1 : 2,
+            blockchain: lockData.network == 656476 ? 1 : 2,
          });
          setLoading(false);
          window.location.replace("/locker/token/" + lockData.address);

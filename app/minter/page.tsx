@@ -24,7 +24,9 @@ async function saveToDatabase(
 ): Promise<{ id: number } | null> {
    "use server";
 
-   const provider = new ethers.JsonRpcProvider("https://rpc.test.btcs.network");
+   const provider = new ethers.JsonRpcProvider(
+      "https://rpc.open-campus-codex.gelato.digital"
+   );
    const tx: TransactionReceipt | null = await provider.getTransactionReceipt(
       hash
    );

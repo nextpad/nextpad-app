@@ -64,7 +64,7 @@ function LiqTable() {
                               <Image
                                  width={64}
                                  height={64}
-                                 src="/images/core-dao.png"
+                                 src="/images/open-campus.svg"
                                  alt="Logo"
                                  className="rounded-full"
                               />
@@ -78,7 +78,7 @@ function LiqTable() {
                                  className="rounded-full"
                               />
                            </div>
-                           <div className="ml-3 text-xl">CORE / ETH</div>
+                           <div className="ml-3 text-xl">EDU / ETH</div>
                         </div>
                      </td>
                      <td className="py-5">200M / 2000</td>

@@ -21,7 +21,7 @@ export interface MetadataResponse {
 }
 
 const REDIS_EXPIRATION = 1800; // 30 minutes
-const JSON_RPC_URL = "https://rpc.test.btcs.network";
+const JSON_RPC_URL = "https://rpc.open-campus-codex.gelato.digital";
 
 class MetadataService {
    private redisClient: ReturnType<typeof createClient>;

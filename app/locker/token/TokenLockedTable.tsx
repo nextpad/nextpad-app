@@ -99,7 +99,7 @@ async function TokenLockedTable(params: {
                               height={29}
                               src={
                                  val.blockchain == 1
-                                    ? "/images/core-dao.png"
+                                    ? "/images/open-campus.svg"
                                     : "/images/eth.png"
                               }
                               alt="Logo"

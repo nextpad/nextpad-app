@@ -29,7 +29,7 @@ function DetailedProject() {
    useEffect(() => {
       async function fetchTokenData() {
          const BoardJSON = require("./Board.json");
-         const JSON_RPC_URL = "https://rpc.test.btcs.network";
+         const JSON_RPC_URL = "https://rpc.open-campus-codex.gelato.digital";
          const provider = new ethers.JsonRpcProvider(JSON_RPC_URL);
 
          const contract = new Contract(ctx.address, BoardJSON.abi, provider);

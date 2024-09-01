@@ -58,8 +58,8 @@ function DeployForm(props: Props) {
                                     Blockchain Network
                                  </div>
                                  <p className="text-lg">
-                                    {props.network === 1115
-                                       ? "Core"
+                                    {props.network === 656476
+                                       ? "Educhain"
                                        : "Sepolia"}
                                  </p>
                               </div>
@@ -67,8 +67,8 @@ function DeployForm(props: Props) {
                            <div className="flex p-6">
                               <Image
                                  src={`/images/${
-                                    props.network === 1115
-                                       ? "core-dao.png"
+                                    props.network === 656476
+                                       ? "open-campus.svg"
                                        : "eth.png"
                                  }`}
                                  width={72}

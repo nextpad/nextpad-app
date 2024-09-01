@@ -1,10 +1,10 @@
 // Native Token & the faucet
-export const tokenAddress = "0xB112116901C943E22fB4C10d685A607d320c6ca0";
-export const faucetAddress = "0x9c408624130f60EF8999aF25F2553EfbCbfbB606";
+export const tokenAddress = "0x51eF9Ae8f376A39A8fd18D96888c7Dc05C703747";
+export const faucetAddress = "0x82Bba89faC9F1F03C648C013964cC8e3b022F75F";
 // Minter
-export const tokenFactoryAddress = "0x080b1A1EDDeB591C43B77362987fFAE26dbbA006";
+export const tokenFactoryAddress = "0xf2D3432F577EDb45BE3214EE67c9f2f571387571";
 // Lockers
-export const lockerAddress = "0xc110ebf01276c1565a048407c4Deb8a4e4145bD8";
+export const lockerAddress = "0x9F62aA25c15Ed6e4b5e99f93EBF02778aE51985B";
 // Launchpad
-export const oceanAddress = "0xcDEc8DF5A5b8D87A6b0AFa53f5fCcb19Ccb11140";
-export const boardFactoryAddress = "0x2A244731C3171B384F1709545eeEcBbbEED2719a";
+export const oceanAddress = "0xDd6ff9A872ef204e26393B5CCBfb61699F87aAaB";
+export const boardFactoryAddress = "0xa7ddC63d7A99827f569761ec0F2d89DF5C60Fa56";

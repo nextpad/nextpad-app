@@ -51,7 +51,7 @@ function ContributionCard({
                            {pool.rates && parseFloat(pool.rates) < 1
                               ? (1 / parseFloat(pool.rates)).toFixed(2)
                               : (1 / parseFloat(pool.rates)).toFixed(7)}{" "}
-                           {ctx.blockchain == 1 ? "CORE" : "ETH"}
+                           {ctx.blockchain == 1 ? "EDU" : "ETH"}
                         </div>
                      </div>
                   </div>

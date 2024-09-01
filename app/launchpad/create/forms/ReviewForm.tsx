@@ -5,7 +5,7 @@ import { Launchpad } from "@prisma/client";
 
 function ReviewForm() {
    const values = useContext(Context);
-   const NATIVE = values.network === 1115 ? "CORE" : "ETH";
+   const NATIVE = values.network === 656476 ? "EDU" : "ETH";
    return (
       <>
          <div role="alert" className="alert bg-yellow-400 mb-6">
@@ -39,7 +39,7 @@ function ReviewForm() {
             <div className="w-1/2">
                <p className="mb-4 text-lg font-bold">
                   <span className="mr-3">:</span>
-                  {values.network == 1115 ? "Core" : "Sepolia"}
+                  {values.network == 656476 ? "Educhain" : "Sepolia"}
                </p>
                <p className="mb-4 text-lg">
                   <span className="mr-3">:</span>
@@ -99,7 +99,7 @@ function ReviewForm() {
                   {values.launchpadData.priceNative} {values.tokenInfo[1]}
                </p>
                <p className="mb-4 text-lg">
-                  <span className="mr-3">:</span>1 TOL ={" "}
+                  <span className="mr-3">:</span>1 NXP ={" "}
                   {values.launchpadData.rewardTol} {values.tokenInfo[1]}
                </p>
                <p className="mb-4 text-lg">

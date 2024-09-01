@@ -42,7 +42,7 @@ function BasicForm(props: Props) {
          <div className="flex mt-5">
             <div className="flex-1 mr-7">
                <label className="text-lg font-semibold block">Token Name</label>
-               <p className="text-sm">e.g. Bitcoin, Core</p>
+               <p className="text-sm">e.g. Bitcoin, Edu</p>
                <input
                   type="text"
                   value={props.tokenData.name}
@@ -52,7 +52,7 @@ function BasicForm(props: Props) {
             </div>
             <div className="flex-1">
                <label className="text-lg font-semibold block">Symbol</label>
-               <p className="text-sm">e.g. BTC, CORE</p>
+               <p className="text-sm">e.g. BTC, EDU</p>
                <input
                   type="text"
                   value={props.tokenData.symbol}

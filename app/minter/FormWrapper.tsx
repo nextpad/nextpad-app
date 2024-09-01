@@ -20,7 +20,7 @@ type Props = {
 
 function FormWrapper(props: Props) {
    const [step, setStep] = useState(1);
-   const [network, setNetwork] = useState(1115);
+   const [network, setNetwork] = useState(656476);
    const [logo, setLogo] = useState("");
    const [tokenData, setTokenData] = useState<TokenData>({
       // basic

@@ -20,7 +20,7 @@ function page() {
 
       async function getTotalAmount(ca: string): Promise<string> {
          const provider = new ethers.JsonRpcProvider(
-            "https://rpc.test.btcs.network"
+            "https://rpc.open-campus-codex.gelato.digital"
          );
 
          const ERCAbi = ["function decimals() view returns (uint)"];

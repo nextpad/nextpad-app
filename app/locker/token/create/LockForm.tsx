@@ -55,7 +55,7 @@ function LockForm(props: Props) {
    const [lockerContract, setLockerContract] = useState<Contract>();
    const [tokenContract, setTokenContract] = useState<Contract>();
    const [lockData, setLockData] = useState<LockData>({
-      network: 1115,
+      network: 656476,
       title: "",
       address: "",
       amount: "0",

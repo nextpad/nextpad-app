@@ -29,10 +29,10 @@ function HeaderProject() {
             </div>
             <div className="flex items-center">
                <Image
-                  src="/images/core-dao.png"
-                  className="w-full mb-8"
-                  width={48}
-                  height={48}
+                  src="/images/open-campus.svg"
+                  className="mb-8"
+                  width={72}
+                  height={72}
                   alt="Logo"
                />
             </div>

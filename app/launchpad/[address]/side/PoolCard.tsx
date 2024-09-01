@@ -53,22 +53,22 @@ function PoolCard({ pool, token }: { pool: PoolData; token: string[] }) {
                               parseFloat(
                                  ethers.formatEther(pool.minBuy)
                               ).toLocaleString()}{" "}
-                           {ctx.blockchain == 1 ? "CORE" : "ETH"}
+                           {ctx.blockchain == 1 ? "EDU" : "ETH"}
                         </p>
                         <p className="mb-4 text-lg">
                            {pool.maxBuy &&
                               parseInt(
                                  ethers.formatEther(pool.maxBuy)
                               ).toLocaleString()}{" "}
-                           {ctx.blockchain == 1 ? "CORE" : "ETH"}
+                           {ctx.blockchain == 1 ? "EDU" : "ETH"}
                         </p>
                         <p className="mb-4 text-lg">
-                           1 {ctx.blockchain == 1 ? "CORE" : "ETH"} ={" "}
+                           1 {ctx.blockchain == 1 ? "EDU" : "ETH"} ={" "}
                            {pool.rates && pool.rates} {token[1]}
                         </p>
                         <p className="mb-4 text-lg">{pool.participants}</p>
                         <p className="mb-4 text-lg">
-                           1 TOL = {pool.rewardRate} {token[1]}
+                           1 NXP = {pool.rewardRate} {token[1]}
                         </p>
                         <p className="mb-4 text-lg text-purple-600">
                            <a
