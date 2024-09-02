@@ -39,7 +39,10 @@ async function saveToDatabase(
       return null;
    }
 
-   data["logo"] = await uploadImage(data.logo, data.name);
+   const logo = await uploadImage(data.logo, data.name);
+
+   if (!logo) return null;
+   data["logo"] = logo;
 
    const prisma = new PrismaClient();
    const result = await prisma.token.create({
