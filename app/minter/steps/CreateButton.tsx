@@ -103,7 +103,7 @@ function CreateButton(props: Props) {
       const saved = await props.onSaveDatabase(
          {
             name: props.tokenData.name,
-            logo: props.logo.replace("data:image/jpeg;base64,", ""),
+            logo: props.logo,
             symbol: props.tokenData.symbol,
             supply: props.tokenData.supply.toString(),
             blockchain: props.network === 656476 ? 1 : 2,

@@ -52,7 +52,7 @@ export async function ipfsUpload(data: ProjectParams) {
 
 export async function imageUploader(params: ImageParams) {
    const result = await uploadImage(params.data, params.name);
-   return { url: result };
+   return result;
 }
 
 export async function saveToDatabase(data: LaunchpadParams) {

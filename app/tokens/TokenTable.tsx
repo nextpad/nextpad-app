@@ -73,7 +73,7 @@ async function TokenTable(params: {
                         <div className="flex items-center gap-3">
                            <div
                               className="avatar tooltip tooltip-right"
-                              data-tip="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat, porro."
+                              data-tip={val.description}
                            >
                               <div className="mask mask-squircle h-12 w-12">
                                  <Image

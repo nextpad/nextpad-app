@@ -98,21 +98,22 @@ function CreateButton() {
          setLoading(true);
          setTextBtn("Processing Data..");
          const banners = values.banners.filter((val) => val != "");
-         let [...photos] = await Promise.all([
-            ...banners.map((val) =>
-               imageUploader({
-                  data: val.split(";base64,")[1],
-                  name: values.metadata.projectName + " banner",
-               })
-            ),
-            imageUploader({
-               data: values.logo.split(";base64,")[1],
-               name: values.metadata.projectName,
-            }),
-         ]);
-         let bannersUrl = photos.map((val) => val.url);
-         const logo = bannersUrl[banners.length];
-         bannersUrl.splice(banners.length, 1);
+         let bannersUrl: string[] = [];
+         for (let banner of banners) {
+            const url = await imageUploader({
+               data: banner,
+               name: values.metadata.projectName + " banner",
+            });
+            if (!url) return;
+            bannersUrl.push(url);
+         }
+
+         const logo = await imageUploader({
+            data: values.logo,
+            name: values.metadata.projectName,
+         });
+
+         if (!logo || bannersUrl.length == 0) return;
 
          const { cid } = await ipfsUpload({
             metadata: values.metadata,
@@ -126,7 +127,7 @@ function CreateButton() {
 
          const ldata = values.launchpadData;
          const mdata = values.metadata;
-         const pCore = 1.1;
+         const pCore = 0.5;
          await saveToDatabase({
             projectName: mdata.projectName,
             description: mdata.shortDesc,
