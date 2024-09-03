@@ -3,8 +3,6 @@ import Image from "next/image";
 import GlobeIcon from "../components/icons/GlobeIcon";
 import XIcon from "../components/icons/XIcon";
 import TelegramIcon from "../components/icons/TelegramIcon";
-import DuplicateIcon from "../components/icons/DuplicateIcon";
-import QrCodeIcon from "../components/icons/QrCodeIcon";
 import { Prisma, PrismaClient, Token } from "@prisma/client";
 import moment from "moment";
 import CopyAddress from "./CopyAddress";
