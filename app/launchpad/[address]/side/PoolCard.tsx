@@ -72,7 +72,7 @@ function PoolCard({ pool, token }: { pool: PoolData; token: string[] }) {
                         </p>
                         <p className="mb-4 text-lg text-purple-600">
                            <a
-                              href={`https://scan.test.btcs.network/address/${ctx.address}`}
+                              href={`https://opencampus-codex.blockscout.com/address/${ctx.address}`}
                               target="_blank"
                            >
                               {ctx.address.slice(0, 24)}...

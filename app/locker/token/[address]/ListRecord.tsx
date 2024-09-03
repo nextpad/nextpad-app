@@ -16,7 +16,7 @@ function ListRecord({ records, full = true }: Props) {
                      <td>
                         <a
                            className="text-primary"
-                           href={`https://scan.test.btcs.network/${data[4]}`}
+                           href={`https://opencampus-codex.blockscout.com/address/${data[4]}`}
                         >
                            {data[4]}
                         </a>

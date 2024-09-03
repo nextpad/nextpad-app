@@ -76,7 +76,7 @@ function TokenAddress(props: Props) {
                      </div>
                      <span className="block">
                         <a
-                           href={`https://scan.test.btcs.network/token/${address}`}
+                           href={`https://opencampus-codex.blockscout.com/token/${address}`}
                            className="text-purple-600"
                            target="_blank"
                         >

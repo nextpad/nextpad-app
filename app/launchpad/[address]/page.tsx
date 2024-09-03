@@ -1,8 +1,8 @@
 import { ethers, Contract } from "ethers";
 import Wrapper from "./Wrapper";
-import { createClient } from "redis";
 import ABI from "./Board.json";
 import { notFound } from "next/navigation";
+import { createClient } from "@vercel/kv";
 import { Launchpad, PrismaClient } from "@prisma/client";
 
 export interface MetadataResponse {
@@ -28,19 +28,18 @@ class MetadataService {
 
    constructor() {
       this.redisClient = createClient({
-         url: process.env.REDIS_URL,
+         url: process.env.KV_REST_API_URL,
+         token: process.env.KV_REST_API_TOKEN,
       });
    }
 
    async getMetadata(address: string): Promise<MetadataResponse | null> {
-      await this.redisClient.connect();
-
       try {
          const key = `${address.toLowerCase()}_metadata`;
-         const cachedData = await this.redisClient.get(key);
+         const cachedData: any = await this.redisClient.get(key);
 
-         if (cachedData) {
-            return JSON.parse(cachedData);
+         if (cachedData !== null) {
+            return cachedData;
          }
 
          const cid = await this.getCID(address);
@@ -78,11 +77,9 @@ class MetadataService {
       key: string,
       metadata: MetadataResponse
    ): Promise<void> {
-      await this.redisClient.setEx(
-         key,
-         REDIS_EXPIRATION,
-         JSON.stringify(metadata)
-      );
+      await this.redisClient.set(key, JSON.stringify(metadata), {
+         ex: REDIS_EXPIRATION,
+      });
    }
 }
 

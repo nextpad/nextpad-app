@@ -105,7 +105,7 @@ async function TokenTable(params: {
                      </td>
                      <td className="py-4">
                         <a
-                           href={`https://scan.test.btcs.network/token/${val.address}`}
+                           href={`https://opencampus-codex.blockscout.com/token/${val.address}`}
                            className="text-primary"
                            target="_blank"
                         >

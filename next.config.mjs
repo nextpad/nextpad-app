@@ -37,6 +37,12 @@ const nextConfig = {
          },
          {
             protocol: "https",
+            hostname: "iili.io",
+            port: "",
+            pathname: "/**",
+         },
+         {
+            protocol: "https",
             hostname: "img.braveteknologi.com",
             port: "",
             pathname: "/**",
