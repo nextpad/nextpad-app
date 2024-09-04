@@ -17,7 +17,7 @@ function ProgressGoals(props: Props) {
             <div className="flex mb-1 justify-between">
                <h3>
                   Progress{" "}
-                  <span className="text-white">
+                  <span>
                      {(
                         (parseFloat(props.raised) / parseFloat(props.goals)) *
                         100

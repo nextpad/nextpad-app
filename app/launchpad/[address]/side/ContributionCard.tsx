@@ -80,7 +80,7 @@ function ContributionCard({
                      ))}
                   <div className="mt-2 float-end">
                      Participants:{" "}
-                     <span className="text-slate-300">
+                     <span className="font-semibold">
                         {pool.status == 0 ? pool.voters : pool.participants}
                      </span>
                   </div>
