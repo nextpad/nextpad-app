@@ -216,7 +216,7 @@ function DetailForm() {
                Back
             </button>
             <button
-               className="btn bg-purple-600 text-white px-10 hover:bg-purple-700"
+               className="btn btn-normal"
                onClick={() => values.setStep(3)}
             >
                Next

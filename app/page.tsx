@@ -15,7 +15,7 @@ export default function Home() {
          </div>
          <div className="text-2xl mt-16 mb-7">
             <h1 className="font-bold">Upcoming Launchpad</h1>
-            <p className="text-purple-600 text-base mt-1">
+            <p className="text-gray-600 text-base mt-1">
                <a href="#">
                   Explore More <ChevronRightIcon classList="size-4 inline" />
                </a>
@@ -27,7 +27,7 @@ export default function Home() {
          <div className="pt-10 text-center">
             <Link
                href="/launchpad"
-               className="btn px-10 hover:bg-purple-700 bg-purple-600 text-white"
+               className="btn px-10 hover:bg-gray-700 bg-base-200 text-white"
             >
                More Launchpad
             </Link>

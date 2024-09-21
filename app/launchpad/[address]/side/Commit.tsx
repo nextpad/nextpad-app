@@ -162,7 +162,7 @@ function Commit({
             className="input input-bordered w-full"
          />
          <button
-            className="btn btn-normal mt-4 disabled:bg-purple-800 disabled:text-white"
+            className="btn btn-normal mt-4"
             disabled={loading}
             onClick={commitClick}
          >

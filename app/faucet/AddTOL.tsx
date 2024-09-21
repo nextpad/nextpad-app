@@ -8,7 +8,7 @@ function AddTOL() {
    async function addToken() {
       const tokenSymbol = "NXP";
       const tokenDecimals = 18;
-      const tokenImage = "https://i.ibb.co/P5WydH6/TOL.png";
+      const tokenImage = "https://i.ibb.co.com/c2SGXBX/2.png";
 
       try {
          // 'wasAdded' is a boolean. Like any RPC method, an error can be thrown.

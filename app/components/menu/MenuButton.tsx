@@ -96,7 +96,7 @@ function MenuButton() {
                onClick={toggleMenu}
                className="btn bg-base-100 border-base-300 border rounded-md shadow-md shadow-base-300 px-5"
             >
-               <SquaresIcon classList="size-7 text-purple-600" />
+               <SquaresIcon classList="size-7 text-gray-600" />
             </button>
          </div>
       );

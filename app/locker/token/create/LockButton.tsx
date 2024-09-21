@@ -95,7 +95,7 @@ function LockButton({
    return (
       <>
          <button
-            className="btn disabled:bg-purple-800 disabled:text-slate-300 btn-normal mt-2"
+            className="btn disabled:bg-base disabled:text-slate-300 disabled:bg-gray-700 bg-gray-900 hover:bg-gray-700 text-white mt-2"
             disabled={loading}
             onClick={lockToken}
          >

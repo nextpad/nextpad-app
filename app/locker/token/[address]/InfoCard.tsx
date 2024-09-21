@@ -35,7 +35,7 @@ function InfoCard({ token, records }: Props) {
                      <p className="mb-4 text-lg">
                         <a
                            href={`https://opencampus-codex.blockscout.com/token/${token.address}`}
-                           className="text-purple-600"
+                           className="text-gray-600"
                            target="_blank"
                         >
                            {token.address}

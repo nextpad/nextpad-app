@@ -129,7 +129,7 @@ async function TokenTable(params: {
                         {val.web && (
                            <a
                               href={val.web}
-                              className="hover:text-purple-600"
+                              className="hover:text-gray-600"
                               target="_blank"
                            >
                               <GlobeIcon classList="size-6 inline mr-3" />
@@ -138,7 +138,7 @@ async function TokenTable(params: {
                         {val.twitter && (
                            <a
                               href={val.twitter}
-                              className="hover:text-purple-600"
+                              className="hover:text-gray-600"
                               target="_blank"
                            >
                               <XIcon classList="size-5 inline mr-3" />
@@ -147,7 +147,7 @@ async function TokenTable(params: {
                         {val.telegram && (
                            <a
                               href={val.telegram}
-                              className="hover:text-purple-600"
+                              className="hover:text-gray-600"
                               target="_blank"
                            >
                               <TelegramIcon classList="size-5 inline" />

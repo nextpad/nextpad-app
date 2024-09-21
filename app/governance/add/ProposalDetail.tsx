@@ -51,7 +51,7 @@ function ProposalDetail() {
                   <label className="font-semibold block mb-3">Snapshot</label>
                   <div className="card bg-base-200">
                      <div className="card-body p-3">
-                        <a href="" className="text-purple-600">
+                        <a href="" className="text-gray-600">
                            1313123
                         </a>
                      </div>

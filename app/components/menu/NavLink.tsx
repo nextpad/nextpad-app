@@ -11,7 +11,7 @@ function NavLink() {
             <li>
                <Link
                   href="/faucet"
-                  className={pathName == "/faucet" ? "text-purple-700" : ""}
+                  className={pathName == "/faucet" ? "text-gray-700" : ""}
                >
                   Faucet
                </Link>

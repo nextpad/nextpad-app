@@ -13,7 +13,7 @@ function FundedProject(props: any) {
                role="tablist"
                className="tabs tabs-boxed bg-base-300 p-0 max-w-sm mt-7"
             >
-               <a role="tab" className="tab  bg-purple-600 text-white">
+               <a role="tab" className="tab  bg-base-200 text-white">
                   All
                </a>
                <a role="tab" className="tab">
@@ -27,7 +27,7 @@ function FundedProject(props: any) {
             <div className="flex justify-between mt-2">
                <div className="text-xl">Successfully projects is here</div>
 
-               <div className="text-purple-600 text-base mt-1">
+               <div className="text-gray-600 text-base mt-1">
                   <Link href="/launchpad">
                      Explore More <ChevronRightIcon classList="size-4 inline" />
                   </Link>

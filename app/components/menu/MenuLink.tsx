@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 function MenuLink(props: any) {
-   const active = props.active ? "text-purple-700" : "";
+   const active = props.active ? "text-gray-950" : "";
    const Icon = props.icon;
 
    return (

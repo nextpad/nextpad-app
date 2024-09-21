@@ -14,15 +14,15 @@ function ProposalDetail() {
                <div className="flex flex-col justify-between px-9 mt-2">
                   <div className="flex mb-3">
                      <div className="w-1/3">Creator</div>
-                     <div className="w-2/3 text-purple-600">0x00000000</div>
+                     <div className="w-2/3 text-gray-600">0x00000000</div>
                   </div>
                   <div className="flex mb-3">
                      <div className="w-1/3">Identifier</div>
-                     <div className="w-2/3 text-purple-600">0x00000000</div>
+                     <div className="w-2/3 text-gray-600">0x00000000</div>
                   </div>
                   <div className="flex mb-6">
                      <div className="w-1/3">Snapshot</div>
-                     <div className="w-2/3 text-purple-600">123456</div>
+                     <div className="w-2/3 text-gray-600">123456</div>
                   </div>
                   <div className="card bg-base-200 mb-7 border border-base-300">
                      <div className="card-body p-5">

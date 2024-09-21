@@ -151,7 +151,7 @@ function Wrapper({ address, token }: Props) {
                               !val[2]
                         ).length > 0 ? (
                            <button
-                              className="button btn btn-normal mt-5 disabled:bg-purple-700 disabled:text-slate-100"
+                              className="button btn btn-normal mt-5 disabled:bg-gray-700 disabled:text-slate-100"
                               disabled={loading}
                               onClick={unlockLatest}
                            >

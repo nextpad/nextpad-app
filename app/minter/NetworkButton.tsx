@@ -8,8 +8,7 @@ interface Props {
 }
 
 function NetworkButton(props: Props) {
-   const classList =
-      "btn bg-base-100 hover:border hover:border-purple-700 mr-5";
+   const classList = "btn bg-base-100 hover:border hover:border-gray-700 mr-5";
 
    return (
       <div>

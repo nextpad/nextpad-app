@@ -134,14 +134,14 @@ function Claim() {
          )}
          <AddTOL />
          <div className="text-center mt-14">
-            <h3 className="text-5xl text-purple-600 mt-6">
+            <h3 className="text-5xl text-gray-600 mt-6">
                {timeLeft.minutes} : {timeLeft.seconds}
             </h3>
             <p className="mt-8">
                Balance: <b>{tolBalance} NXP</b>
             </p>
             <button
-               className="btn disabled:bg-purple-800 disabled:text-slate-300 btn-normal mt-8"
+               className="btn bg-gray-900 hover:bg-gray-700 disabled:bg-gray-700 disabled:text-gray-300 text-white mt-8"
                onClick={claimToken}
                disabled={timeLeft.minutes != "00" || loading ? true : false}
             >

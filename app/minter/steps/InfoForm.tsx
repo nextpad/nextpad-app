@@ -141,7 +141,7 @@ function InfoForm(props: Props) {
                Back
             </button>
             <button
-               className="btn bg-purple-600 text-white px-10 hover:bg-purple-700"
+               className="btn bg-gray-900 text-white px-10 hover:bg-gray-700"
                onClick={() => props.setStep(3)}
             >
                Next

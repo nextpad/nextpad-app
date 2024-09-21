@@ -22,7 +22,7 @@ function page({
          </div>
          <div className="flex-1 max-w-xs">
             <div role="tablist" className="tabs tabs-boxed p-0 bg-base-300">
-               <a role="tab" className="tab bg-purple-600 text-white">
+               <a role="tab" className="tab bg-primary text-white">
                   Lock Token
                </a>
                <a href="/locker/liquidity" role="tab" className="tab">

@@ -27,7 +27,7 @@ function ReviewForm() {
                not for all information
             </span>
          </div>
-         <h2 className="font-bold text-xl mb-4 text-purple-600">
+         <h2 className="font-bold text-xl mb-4 text-gray-600">
             Project Information
          </h2>
          <div className="flex flex-row justify-start text-lg">
@@ -52,7 +52,7 @@ function ReviewForm() {
             </div>
          </div>
          <div className="divider"></div>
-         <h2 className="font-bold text-xl mb-4 text-purple-600">
+         <h2 className="font-bold text-xl mb-4 text-gray-600">
             Pool Information
          </h2>
          <div className="flex flex-row justify-start text-lg">

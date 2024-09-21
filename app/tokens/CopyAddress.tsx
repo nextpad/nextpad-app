@@ -20,10 +20,10 @@ function CopyAddress({ address }: { address: string }) {
       <div className="inline">
          {!checked ? (
             <button onClick={copyToClipboard}>
-               <DuplicateIcon classList="size-4 inline hover:text-purple-600 ml-3 mb-1 cursor-pointer" />
+               <DuplicateIcon classList="size-4 inline hover:text-gray-600 ml-3 mb-1 cursor-pointer" />
             </button>
          ) : (
-            <ClipCheckIcon classList="size-4 inline text-purple-600 ml-3 mb-1 cursor-pointer" />
+            <ClipCheckIcon classList="size-4 inline text-gray-600 ml-3 mb-1 cursor-pointer" />
          )}
       </div>
    );

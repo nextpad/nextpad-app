@@ -9,15 +9,15 @@ function Navbar() {
    const { chainId, status, isConnected } = useWeb3ModalAccount();
    return (
       <>
-         <div className="navbar bg-base-100 py-3 border-b-2 border-purple-800 px-10">
+         <div className="navbar bg-base-100 py-3 border-b-2 border-base-300 px-10">
             <div className="navbar-start">
                <div className="items-center">
                   <a href="/" className="btn btn-ghost text-xl">
                      <Image
                         src="/images/nextpad.png"
                         alt=""
-                        width={48}
-                        height={48}
+                        width={42}
+                        height={42}
                      />
                   </a>
                </div>
@@ -31,7 +31,7 @@ function Navbar() {
                   <w3m-button />
                ) : (
                   <button
-                     className="ml-10 btn bg-purple-600 text-white rounded-md hover:bg-purple-700"
+                     className="ml-10 btn bg-gray-900 text-white rounded-md hover:bg-gray-700"
                      onClick={() => open()}
                   >
                      Connect Wallet

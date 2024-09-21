@@ -95,7 +95,7 @@ function CardProject(props: any) {
                   <div>
                      <a
                         href={`/launchpad/${props.address}`}
-                        className="btn btn-sm bg-purple-600 text-white hover:bg-purple-700"
+                        className="btn btn-sm bg-gray-900 text-white hover:bg-gray-700"
                      >
                         View
                      </a>

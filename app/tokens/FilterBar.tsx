@@ -38,9 +38,7 @@ function FilterBar() {
             <div role="tablist" className="tabs tabs-boxed p-0 bg-base-300">
                <a
                   role="tab"
-                  className={`tab ${
-                     chain == 0 ? "bg-purple-600 text-white" : ""
-                  }`}
+                  className={`tab ${chain == 0 ? "bg-primary text-white" : ""}`}
                   onClick={() => {
                      handleChain(0);
                   }}
@@ -49,9 +47,7 @@ function FilterBar() {
                </a>
                <a
                   role="tab"
-                  className={`tab ${
-                     chain == 1 ? "bg-purple-600 text-white" : ""
-                  }`}
+                  className={`tab ${chain == 1 ? "bg-primary text-white" : ""}`}
                   onClick={() => {
                      handleChain(1);
                   }}
@@ -60,9 +56,7 @@ function FilterBar() {
                </a>
                <a
                   role="tab"
-                  className={`tab ${
-                     chain == 2 ? "bg-purple-600 text-white" : ""
-                  }`}
+                  className={`tab ${chain == 2 ? "bg-primary text-white" : ""}`}
                   onClick={() => {
                      handleChain(2);
                   }}

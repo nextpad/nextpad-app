@@ -24,7 +24,7 @@ function page() {
                <a href="/locker/token" role="tab" className="tab">
                   Lock Token
                </a>
-               <a role="tab" className="tab bg-purple-600 text-white">
+               <a role="tab" className="tab bg-base-200 text-white">
                   Lock Liquidity
                </a>
             </div>

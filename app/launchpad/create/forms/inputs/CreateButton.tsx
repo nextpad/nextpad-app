@@ -165,7 +165,7 @@ function CreateButton() {
    return (
       <>
          <button
-            className="btn bg-purple-600 text-white px-10 disabled:bg-purple-800 disabled:text-slate-300 hover:bg-purple-700"
+            className="btn btn-normal"
             onClick={createLaunchpad}
             disabled={loading}
          >

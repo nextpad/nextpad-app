@@ -80,7 +80,7 @@ function QrAddressModal({
             </div>
          </dialog>
          <button onClick={openModal}>
-            <QrCodeIcon classList="size-4 inline hover:text-purple-600 ml-3 mb-1 cursor-pointer" />
+            <QrCodeIcon classList="size-4 inline hover:text-gray-600 ml-3 mb-1 cursor-pointer" />
          </button>
       </div>
    );

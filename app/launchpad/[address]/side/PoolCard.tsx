@@ -70,7 +70,7 @@ function PoolCard({ pool, token }: { pool: PoolData; token: string[] }) {
                         <p className="mb-4 text-lg">
                            1 NXP = {pool.rewardRate} {token[1]}
                         </p>
-                        <p className="mb-4 text-lg text-purple-600">
+                        <p className="mb-4 text-lg text-gray-600">
                            <a
                               href={`https://opencampus-codex.blockscout.com/address/${ctx.address}`}
                               target="_blank"

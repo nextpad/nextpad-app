@@ -9,7 +9,7 @@ body .w-md-editor-text-input {
 }
 
 .btn-normal {
-   @apply bg-purple-600 text-white px-8 hover:bg-purple-700;
+   @apply bg-gray-900 text-white px-8 hover:bg-gray-700 disabled:text-slate-200 disabled:bg-gray-600;
 }
 
 * {
